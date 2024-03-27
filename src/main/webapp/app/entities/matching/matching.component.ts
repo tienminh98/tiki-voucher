@@ -22,7 +22,7 @@ export class MatchingComponent {
 
   constructor() {
     this.productList = this.fakeArray(9).map((_, index) => ({
-      img: `../../content/images/item${index+1}.jpg`,
+      img: `content/images/item${index+1}.jpg`,
       des: this.fakeContent[this.randomBetween1And4()],
       price: 32423.00
     }));

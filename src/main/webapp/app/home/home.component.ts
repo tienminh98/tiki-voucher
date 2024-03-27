@@ -37,7 +37,7 @@ export default class HomeComponent implements OnInit, OnDestroy {
     this.commodityList = this.fakeArray(12).map((_, index) => `content/images/g${index+1}.jpg`);
     this.memberImageList = this.fakeArray(9).map((_, index) => `content/images/h${index+1}.jpg`);
     this.memberList = this.fakeArray(8).map((_, index) => ({
-      bgImg: `../../content/images/m${this.randomBetween1And4()}.jpg`,
+      bgImg: `content/images/m${this.randomBetween1And4()}.jpg`,
       title: 'SAKS OFF 5TH',
       reqInvest: 300,
       type: `VIP${index}`,
