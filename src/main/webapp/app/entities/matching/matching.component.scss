@@ -64,18 +64,26 @@
   font-weight: normal;
   &-item {
     height: 192px;
+    margin-bottom: 10px;
+    transition: .3s;
+    cursor: pointer;
+    &:hover {
+      box-shadow: 0 0.3rem 0.6rem rgba(0, 0, 0, 0.1);
+    }
   }
-  .des {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-  }
-  .price {
-    color: #fe2423;
-    padding-left: 0.5rem;
-    padding-top: 0.5rem;
+  a {
+    .des {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+    }
+    .price {
+      color: #fe2423;
+      padding-left: 0.5rem;
+      padding-top: 0.5rem;
+    }
   }
 }
 

@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
 import {NzButtonComponent} from 'ng-zorro-antd/button';
 import { MatchingService } from './matching.service';
+import {RouterLink} from "@angular/router";
 
 @Component({
   selector: 'jhi-matching',
   standalone: true,
   imports: [
-    NzButtonComponent
+    NzButtonComponent,
+    RouterLink
   ],
   templateUrl: './matching.component.html',
   styleUrl: './matching.component.scss'

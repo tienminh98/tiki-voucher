@@ -5,9 +5,18 @@ import supportRoute from "./support/support.route";
 import myRoute from "./my/my.route";
 
 const routes: Routes = [
-  matchingRoute,
-  supportRoute,
-  myRoute
+  {
+    path: 'matching',
+    loadChildren: () => import(`../entities/matching/matching.route`),
+  },
+  {
+    path: 'support',
+    loadChildren: () => import(`../entities/support/support.route`),
+  },
+  {
+    path: 'my',
+    loadChildren: () => import(`../entities/my/my.route`),
+  },
   /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
 ];
 

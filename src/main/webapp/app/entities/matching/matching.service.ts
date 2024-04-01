@@ -21,7 +21,8 @@ export class MatchingService {
     const list = this.fakeArray(9).map((_, index) => ({
       img: `content/images/item${index+1}.jpg`,
       des: fakeContent[this.randomBetween1And4()],
-      price: 32423.00
+      price: 32423.00,
+      id: index
     }));
    /* return this.http.get(this.applicationConfigService.getEndpointFor('api/activate'), {
       params: new HttpParams().set('key', key),

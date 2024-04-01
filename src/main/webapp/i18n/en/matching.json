@@ -1,5 +1,8 @@
 {
   "matching": {
-    "title": "Matching"
+    "title": "Matching",
+    "detail": {
+      "title": "Detail"
+    }
   }
 }

@@ -1,10 +1,10 @@
-import { Route } from '@angular/router';
+import {Routes} from '@angular/router';
 import {MyComponent} from "./my.component";
 
-const myRoute: Route = {
-  path: 'my',
+const myRoute: Routes = [{
+  path: '',
   component: MyComponent,
   title: 'My.title',
-};
+}];
 
 export default myRoute;
