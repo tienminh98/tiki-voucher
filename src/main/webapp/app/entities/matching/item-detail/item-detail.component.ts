@@ -6,6 +6,7 @@ import { map, pluck, switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { NzButtonComponent } from 'ng-zorro-antd/button';
 import { NzTabComponent, NzTabSetComponent } from 'ng-zorro-antd/tabs';
+import {NzTooltipDirective} from "ng-zorro-antd/tooltip";
 
 @Component({
   selector: 'jhi-item-detail',
@@ -13,7 +14,8 @@ import { NzTabComponent, NzTabSetComponent } from 'ng-zorro-antd/tabs';
   imports: [
     NzButtonComponent,
     NzTabSetComponent,
-    NzTabComponent
+    NzTabComponent,
+    NzTooltipDirective
   ],
   templateUrl: './item-detail.component.html',
   styleUrl: './item-detail.component.scss'

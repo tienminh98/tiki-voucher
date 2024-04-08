@@ -2,17 +2,31 @@
   transition: .3s;
   position: relative;
   .order-summary {
+    padding: 15px 20px;
+    margin-left: 30px;
+    text-align: left;
     transition: .5s;
     display: none;
     background-image: linear-gradient(to right, #f4f4f4 0, #f4f4f4 0);
-    width: 410px;
+    width: 310px;
     position: absolute;
     top: 0;
     left: 100%;
     bottom: 0;
   }
+  .order-item {
+    font-size: 1.4rem;
+    font-weight: normal;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .order-delivery {
+    margin-top: 20px;
+    border-top: 1px solid;
+  }
   &.show-order {
-    transform: translateX(-50%);
+    transform: translateX(-40%);
     .order-summary {
       display: block;
     }
