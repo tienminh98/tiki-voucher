@@ -71,24 +71,24 @@
       box-shadow: 0 0.3rem 0.6rem rgba(0, 0, 0, 0.1);
     }
   }
-  a {
-    .des {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 2;
-    }
-    .price {
-      color: #fe2423;
-      padding-left: 0.5rem;
-      padding-top: 0.5rem;
-    }
+  .title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+  .price {
+    color: #fe2423;
+    padding-left: 0.5rem;
+    padding-top: 0.5rem;
   }
 }
 
 .custom-btn {
   background-color: #00D0EA;
+  border-color: #00D0EA;
+
   color: #ffffff;
   border-radius: 10px;
   &:hover {

@@ -1,1 +1,170 @@
-<p>item-detail works!</p>
+<div class="container position-relative">
+  <section class="banner">
+    <img src="content/images/logos.png" alt="logo" style="width: 100px;height: 50px;">
+  </section>
+  <div class="wrapper" [class.show-order]="isChecked">
+    <section class="product mt-4">
+      <img style="height: 300px;" [src]="data?.img" [alt]="data?.title">
+      <div style="text-align: left" class="mb-4">
+        <div class="product-title">{{data?.title}}</div>
+        <div class="product-price">USD {{data?.price}},00</div>
+      </div>
+      <button (click)="isChecked = !isChecked" class="w-100 custom-btn text-uppercase" nz-button nzSize="large" nzType="default">BUY NOW</button>
+      <div class="product-detail">
+        <nz-tabset class="custom-tab">
+          <nz-tab nzTitle="Detail">
+            <ul style="font-weight: normal; list-style-type: disc">
+              @for(item of data.detail; track i;let i = $index) {
+                <li style="margin-left: 12px">{{item}}</li>
+              }
+            </ul>
+          </nz-tab>
+          <nz-tab nzTitle="Shipping & Returns">
+            <div style="font-weight: normal">
+              <p class="mb-3">Get free standard shipping when you spend $99 or more. Want free standard shipping all the time? Apply for the SaksFirst Credit Card. See Shipping Policy.</p>
+              <p>If you are not completely satisfied, you may return your purchase for an exchange or refund. Final Sale items cannot be returned or exchanged. See Return Policy.</p>
+            </div>
+          </nz-tab>
+        </nz-tabset>
+      </div>
+    </section>
+    <section class="order-summary">
+      <div class="d-flex">
+        <h1>Your Order</h1>
+      </div>
+      <div class="order-info">
+        <div class="order-item">
+          <p>Item</p>
+          <p>$2,217.00</p>
+        </div>
+        <div class="order-item">
+          <p>Shipping</p>
+          <p>$2,217.00</p>
+        </div>
+        <div class="order-item">
+          <p>Commission</p>
+          <p>$2,217.00</p>
+        </div>
+      </div>
+      <div class="order-delivery"></div>
+<!--
+      <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+        <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="email">E-mail</nz-form-label>
+          <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid E-mail!">
+            <input nz-input formControlName="email" id="email" />
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="password" nzRequired>Password</nz-form-label>
+          <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your password!">
+            <input
+              nz-input
+              type="password"
+              id="password"
+              formControlName="password"
+              (ngModelChange)="updateConfirmValidator()"
+            />
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="checkPassword" nzRequired>Confirm Password</nz-form-label>
+          <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="errorTpl">
+            <input nz-input type="password" formControlName="checkPassword" id="checkPassword" />
+            <ng-template #errorTpl let-control>
+              @if (control.errors?.['required']) {
+                Please confirm your password!
+              }
+              @if (control.errors?.['confirm']) {
+                Two passwords that you enter is inconsistent!
+              }
+            </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label
+            [nzSm]="6"
+            [nzXs]="24"
+            nzFor="nickname"
+            nzRequired
+            nzTooltipTitle="What do you want other to call you"
+          >
+            <span>Nickname</span>
+          </nz-form-label>
+          <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your nickname!">
+            <input nz-input id="nickname" formControlName="nickname" />
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="phoneNumber" nzRequired>Phone Number</nz-form-label>
+          <nz-form-control
+            [nzSm]="14"
+            [nzXs]="24"
+            [nzValidateStatus]="validateForm.controls['phoneNumber']"
+            nzErrorTip="Please input your phone number!"
+          >
+            <nz-input-group [nzAddOnBefore]="addOnBeforeTemplate">
+              <ng-template #addOnBeforeTemplate>
+                <nz-select formControlName="phoneNumberPrefix" class="phone-select">
+                  <nz-option nzLabel="+86" nzValue="+86"></nz-option>
+                  <nz-option nzLabel="+87" nzValue="+87"></nz-option>
+                </nz-select>
+              </ng-template>
+              <input formControlName="phoneNumber" id="'phoneNumber'" nz-input />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="website" nzRequired>Website</nz-form-label>
+          <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input website!">
+            <input nz-input id="website" formControlName="website" placeholder="website" />
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label
+            [nzSm]="6"
+            [nzXs]="24"
+            nzFor="captcha"
+            nzRequired
+            nzTooltipTitle="Please click 'Get captcha'"
+            [nzTooltipIcon]="captchaTooltipIcon"
+          >
+            Captcha
+          </nz-form-label>
+          <nz-form-control
+            [nzSm]="14"
+            [nzXs]="24"
+            nzErrorTip="Please input the captcha you got!"
+            nzExtra="We must make sure that your are a human."
+          >
+            <div nz-row [nzGutter]="8">
+              <div nz-col [nzSpan]="12">
+                <input nz-input formControlName="captcha" id="captcha" />
+              </div>
+              <div nz-col [nzSpan]="12">
+                <button nz-button (click)="getCaptcha($event)">Get captcha</button>
+              </div>
+            </div>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item nz-row class="register-area">
+          <nz-form-control [nzSpan]="14" [nzOffset]="6">
+            <label nz-checkbox formControlName="agree">
+            <span>
+              I have read the
+              <a>agreement</a>
+            </span>
+            </label>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item nz-row class="register-area">
+          <nz-form-control [nzSpan]="14" [nzOffset]="6">
+            <button nz-button nzType="primary">Register</button>
+          </nz-form-control>
+        </nz-form-item>
+      </form>
+-->
+    </section>
+  </div>
+</div>
+

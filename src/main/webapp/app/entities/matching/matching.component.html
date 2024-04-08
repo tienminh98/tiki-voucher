@@ -42,7 +42,7 @@
           <div class="product-item col-6">
             <a [routerLink]="['./', item?.id]">
               <img style="width: 196px;height: 112px;object-fit: contain" [src]="item?.img" [alt]="item?.img">
-              <div class="des">{{ item?.des }}</div>
+              <div class="title">{{ item?.title }}</div>
               <div class="price">${{ item?.price }}</div>
             </a>
           </div>

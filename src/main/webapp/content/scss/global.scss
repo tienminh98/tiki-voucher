@@ -24,13 +24,8 @@ h4 {
 }
 
 /* Increase contrast of links to get 100% on Lighthouse Accessibility Audit. Override this color if you want to change the link color, or use a Bootswatch theme */
-a {
-  color: #533f03;
-  font-weight: bold;
-}
-
-a:hover {
-  color: #533f03;
+a, a:hover {
+  color: #212529;
 }
 
 /* override hover color for dropdown-item forced by bootstrap to all a:not([href]):not([tabindex]) elements in _reboot.scss */
@@ -305,6 +300,18 @@ body {
 
 swiper-slide {
   height: 80% !important;
+}
+
+/*Custom tab*/
+
+.custom-tab {
+  .ant-tabs-tab, .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+    font-size: 1.6rem;
+    color: #000000;
+  }
+  .ant-tabs-ink-bar {
+    background: #000000;
+  }
 }
 
 /*Custom support collapse*/
