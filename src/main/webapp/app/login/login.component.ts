@@ -1,16 +1,30 @@
 import { Component, ViewChild, OnInit, AfterViewInit, ElementRef } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormGroup,
+  FormControl,
+  Validators,
+  FormsModule,
+  ReactiveFormsModule,
+  NonNullableFormBuilder
+} from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 
 import SharedModule from 'app/shared/shared.module';
 import { LoginService } from 'app/login/login.service';
 import { AccountService } from 'app/core/auth/account.service';
+import {left} from "@popperjs/core";
+import {NzButtonComponent} from "ng-zorro-antd/button";
+import {NzColDirective, NzRowDirective} from "ng-zorro-antd/grid";
+import {NzFormControlComponent, NzFormDirective, NzFormItemComponent, NzFormLabelComponent} from "ng-zorro-antd/form";
+import {NzInputDirective, NzInputGroupComponent} from "ng-zorro-antd/input";
+import {NzIconDirective} from "ng-zorro-antd/icon";
 
 @Component({
   selector: 'jhi-login',
   standalone: true,
-  imports: [SharedModule, FormsModule, ReactiveFormsModule, RouterModule],
+  imports: [SharedModule, FormsModule, ReactiveFormsModule, RouterModule, NzButtonComponent, NzColDirective, NzFormControlComponent, NzFormDirective, NzFormItemComponent, NzFormLabelComponent, NzInputDirective, NzRowDirective, NzInputGroupComponent, NzIconDirective],
   templateUrl: './login.component.html',
+  styleUrl: '../home/home.component.scss',
 })
 export default class LoginComponent implements OnInit, AfterViewInit {
   @ViewChild('username', { static: false })
@@ -18,17 +32,26 @@ export default class LoginComponent implements OnInit, AfterViewInit {
 
   authenticationError = false;
 
-  loginForm = new FormGroup({
+/*  loginForm = new FormGroup({
     username: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
     password: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
     rememberMe: new FormControl(false, { nonNullable: true, validators: [Validators.required] }),
-  });
+  });*/
+  isShowPassword = false;
+  loginForm!: FormGroup;
+
 
   constructor(
     private accountService: AccountService,
     private loginService: LoginService,
     private router: Router,
-  ) {}
+    private fb: NonNullableFormBuilder
+  ) {
+    this.loginForm = this.fb.group({
+      phone: [null, [Validators.required, Validators.pattern(/^\d+$/)]],
+      password: ['', [Validators.required]],
+    });
+  }
 
   ngOnInit(): void {
     // if already authenticated then navigate to home page
@@ -55,4 +78,19 @@ export default class LoginComponent implements OnInit, AfterViewInit {
       error: () => (this.authenticationError = true),
     });
   }
+
+  submitForm(): void {
+    /*if (this.validateForm.valid) {
+      console.log('submit', this.validateForm.value);
+    } else {
+      Object.values(this.validateForm.controls).forEach(control => {
+        if (control.invalid) {
+          control.markAsDirty();
+          control.updateValueAndValidity({ onlySelf: true });
+        }
+      });
+    }*/
+  }
+
+  protected readonly left = left;
 }

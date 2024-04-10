@@ -1,59 +1,52 @@
-<div>
-  <div class="d-flex justify-content-center">
-    <div class="col-lg-6 col-md-8 col-sm-10">
-      <h1 jhiTranslate="login.title" data-cy="loginTitle">Sign in</h1>
-      @if (authenticationError) {
-        <div class="alert alert-danger" jhiTranslate="login.messages.error.authentication" data-cy="loginError">
-          <strong>Failed to sign in!</strong> Please check your credentials and try again.
-        </div>
-      }
-      <form class="form" role="form" (ngSubmit)="login()" [formGroup]="loginForm">
-        <div class="mb-3">
-          <label class="username-label" for="username" jhiTranslate="global.form.username.label">Username</label>
-          <input
-            type="text"
-            class="form-control"
-            name="username"
-            id="username"
-            placeholder="{{ 'global.form.username.placeholder' | translate }}"
-            formControlName="username"
-            #username
-            data-cy="username"
-          />
-        </div>
-
-        <div class="mb-3">
-          <label for="password" jhiTranslate="login.form.password">Password</label>
-          <input
-            type="password"
-            class="form-control"
-            name="password"
-            id="password"
-            placeholder="{{ 'login.form.password.placeholder' | translate }}"
-            formControlName="password"
-            data-cy="password"
-          />
-        </div>
-
-        <div class="form-check">
-          <label class="form-check-label" for="rememberMe">
-            <input class="form-check-input" type="checkbox" name="rememberMe" id="rememberMe" formControlName="rememberMe" />
-            <span jhiTranslate="login.form.rememberme">Remember me</span>
-          </label>
-        </div>
-
-        <button type="submit" class="btn btn-primary" jhiTranslate="login.form.button" data-cy="submit">Sign in</button>
-      </form>
-      <div class="mt-3 alert alert-warning">
-        <a class="alert-link" routerLink="/account/reset/request" jhiTranslate="login.password.forgot" data-cy="forgetYourPasswordSelector"
-          >Did you forget your password?</a
-        >
-      </div>
-
-      <div class="alert alert-warning">
-        <span jhiTranslate="global.messages.info.register.noaccount">You don&apos;t have an account yet?</span>
-        <a class="alert-link" routerLink="/account/register" jhiTranslate="global.messages.info.register.link">Register a new account</a>
-      </div>
+<div class="home-page">
+  <section class="banner mt-3">
+    <img src="content/images/logos.png" alt="logo" style="width: 100px;height: 50px;">
+    <video class="w-100" [controls]="false" [loop]="true" [autoplay]="true" [muted]="true">
+      <source src="content/videos/v1.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div class="my-2">Please sign in to your Saks OFF 5TH Account.</div>
+  </section>
+  <section class="info">
+    <form nz-form [formGroup]="loginForm" (ngSubmit)="submitForm()">
+      <nz-form-item>
+        <nz-form-label [nzLabelAlign]="left" [nzSm]="24" [nzXs]="24" nzRequired nzFor="phone">Phone number</nz-form-label>
+        <nz-form-control [nzSm]="24" [nzXs]="24" nzErrorTip="The input is not valid phone">
+          <input nz-input formControlName="phone" id="phone" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzLabelAlign]="left" [nzSm]="24" [nzXs]="24" nzRequired nzFor="password">Phone number</nz-form-label>
+        <nz-form-control  [nzSm]="24" [nzXs]="24" nzErrorTip="The input is not valid password!">
+          <nz-input-group [nzSuffix]="iconPassword">
+            <input nz-input [type]="isShowPassword ? 'text' : 'password'"  formControlName="password" id="password" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item nz-row class="register-area mb-0" >
+        <nz-form-control class="text-center">
+          <button class="w-100 custom-btn text-uppercase" nz-button nzSize="large" nzType="default">CHECKOUT</button>
+        </nz-form-control>
+      </nz-form-item>
+      <ng-template #iconPassword>
+        @if (isShowPassword) {
+          <span (click)="isShowPassword = !isShowPassword" nz-icon nzType="eye-invisible" nzTheme="outline"></span>
+        } @else {
+          <span (click)="isShowPassword = !isShowPassword" nz-icon nzType="eye" nzTheme="outline"></span>
+        }
+      </ng-template>
+    </form>
+  </section>
+  <section class="social-network mt-3">
+    <div class="d-flex">
+      <a class="w-20" href=""><img style="width: 25px;height: 25px;" src="content/images/l1.png" alt="instar"></a>
+      <a class="w-20" href=""><img style="width: 25px;height: 25px;" src="content/images/l2.png" alt="fb"></a>
+      <a class="w-20" href=""><img style="width: 25px;height: 25px;" src="content/images/l3.png" alt="pri"></a>
+      <a class="w-20" href=""><img style="width: 25px;height: 25px;" src="content/images/l4.png" alt="twi"></a>
+      <a class="w-20" href=""><img style="width: 25px;height: 25px;" src="content/images/l5.png" alt="ytb"></a>
     </div>
-  </div>
+    <div class="text">
+      ©2024. OFF5TH  CA Transparency in Supply Chains Act
+    </div>
+  </section>
 </div>
