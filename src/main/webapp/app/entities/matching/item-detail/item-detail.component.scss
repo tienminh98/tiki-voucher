@@ -22,7 +22,8 @@
     justify-content: space-between;
   }
   .order-delivery {
-    margin-top: 20px;
+    margin-top: 15px;
+    padding-top: 10px;
     border-top: 1px solid;
   }
   &.show-order {
@@ -51,13 +52,15 @@
   height: 42px;
   background-color: #000000;
   color: #ffffff;
-  border-radius: 30px;
+  border-radius: 8px;
   &:hover {
     border-color: #000000c2;
     background: #000000c2;
     color: #ffffff;
   }
 }
+
+
 
 
 

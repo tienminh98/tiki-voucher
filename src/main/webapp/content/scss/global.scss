@@ -62,14 +62,14 @@ Generic styles
 ========================================================================== */
 
 /* Error highlight on input fields */
-.ng-valid[required],
+/*.ng-valid[required],
 .ng-valid.required {
   border-left: 5px solid green;
 }
 
 .ng-invalid:not(form) {
   border-left: 5px solid red;
-}
+}*/
 
 /* other generic styles */
 
@@ -312,6 +312,12 @@ swiper-slide {
   .ant-tabs-ink-bar {
     background: #000000;
   }
+}
+
+/*Custom form*/
+
+.ant-form-item {
+  margin-bottom: 6px;
 }
 
 /*Custom support collapse*/
