@@ -1,7 +1,7 @@
 <div class="home-page">
   <section class="banner mt-3">
     <img src="content/images/logos.png" alt="logo" style="width: 100px;height: 50px;">
-    <video class="w-100" [controls]="false" [loop]="true" [autoplay]="true" [muted]="true">
+    <video class="w-100" style="height: 230px;" [controls]="false" [loop]="true" [autoplay]="true" [muted]="true">
       <source src="content/videos/v1.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
@@ -9,36 +9,35 @@
   </section>
   <section class="info">
     <form nz-form [formGroup]="loginForm" (ngSubmit)="submitForm()">
-      <nz-form-item>
-        <nz-form-label [nzLabelAlign]="left" [nzSm]="24" [nzXs]="24" nzRequired nzFor="phone">Phone number</nz-form-label>
-        <nz-form-control [nzSm]="24" [nzXs]="24" nzErrorTip="The input is not valid phone">
-          <input nz-input formControlName="phone" id="phone" />
+      <nz-form-item class="mb-4">
+        <nz-form-control style="text-align: left"  [nzSm]="24" [nzXs]="24" nzErrorTip="Please input your phone number!">
+          <input class="custom-input" nz-input formControlName="phone" placeholder="Please enter your username or mobile number" id="phone" />
         </nz-form-control>
       </nz-form-item>
-      <nz-form-item>
-        <nz-form-label [nzLabelAlign]="left" [nzSm]="24" [nzXs]="24" nzRequired nzFor="password">Phone number</nz-form-label>
-        <nz-form-control  [nzSm]="24" [nzXs]="24" nzErrorTip="The input is not valid password!">
-          <nz-input-group [nzSuffix]="iconPassword">
-            <input nz-input [type]="isShowPassword ? 'text' : 'password'"  formControlName="password" id="password" />
+      <nz-form-item class="mb-4">
+        <nz-form-control style="text-align: left" [nzSm]="24" [nzXs]="24" nzErrorTip="Please input your password!">
+          <nz-input-group class="custom-input" [nzSuffix]="iconPassword">
+            <input nz-input [type]="isShowPassword ? 'text' : 'password'" placeholder="Please enter your password" formControlName="password" id="password" />
+            <ng-template #iconPassword>
+              <span style="cursor: pointer" (click)="isShowPassword = !isShowPassword" nz-icon [nzType]="isShowPassword ? 'eye-invisible' : 'eye'" nzTheme="outline"></span>
+            </ng-template>
           </nz-input-group>
         </nz-form-control>
       </nz-form-item>
-      <nz-form-item nz-row class="register-area mb-0" >
+      <nz-form-item nz-row class="register-area mb-0 mb-4" >
         <nz-form-control class="text-center">
-          <button class="w-100 custom-btn text-uppercase" nz-button nzSize="large" nzType="default">CHECKOUT</button>
+          <button class="w-100 custom-btn login text-uppercase" nz-button nzSize="large" nzType="default">Login</button>
         </nz-form-control>
       </nz-form-item>
-      <ng-template #iconPassword>
-        @if (isShowPassword) {
-          <span (click)="isShowPassword = !isShowPassword" nz-icon nzType="eye-invisible" nzTheme="outline"></span>
-        } @else {
-          <span (click)="isShowPassword = !isShowPassword" nz-icon nzType="eye" nzTheme="outline"></span>
-        }
-      </ng-template>
     </form>
+    <div class="text-left">Forgot password?</div>
+    <div class="my-3" style="font-size: 2.4rem">Create an Account</div>
+    <button class="w-100 custom-btn login text-uppercase" nz-button nzSize="large" nzType="default">
+      <a style="color: #ffff" routerLink="/account/register">SIGN IN</a>
+    </button>
   </section>
   <section class="social-network mt-3">
-    <div class="d-flex">
+    <div class="d-flex mb-4">
       <a class="w-20" href=""><img style="width: 25px;height: 25px;" src="content/images/l1.png" alt="instar"></a>
       <a class="w-20" href=""><img style="width: 25px;height: 25px;" src="content/images/l2.png" alt="fb"></a>
       <a class="w-20" href=""><img style="width: 25px;height: 25px;" src="content/images/l3.png" alt="pri"></a>

@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 import { Login } from 'app/login/login.model';
 import { ApplicationConfigService } from '../config/application-config.service';
 import { StateStorageService } from './state-storage.service';
+import { HOT_BASE } from '../../app.constants';
 
 type JwtToken = {
   id_token: string;
@@ -13,6 +14,7 @@ type JwtToken = {
 
 @Injectable({ providedIn: 'root' })
 export class AuthServerProvider {
+  hostBase = HOT_BASE;
   constructor(
     private http: HttpClient,
     private stateStorageService: StateStorageService,
@@ -23,10 +25,16 @@ export class AuthServerProvider {
     return this.stateStorageService.getAuthenticationToken() ?? '';
   }
 
-  login(credentials: Login): Observable<void> {
+  /*login(credentials: Login): Observable<void> {
     return this.http
       .post<JwtToken>(this.applicationConfigService.getEndpointFor('api/authenticate'), credentials)
       .pipe(map(response => this.authenticateSuccess(response, credentials.rememberMe)));
+  }*/
+
+  login(credentials: any): Observable<void> {
+    return this.http
+      .post<JwtToken>(this.hostBase +'/login', credentials)
+      .pipe(map(response => this.authenticateSuccess(response, true)));
   }
 
   logout(): Observable<void> {
@@ -36,7 +44,7 @@ export class AuthServerProvider {
     });
   }
 
-  private authenticateSuccess(response: JwtToken, rememberMe: boolean): void {
-    this.stateStorageService.storeAuthenticationToken(response.id_token, rememberMe);
+  authenticateSuccess(response: any, rememberMe: boolean): void {
+    this.stateStorageService.storeAuthenticationToken(response.token, rememberMe);
   }
 }

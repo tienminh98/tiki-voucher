@@ -40,7 +40,6 @@ export default class LoginComponent implements OnInit, AfterViewInit {
   isShowPassword = false;
   loginForm!: FormGroup;
 
-
   constructor(
     private accountService: AccountService,
     private loginService: LoginService,
@@ -63,7 +62,7 @@ export default class LoginComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.username.nativeElement.focus();
+    // this.username.nativeElement.focus();
   }
 
   login(): void {
@@ -80,16 +79,26 @@ export default class LoginComponent implements OnInit, AfterViewInit {
   }
 
   submitForm(): void {
-    /*if (this.validateForm.valid) {
-      console.log('submit', this.validateForm.value);
+    if (this.loginForm.valid) {
+      // console.log('submit', this.loginForm.value);
+      this.loginService.login(this.loginForm.getRawValue()).subscribe({
+        next: () => {
+          this.authenticationError = false;
+          if (!this.router.getCurrentNavigation()) {
+            // There were no routing during login (eg from navigationToStoredUrl)
+            this.router.navigate(['']);
+          }
+        },
+        error: () => (this.authenticationError = true),
+      });
     } else {
-      Object.values(this.validateForm.controls).forEach(control => {
+      Object.values(this.loginForm.controls).forEach(control => {
         if (control.invalid) {
           control.markAsDirty();
           control.updateValueAndValidity({ onlySelf: true });
         }
       });
-    }*/
+    }
   }
 
   protected readonly left = left;

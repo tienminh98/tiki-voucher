@@ -19,6 +19,19 @@ export class StateStorageService {
     sessionStorage.removeItem(this.previousUrlKey);
   }
 
+  storeUser(user: any): void {
+    localStorage.setItem('user', JSON.stringify(user));
+  }
+
+  getUser(): string | null {
+    const previousUrl = localStorage.getItem('user');
+    return previousUrl ? (JSON.parse(previousUrl) as string | null) : previousUrl;
+  }
+
+  clearUser(): void {
+    sessionStorage.removeItem(this.previousUrlKey);
+  }
+
   storeAuthenticationToken(authenticationToken: string, rememberMe: boolean): void {
     authenticationToken = JSON.stringify(authenticationToken);
     this.clearAuthenticationToken();

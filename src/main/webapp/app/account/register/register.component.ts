@@ -1,22 +1,40 @@
 import { Component, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
-import { FormGroup, FormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
+import {
+  FormGroup,
+  FormControl,
+  Validators,
+  FormsModule,
+  ReactiveFormsModule,
+  NonNullableFormBuilder
+} from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 
 import { EMAIL_ALREADY_USED_TYPE, LOGIN_ALREADY_USED_TYPE } from 'app/config/error.constants';
 import SharedModule from 'app/shared/shared.module';
 import PasswordStrengthBarComponent from '../password/password-strength-bar/password-strength-bar.component';
 import { RegisterService } from './register.service';
+import { NzButtonComponent } from 'ng-zorro-antd/button';
+import { NzColDirective, NzRowDirective } from 'ng-zorro-antd/grid';
+import { NzFormControlComponent, NzFormDirective, NzFormItemComponent } from 'ng-zorro-antd/form';
+import { NzIconDirective } from 'ng-zorro-antd/icon';
+import { NzInputDirective, NzInputGroupComponent } from 'ng-zorro-antd/input';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 
 @Component({
   selector: 'jhi-register',
   standalone: true,
-  imports: [SharedModule, RouterModule, FormsModule, ReactiveFormsModule, PasswordStrengthBarComponent],
+  imports: [SharedModule, RouterModule, FormsModule, ReactiveFormsModule, PasswordStrengthBarComponent, NzButtonComponent, NzColDirective, NzFormControlComponent, NzFormDirective, NzFormItemComponent, NzIconDirective, NzInputDirective, NzInputGroupComponent, NzRowDirective],
   templateUrl: './register.component.html',
+  styleUrl: '../../home/home.component.scss',
+
 })
 export default class RegisterComponent implements AfterViewInit {
   @ViewChild('login', { static: false })
+
+  isShowPassword = false;
+  isShowConfirmPassword = false;
   login?: ElementRef;
 
   doNotMatch = false;
@@ -25,65 +43,72 @@ export default class RegisterComponent implements AfterViewInit {
   errorUserExists = false;
   success = false;
 
-  registerForm = new FormGroup({
-    login: new FormControl('', {
-      nonNullable: true,
-      validators: [
-        Validators.required,
-        Validators.minLength(1),
-        Validators.maxLength(50),
-        Validators.pattern('^[a-zA-Z0-9!$&*+=?^_`{|}~.-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$|^[_.@A-Za-z0-9-]+$'),
-      ],
-    }),
-    email: new FormControl('', {
-      nonNullable: true,
-      validators: [Validators.required, Validators.minLength(5), Validators.maxLength(254), Validators.email],
-    }),
-    password: new FormControl('', {
-      nonNullable: true,
-      validators: [Validators.required, Validators.minLength(4), Validators.maxLength(50)],
-    }),
-    confirmPassword: new FormControl('', {
-      nonNullable: true,
-      validators: [Validators.required, Validators.minLength(4), Validators.maxLength(50)],
-    }),
-  });
+  registerForm!: FormGroup;
 
   constructor(
     private translateService: TranslateService,
     private registerService: RegisterService,
-  ) {}
+    private fb: NonNullableFormBuilder,
+    private notification: NzNotificationService,
+    private router: Router,
+  ) {
+    this.registerForm = this.fb.group({
+      phone: [null, [Validators.required, Validators.pattern(/^\d+$/)]],
+      password: ['', [Validators.required]],
+      confirmPassword: ['', [Validators.required]],
+      name: ['', [Validators.required]],
+    });
+  }
 
   ngAfterViewInit(): void {
-    if (this.login) {
-      this.login.nativeElement.focus();
-    }
+  }
+
+  createNotification(type: string, title: string): void {
+    this.notification.create(
+      type,
+      title,
+      '',
+      {
+        nzStyle: {
+          textAlign: 'left'
+        },
+      }
+
+    );
   }
 
   register(): void {
-    this.doNotMatch = false;
-    this.error = false;
-    this.errorEmailExists = false;
-    this.errorUserExists = false;
-
     const { password, confirmPassword } = this.registerForm.getRawValue();
     if (password !== confirmPassword) {
-      this.doNotMatch = true;
+      this.createNotification('error', 'The password and its confirmation do not match!')
     } else {
-      const { login, email } = this.registerForm.getRawValue();
       this.registerService
-        .save({ login, email, password, langKey: this.translateService.currentLang })
-        .subscribe({ next: () => (this.success = true), error: response => this.processError(response) });
+        .save(this.registerForm.getRawValue())
+        .subscribe({ next: () => {
+            if (!this.router.getCurrentNavigation()) {
+              // There were no routing during login (eg from navigationToStoredUrl)
+              this.router.navigate(['']);
+            }
+          }, error: response => this.processError(response) });
+    }
+  }
+
+  submitForm(): void {
+    if (this.registerForm.valid) {
+      // console.log('submit', this.loginForm.value);
+      this.register();
+    } else {
+      Object.values(this.registerForm.controls).forEach(control => {
+        if (control.invalid) {
+          control.markAsDirty();
+          control.updateValueAndValidity({ onlySelf: true });
+        }
+      });
     }
   }
 
   private processError(response: HttpErrorResponse): void {
-    if (response.status === 400 && response.error.type === LOGIN_ALREADY_USED_TYPE) {
-      this.errorUserExists = true;
-    } else if (response.status === 400 && response.error.type === EMAIL_ALREADY_USED_TYPE) {
-      this.errorEmailExists = true;
-    } else {
-      this.error = true;
-    }
+    const keyErrors = Object.keys(response.error);
+    this.createNotification('error', response.error[keyErrors[0]])
   }
 }

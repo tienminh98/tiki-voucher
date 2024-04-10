@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import {NzButtonComponent} from 'ng-zorro-antd/button';
 import { MatchingService } from './matching.service';
 import {RouterLink} from "@angular/router";
+import { HOT_BASE } from '../../app.constants';
+import { StateStorageService } from '../../core/auth/state-storage.service';
 
 @Component({
   selector: 'jhi-matching',
@@ -14,14 +16,19 @@ import {RouterLink} from "@angular/router";
   styleUrl: './matching.component.scss'
 })
 export class MatchingComponent {
+  account!: any;
+  hostBase = 'https\://lyst686.com/admin/storage/app/public/';
   productList: any[] = [];
 
-  constructor(private matchingService: MatchingService) {
+  constructor(private matchingService: MatchingService, private stateStorageService: StateStorageService) {
+    this.account = stateStorageService.getUser();
   }
 
   getProducts(): void {
     this.matchingService.getProducts().subscribe((res: any) => {
-      this.productList = res;
+      if (res.status === 200) {
+        this.productList = res.body;
+      }
     })
   }
 }

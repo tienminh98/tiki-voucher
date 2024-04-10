@@ -8,9 +8,11 @@ import { shareReplay, tap, catchError } from 'rxjs/operators';
 import { StateStorageService } from 'app/core/auth/state-storage.service';
 import { Account } from 'app/core/auth/account.model';
 import { ApplicationConfigService } from '../config/application-config.service';
+import { HOT_BASE } from '../../app.constants';
 
 @Injectable({ providedIn: 'root' })
 export class AccountService {
+  hostBase = HOT_BASE;
   private userIdentity: Account | null = null;
   private authenticationState = new ReplaySubject<Account | null>(1);
   private accountCache$?: Observable<Account> | null;
@@ -49,8 +51,8 @@ export class AccountService {
     if (!this.accountCache$ || force) {
       this.accountCache$ = this.fetch().pipe(
         tap((account: Account) => {
+          this.stateStorageService.storeUser(account);
           this.authenticate(account);
-
           // After retrieve the account info, the language will be changed to
           // the user's preferred language configured in the account setting
           // unless user have choosed other language in the current session
@@ -75,7 +77,7 @@ export class AccountService {
   }
 
   private fetch(): Observable<Account> {
-    return this.http.get<Account>(this.applicationConfigService.getEndpointFor('api/account'));
+    return this.http.get<any>(this.hostBase + '/users');
   }
 
   private navigateToStoredUrl(): void {

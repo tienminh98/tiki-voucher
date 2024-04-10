@@ -13,6 +13,8 @@ const routes: Routes = [
     path: '',
     component: HomeComponent,
     title: 'home.title',
+    canActivate: [UserRouteAccessService],
+
   },
   {
     path: '',
@@ -29,6 +31,7 @@ const routes: Routes = [
   },
   {
     path: 'account',
+    canActivate: [UserRouteAccessService],
     loadChildren: () => import('./account/account.route'),
   },
   {
@@ -39,6 +42,8 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () => import(`./entities/entity.routes`),
+    canActivate: [UserRouteAccessService],
+
   },
   ...errorRoute,
 ];

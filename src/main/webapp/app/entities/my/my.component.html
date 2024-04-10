@@ -7,27 +7,23 @@
       <img src="content/images/avatar.png" alt="avatar">
       <div class="w-100 d-flex flex-column justify-content-between align-items-center"
            style="font-weight: normal;color: #333">
-        <p>Account name : bailong</p>
-        <p>Phone number : 11****333</p>
+        <p>Account name : {{account?.user?.name}}</p>
+        <p>Phone number : {{account?.user?.contact_phone}}</p>
       </div>
     </div>
   </section>
   <section class="info-transaction">
     <div class="card-transaction text-start">
-      <div class="info-type text-uppercase" style="font-style: italic"><strong>VIP1</strong></div>
+      <div class="info-type text-uppercase" style="font-style: italic"><strong>VIP {{account?.user?.level}}</strong></div>
       <div class="transaction">
         <div class="d-flex">
           <div class="info-label">
-            <div>Complete schedule</div>
-            <div>Orders</div>
-            <div>Completed</div>
+            <div>Total Orders</div>
             <div>Today's commission</div>
           </div>
           <div class="info-value">
-            <div>0 / 40</div>
-            <div>40</div>
-            <div>0</div>
-            <div>$0</div>
+            <div>{{account?.total_orders}}</div>
+            <div>${{account?.total_commission}}</div>
           </div>
         </div>
       </div>
@@ -37,10 +33,12 @@
     <div class="card-info d-flex justify-content-between">
       <div class="surplus d-flex flex-column justify-content-center align-items-start">
         <div class="">Account Balance</div>
-        <div class="">$99.00</div>
+        <div class="">${{account?.user?.wallet}}</div>
       </div>
       <div class="d-flex align-items-center" style="font-weight: normal;color: #333">
-        <button class="custom-btn" nz-button nzSize="large" nzType="default">Top up</button>
+        <button class="custom-btn" nz-button nzSize="large" nzType="default">
+          <a style="color: #fff" href="https://esyoky.alzlrxwoyofhakpm.xyz/index?key=b850d8e09e786d171016bc79381c36da" target="_blank">Top up</a>
+        </button>
         <button class="custom-btn ghost ml-3" nz-button nzSize="large" nzType="default">Withdraw</button>
       </div>
     </div>

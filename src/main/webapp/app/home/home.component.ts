@@ -9,6 +9,7 @@ import { Account } from 'app/core/auth/account.model';
 import {NgOptimizedImage} from "@angular/common";
 import {ReactiveFormsModule} from "@angular/forms";
 import {NzButtonComponent, NzButtonSize} from 'ng-zorro-antd/button';
+import { StateStorageService } from '../core/auth/state-storage.service';
 
 
 @Component({
@@ -20,7 +21,7 @@ import {NzButtonComponent, NzButtonSize} from 'ng-zorro-antd/button';
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export default class HomeComponent implements OnInit, OnDestroy {
-  account: Account | null = null;
+  account: any = null;
   size: NzButtonSize = 'large';
 
   private readonly destroy$ = new Subject<void>();
@@ -30,24 +31,40 @@ export default class HomeComponent implements OnInit, OnDestroy {
   memberImageList: any[] = [];
   annList: any[] = [];
 
+  public targetList = [
+    {reqInvest: 300, commission: 0.5, order: 40},
+    {reqInvest: 1000, commission: 0.6, order: 60},
+    {reqInvest: 3000, commission: 0.7, order: 80},
+    {reqInvest: 5000, commission: 0.8, order: 100},
+    {reqInvest: 10000, commission: 0.9, order: 120},
+    {reqInvest: 30000, commission: 1, order: 140},
+    {reqInvest: 50000, commission: 1.2, order: 160},
+    {reqInvest: 100000, commission: 1.4, order: 180},
+    {reqInvest: 300000, commission: 1.6, order: 200},
+    {reqInvest: 500000, commission: 2, order: 220}
+  ]
+
   constructor(
     private accountService: AccountService,
     private router: Router,
+    private stateStorageService: StateStorageService,
   ) {
     this.commodityList = this.fakeArray(12).map((_, index) => `content/images/g${index+1}.jpg`);
     this.memberImageList = this.fakeArray(9).map((_, index) => `content/images/h${index+1}.jpg`);
-    this.memberList = this.fakeArray(8).map((_, index) => ({
+    this.memberList = this.fakeArray(10).map((_, index) => ({
       bgImg: `content/images/m${this.randomBetween1And4()}.jpg`,
       title: 'SAKS OFF 5TH',
-      reqInvest: 300,
+      reqInvest: this.targetList[index].reqInvest,
       type: `VIP${index}`,
-      val: 0.3,
-      order: 30,
+      val: this.targetList[index].commission,
+      order: this.targetList[index].order,
     }));
     this.annList = this.fakeArray(20).map((_, index) => ({
       cardNumber: '[****2512]',
       money: 2512201,
     }));
+    this.account = this.stateStorageService.getUser();
+    console.log('account', this.account);
   }
 
   randomBetween1And4() {
@@ -73,4 +90,6 @@ export default class HomeComponent implements OnInit, OnDestroy {
     this.destroy$.next();
     this.destroy$.complete();
   }
+
+  protected readonly Number = Number;
 }

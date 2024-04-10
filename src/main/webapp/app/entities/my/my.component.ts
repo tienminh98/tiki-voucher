@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {NzButtonComponent} from "ng-zorro-antd/button";
+import { StateStorageService } from '../../core/auth/state-storage.service';
 
 @Component({
   selector: 'jhi-my',
@@ -11,6 +12,8 @@ import {NzButtonComponent} from "ng-zorro-antd/button";
   styleUrl: './my.component.scss'
 })
 export class MyComponent {
+  account: any;
+
   featureList: any[] = [
     {img: this.handleImg('ft1'), title: 'Shipping Address'},
     {img: this.handleImg('ft2'), title: 'Detailed Bills'},
@@ -23,7 +26,8 @@ export class MyComponent {
     {img: this.handleImg('ft9'), title: 'Log out'},
   ]
 
-  constructor() {
+  constructor(private stateStorageService: StateStorageService) {
+    this.account = stateStorageService.getUser();
   }
 
   handleImg(name: string): string {

@@ -3,10 +3,11 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 
 import { ApplicationConfigService } from 'app/core/config/application-config.service';
+import { HOT_BASE } from '../../app.constants';
 
 @Injectable({ providedIn: 'root' })
 export class MatchingService {
-
+  hostBase = HOT_BASE;
   list: any[] = [];
   constructor(
     private http: HttpClient,
@@ -37,15 +38,13 @@ export class MatchingService {
     }));
   }
 
+
   getProducts(): Observable<any> {
-   /* return this.http.get(this.applicationConfigService.getEndpointFor('api/activate'), {
-      params: new HttpParams().set('key', key),
-    });*/
-    return of(this.list);
+    return this.http.get(this.hostBase + '/products', {observe: 'response'});
   }
 
   getDetailItem(id: number): Observable<any> {
-    return of(this.list.find(item => item.id === id));
+    return this.http.get(`${this.hostBase}/products/${id}` , {observe: 'response'});
   }
 
   randomBetween1And4(): number {
@@ -55,4 +54,7 @@ export class MatchingService {
     return new Array(length).fill(null);
   }
 
+  order(body: any): Observable<any> {
+    return this.http.post(`${this.hostBase}/order/store` , body ,{observe: 'response'});
+  }
 }
