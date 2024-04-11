@@ -24,7 +24,6 @@ export const UserRouteAccessService: CanActivateFn = (next: ActivatedRouteSnapsh
         router.navigate(['accessdenied']);
         return false;
       }
-
       stateStorageService.storeUrl(state.url);
       router.navigate(['/login']);
       return false;

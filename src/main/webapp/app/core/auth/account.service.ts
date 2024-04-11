@@ -34,6 +34,7 @@ export class AccountService {
     this.authenticationState.next(this.userIdentity);
     if (!identity) {
       this.accountCache$ = null;
+
     }
   }
 
@@ -51,7 +52,6 @@ export class AccountService {
     if (!this.accountCache$ || force) {
       this.accountCache$ = this.fetch().pipe(
         tap((account: Account) => {
-          this.stateStorageService.storeUser(account);
           this.authenticate(account);
           // After retrieve the account info, the language will be changed to
           // the user's preferred language configured in the account setting
@@ -76,8 +76,8 @@ export class AccountService {
     return this.authenticationState.asObservable();
   }
 
-  private fetch(): Observable<Account> {
-    return this.http.get<any>(this.hostBase + '/users');
+  fetch(): Observable<Account> {
+    return this.http.get<any>(this.hostBase + '/users').pipe(tap(account => this.stateStorageService.storeUser(account)));
   }
 
   private navigateToStoredUrl(): void {

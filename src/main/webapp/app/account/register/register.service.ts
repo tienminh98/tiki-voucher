@@ -18,7 +18,9 @@ export class RegisterService {
   ) {}
 
   save(registration: any): Observable<any> {
-    return this.http.post(this.hostBase + '/register', registration).pipe(map(response => this.authServerProvider.authenticateSuccess(response, true)));
-    ;
+    return this.http.post(this.hostBase + '/register', registration).pipe(map(response => this.authServerProvider.authenticateSuccess(response, true)));;
+  }
+  update(info: any): Observable<any> {
+    return this.http.put(this.hostBase + '/user/update', info);
   }
 }

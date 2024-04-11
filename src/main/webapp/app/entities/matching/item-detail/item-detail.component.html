@@ -1,10 +1,10 @@
 <div *ngIf="data" class="container position-relative">
   <section class="banner">
-    <img src="content/images/logos.png" alt="logo" style="width: 100px;height: 50px;">
+    <img src="content/images/logos.png" alt="logo" style="width: 100px;height: 50px">
   </section>
   <div class="wrapper" [class.show-order]="isChecked">
     <section class="product mt-4">
-      <img style="width: 100%;height: 300px;" [src]="hostBase + data?.image" [alt]="data?.name">
+      <img style="width: 100%;height: 300px;object-fit: contain" [src]="hostBase + data?.image" [alt]="data?.name">
       <div style="text-align: left" class="mb-4">
         <div class="product-title">{{data?.name}}</div>
         <div class="product-price">USD {{data?.price}},00</div>
@@ -54,15 +54,15 @@
       <div class="order-delivery">
         <form nz-form [formGroup]="deliveryForm" (ngSubmit)="submitForm()">
           <nz-form-item>
-            <nz-form-label [nzLabelAlign]="left" [nzSm]="24" [nzXs]="24" nzRequired nzFor="realName">Real name</nz-form-label>
+            <nz-form-label [nzLabelAlign]="left" [nzSm]="24" [nzXs]="24" nzRequired nzFor="recipient_name">Real name</nz-form-label>
             <nz-form-control [nzSm]="24" [nzXs]="24" nzErrorTip="The input is not valid real name!">
-              <input nz-input formControlName="realName" id="realName" />
+              <input nz-input formControlName="recipient_name" id="recipient_name" />
             </nz-form-control>
           </nz-form-item>
           <nz-form-item>
-            <nz-form-label [nzLabelAlign]="left" [nzSm]="24" [nzXs]="24" nzRequired nzFor="phoneNumber">Phone number</nz-form-label>
+            <nz-form-label [nzLabelAlign]="left" [nzSm]="24" [nzXs]="24" nzRequired nzFor="contact_phone">Phone number</nz-form-label>
             <nz-form-control  [nzSm]="24" [nzXs]="24" nzErrorTip="The input is not valid phone number!">
-              <input nz-input type="number"  formControlName="phoneNumber" id="phoneNumber" />
+              <input nz-input type="number"  formControlName="contact_phone" id="contact_phone" />
             </nz-form-control>
           </nz-form-item>
           <nz-form-item>

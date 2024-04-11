@@ -7,6 +7,8 @@ import { Login } from 'app/login/login.model';
 import { ApplicationConfigService } from '../config/application-config.service';
 import { StateStorageService } from './state-storage.service';
 import { HOT_BASE } from '../../app.constants';
+import { Router } from '@angular/router';
+import { LoginService } from '../../login/login.service';
 
 type JwtToken = {
   id_token: string;
@@ -40,6 +42,7 @@ export class AuthServerProvider {
   logout(): Observable<void> {
     return new Observable(observer => {
       this.stateStorageService.clearAuthenticationToken();
+      this.stateStorageService.clearUser();
       observer.complete();
     });
   }

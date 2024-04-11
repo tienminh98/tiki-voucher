@@ -26,9 +26,9 @@
       </nz-form-item>
       <nz-form-item class="mb-4">
         <nz-form-control style="text-align: left" [nzSm]="24" [nzXs]="24" nzErrorTip="Please input your confirm password!">
-          <nz-input-group class="custom-input" [nzSuffix]="iconPassword">
+          <nz-input-group class="custom-input" [nzSuffix]="iconShowConfirmPassword">
             <input nz-input [type]="isShowConfirmPassword ? 'text' : 'password'" placeholder="Please enter your confirm password" formControlName="confirmPassword" id="confirmPassword" />
-            <ng-template #iconPassword>
+            <ng-template #iconShowConfirmPassword>
               <span style="cursor: pointer" (click)="isShowConfirmPassword = !isShowConfirmPassword" nz-icon [nzType]="isShowConfirmPassword ? 'eye-invisible' : 'eye'" nzTheme="outline"></span>
             </ng-template>
           </nz-input-group>
@@ -41,8 +41,10 @@
         </nz-form-control>
       </nz-form-item>
     </form>
-    <button class="w-100 custom-btn login text-uppercase" nz-button nzSize="large" nzType="default">
-      <a style="color: #ffff" routerLink="/login">LOGIN</a>
-    </button>
+      <a style="color: #ffff" routerLink="/login">
+        <button class="w-100 custom-btn login text-uppercase" nz-button nzSize="large" nzType="default">
+          LOGIN
+        </button>
+      </a>
   </section>
 </div>

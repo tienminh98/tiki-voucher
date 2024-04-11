@@ -1,7 +1,7 @@
 import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatchingService } from '../matching.service';
-import { pluck, switchMap } from 'rxjs/operators';
+import { pluck, switchMap, tap } from 'rxjs/operators';
 import { NzButtonComponent } from 'ng-zorro-antd/button';
 import { NzTabComponent, NzTabSetComponent } from 'ng-zorro-antd/tabs';
 import {NzTooltipDirective} from "ng-zorro-antd/tooltip";
@@ -66,9 +66,9 @@ export class ItemDetailComponent {
     this.account = this.stateStorageService.getUser();
 
     this.deliveryForm = this.fb.group({
-      realName: [this.account.user.name, [Validators.required]],
+      recipient_name: [this.account.user.name, [Validators.required]],
       address: [this.account.user.address, [Validators.required]],
-      phoneNumber: [this.account.user.contact_phone, [Validators.required, Validators.pattern(/^\d+$/)]],
+      contact_phone: [this.account.user.phone, [Validators.required, Validators.pattern(/^\d+$/)]],
       email: [this.account.user.email, [Validators.email, Validators.required]],
     });
     this.commission = this.commissionLíst[this.account.user.level-1];
@@ -115,17 +115,14 @@ export class ItemDetailComponent {
       this.showConfirm();
     } else {
       if (this.deliveryForm.valid) {
-        console.log('submit', this.deliveryForm.value);
         const request = {
           product_id: this.data.id,
           ...this.deliveryForm.value
         }
         this.matchingService.order(request).subscribe(res => {
-          console.log('res', res);
           if (res.status === 201) {
             this.createNotification('success', 'Order placed successfully. The order is being processed');
-            this.accountService.identity(true);
-            this.router.navigateByUrl('/matching').then();
+            this.accountService.fetch().pipe(tap(_ => this.router.navigate(['/matching']).then())).subscribe();
           }
         })
       } else {

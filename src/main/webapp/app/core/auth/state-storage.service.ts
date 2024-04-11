@@ -29,7 +29,7 @@ export class StateStorageService {
   }
 
   clearUser(): void {
-    sessionStorage.removeItem(this.previousUrlKey);
+    localStorage.removeItem('user');
   }
 
   storeAuthenticationToken(authenticationToken: string, rememberMe: boolean): void {

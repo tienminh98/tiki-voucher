@@ -31,7 +31,6 @@ const routes: Routes = [
   },
   {
     path: 'account',
-    canActivate: [UserRouteAccessService],
     loadChildren: () => import('./account/account.route'),
   },
   {

@@ -8,7 +8,7 @@
       <div class="w-100 d-flex flex-column justify-content-between align-items-center"
            style="font-weight: normal;color: #333">
         <p>Account name : {{account?.user?.name}}</p>
-        <p>Phone number : {{account?.user?.contact_phone}}</p>
+        <p>Phone number : {{account?.user?.phone}}</p>
       </div>
     </div>
   </section>
@@ -47,7 +47,7 @@
     <div class="row no-gutters">
       @for (feature of featureList; track i;let i = $index) {
         <div class="feature-item col-4">
-          <div class="d-flex flex-column align-items-center">
+          <div (click)="handleAction(feature)" class="d-flex flex-column align-items-center">
             <img style="width: 45px;height: 45px;" [src]="feature?.img" alt="i">
             <div class="feature-title">{{ feature?.title }}</div>
           </div>
