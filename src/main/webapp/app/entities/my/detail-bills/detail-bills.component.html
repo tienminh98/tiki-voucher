@@ -1,0 +1,21 @@
+<nz-table #basicTable [nzData]="listOfData">
+<thead>
+<tr>
+  <th>STT</th>
+  <th>Price</th>
+  <th>commission</th>
+  <th>Status</th>
+</tr>
+</thead>
+<tbody>
+  @for (data of basicTable.data; track i; let i = $index) {
+    <tr>
+      <td>{{ i+1 }}</td>
+      <td>{{ data?.total_price }}</td>
+      <td>{{ data?.commission }}</td>
+      <td>{{ data?.status }}</td>
+    </tr>
+  }
+
+</tbody>
+</nz-table>
