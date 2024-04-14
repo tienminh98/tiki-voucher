@@ -1,0 +1,23 @@
+{
+  "my": {
+    "title": "My",
+    "address": {
+      "title": "Address"
+    },
+    "detailBills": {
+      "title": "Detail bills"
+    },
+    "deposit": {
+      "title": "Deposit"
+    },
+    "withdraw": {
+      "title": "Withdraw"
+    },
+    "rule": {
+      "title": "Rule"
+    },
+    "platformIntro": {
+      "title": "Platform intro"
+    }
+  }
+}

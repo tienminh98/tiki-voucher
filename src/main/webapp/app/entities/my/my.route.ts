@@ -11,37 +11,37 @@ const myRoute: Routes = [
   {
   path: '',
   component: MyComponent,
-  title: 'My.title'
+  title: 'my.title'
   },
   {
     path: 'address',
     component: AddressComponent,
-    title: 'My.title'
+    title: 'my.address.title'
   },
   {
     path: 'detail-bills',
     component: DetailBillsComponent,
-    title: 'My.title'
+    title: 'my.detailBills.title'
   },
   {
     path: 'rule',
     component: RuleComponent,
-    title: 'My.title'
+    title: 'my.rule.title'
   },
   {
     path: 'platform-intro',
     component: PlatformIntroComponent,
-    title: 'My.title'
+    title: 'my.platformIntro.title'
   },
   {
     path: 'deposit',
     component: DepositComponent,
-    title: 'My.title'
+    title: 'my.deposit.title'
   },
   {
     path: 'withdraw',
     component: WithdrawComponent,
-    title: 'My.title'
+    title: 'my.withdraw.title'
   }
   ];
 
