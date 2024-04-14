@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { delay, Observable } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
 
 import { Account } from 'app/core/auth/account.model';
@@ -29,7 +29,7 @@ export class LoginService {
   }*/
 
   logout(): void {
-    this.authServerProvider.logout().subscribe({ complete: () => {
+    this.authServerProvider.logout().pipe(delay(2000)).subscribe({ complete: () => {
         this.router.navigateByUrl('/login').then();
       }
     });

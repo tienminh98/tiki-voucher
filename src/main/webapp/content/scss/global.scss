@@ -120,6 +120,7 @@ Generic styles
   left: 0;
   right: 0;
   background-color: #000000;
+  z-index: 10;
   p {
     font-size: 6px;
     line-height: 12px;
@@ -269,10 +270,11 @@ body {
   text-align: center;
   jhi-app {
     display: flex;
-    height: calc(100vh - 52px);
+    height: calc(100% - 52px);
     justify-content: center;
     overflow-y: auto;
     jhi-main {
+      height: 100%;
       display: block;
       width: 440px;
     }
@@ -403,7 +405,8 @@ swiper-slide {
     &.show-order {
       transform: translateX(-96%) !important;
       & .product {
-        display: none;
+        visibility: hidden;
+        opacity: 0;
       }
     }
 
