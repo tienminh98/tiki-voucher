@@ -2,8 +2,8 @@
   <section class="banner">
     <img src="content/images/logos.png" alt="logo" style="width: 100px;height: 50px">
   </section>
-  <div class="wrapper" [class.show-order]="isChecked">
-    <section class="product mt-4">
+  <div class="wrapper mt-4" [class.show-order]="isChecked">
+    <section class="product">
       <img style="width: 100%;height: 300px;object-fit: contain" [src]="hostBase + data?.image" [alt]="data?.name">
       <div style="text-align: left" class="mb-4">
         <div class="product-title">{{data?.name}}</div>

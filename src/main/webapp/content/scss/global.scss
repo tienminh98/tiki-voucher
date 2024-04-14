@@ -115,12 +115,11 @@ Generic styles
 }
 
 .footer {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
   background-color: #000000;
-  margin-top: 30px;
   p {
     font-size: 6px;
     line-height: 12px;
@@ -282,13 +281,11 @@ body {
 
 .wrapper {
   width: 100%;
-  position: relative;
   transition: all ease 0.5s;
   -webkit-transition: all ease 0.5s;
   -moz-transition: all ease 0.5s;
   -ms-transition: all ease 0.5s;
   margin-left: 0;
-  z-index: 1;
 }
 
 /*Custom owl nav*/
@@ -386,7 +383,7 @@ swiper-slide {
   background: rgba(230, 230, 230, 0.4);
 }
 
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 787px) {
   body {
     text-align: center;
     display: block;
@@ -396,6 +393,31 @@ swiper-slide {
     }
     .footer {
       margin: 0 auto;
+    }
+  }
+}
+
+@media screen and (max-width: 786px) {
+  .wrapper {
+    padding: 0 10px;
+    &.show-order {
+      transform: translateX(-96%) !important;
+      & .product {
+        display: none;
+      }
+    }
+
+    & .order-summary {
+      width: 390px !important;
+      margin-left: 0 !important;
+    }
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .wrapper {
+    &.show-order {
+      transform: translateX(-99%) !important;
     }
   }
 }
