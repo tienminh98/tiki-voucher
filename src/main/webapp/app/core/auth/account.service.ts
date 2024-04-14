@@ -59,7 +59,6 @@ export class AccountService {
           if (!this.stateStorageService.getLocale()) {
             this.translateService.use(account.langKey);
           }
-
           this.navigateToStoredUrl();
         }),
         shareReplay(),
