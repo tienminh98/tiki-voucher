@@ -318,6 +318,17 @@ swiper-slide {
   }
 }
 
+/*Custom tag*/
+
+.custom-tag.ant-tag {
+  .anticon {
+    vertical-align: text-top;
+  }
+  &>.anticon+span {
+    margin-left: 3px;
+  }
+}
+
 /*Custom form*/
 
 .ant-form-item {
@@ -338,6 +349,22 @@ swiper-slide {
     & > div {
       display: none;
     }
+  }
+}
+
+/*Custom table*/
+.custom-table.ant-table-wrapper {
+  thead tr {
+    line-height: 50px;
+    background-color: #000000d9;
+    color: #fff;
+    text-align: center;
+    font-weight: normal;
+  }
+  tbody tr {
+    line-height: 42px;
+    text-align: center;
+    font-weight: normal;
   }
 }
 

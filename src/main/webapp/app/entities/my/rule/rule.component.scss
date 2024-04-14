@@ -1,0 +1,14 @@
+@import "../../support/support.component";
+
+.question {
+  margin-top: 10px;
+  .title {
+    font-size: 1.8rem;
+    margin-bottom: 4px;
+  }
+  .content {
+    font-size: 1.4rem;
+    font-weight: normal;
+    color: #333333ad
+  }
+}

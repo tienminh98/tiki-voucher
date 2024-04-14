@@ -17,15 +17,14 @@ import { LoginService } from '../../login/login.service';
 })
 export class MyComponent {
   account: any;
-
   featureList: any[] = [
     {img: this.handleImg('ft1'), title: 'Shipping Address', url: '/address'},
     {img: this.handleImg('ft2'), title: 'Detailed Bills', url: '/detail-bills'},
-    {img: this.handleImg('ft3'), title: 'Top-up Record', url: '/test'},
-    {img: this.handleImg('ft4'), title: 'Withdraw Record', url: '/test'},
+    {img: this.handleImg('ft3'), title: 'Top-up Record', url: '/deposit'},
+    {img: this.handleImg('ft4'), title: 'Withdraw Record', url: '/withdraw'},
     {img: this.handleImg('ft5'), title: 'Payment Card', url: '/test'},
-    {img: this.handleImg('ft6'), title: 'Rule', url: '/test'},
-    {img: this.handleImg('ft7'), title: 'Platform Introduction', url: '/test'},
+    {img: this.handleImg('ft6'), title: 'Rule', url: '/rule'},
+    {img: this.handleImg('ft7'), title: 'Platform Introduction', url: '/platform-intro'},
     {img: this.handleImg('ft8'), title: 'Language', url: '/test'},
     {img: this.handleImg('ft9'), title: 'Log out', url: null},
   ]

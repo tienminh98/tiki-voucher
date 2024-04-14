@@ -17,6 +17,10 @@ const routes: Routes = [
     path: 'my',
     loadChildren: () => import(`../entities/my/my.route`),
   },
+  {
+    path: 'record',
+    loadChildren: () => import(`../entities/records/records.route`),
+  }
   /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
 ];
 

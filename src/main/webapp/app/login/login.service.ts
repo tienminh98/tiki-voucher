@@ -20,11 +20,18 @@ export class LoginService {
     return this.authServerProvider.login(credentials).pipe(mergeMap(() => this.accountService.identity(true)));
   }
 
-  logout(): void {
+ /* logout(): void {
     this.authServerProvider.logout().subscribe({ complete: () => {
         console.log('hello');
         this.accountService.authenticate(null);
         this.router.navigateByUrl('/login').then();
       } });
+  }*/
+
+  logout(): void {
+    this.authServerProvider.logout().subscribe({ complete: () => {
+        this.router.navigateByUrl('/login').then();
+      }
+    });
   }
 }

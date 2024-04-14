@@ -15,4 +15,10 @@ export class DetailBillsService {
   getOrders(): Observable<any> {
     return this.http.get(`${this.hostBase}/orders` , {observe: 'response'});
   }
+  getDeposits(): Observable<any> {
+    return this.http.get(`${this.hostBase}/user/deposits` , {observe: 'response'});
+  }
+  getWithdrawals(): Observable<any> {
+    return this.http.get(`${this.hostBase}/user/withdrawals` , {observe: 'response'});
+  }
 }

@@ -1,0 +1,106 @@
+<div class="my-3">
+  <img src="content/images/logos.png" alt="logo" style="width: 100px;height: 50px;">
+</div>
+<nz-tabset class="custom-tab">
+  <nz-tab nzTitle="Processed" (nzSelect)="handleData(1)">
+    <div style="font-weight: normal">
+      <nz-table [nzPageSize]="12" [nzLoading]="isLoading"  #basicTable [nzData]="listOfData" class="custom-table">
+        <thead>
+        <tr>
+          <th>STT</th>
+          <th>Price</th>
+          <th>Commission</th>
+          <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+          @for (data of basicTable.data; track i; let i = $index) {
+            <tr>
+              <td>{{ i+1 }}</td>
+              <td>${{ data?.total_price }}</td>
+              <td>${{ data?.commission }}</td>
+              <td>
+                <nz-tag class="custom-tag" [nzColor]="data?.status === 2 ? 'success' : data?.status === 1 ? 'processing' : 'error'">
+                  <span nz-icon [nzType]="data?.status === 2 ? 'check-circle' : data?.status === 1 ? 'sync' : 'circle'"></span>
+                  <span>{{data?.status === 2 ? 'Completed' : data?.status === 1 ? 'Processing' : 'Failed'}}</span>
+                </nz-tag>
+              </td>
+            </tr>
+          } @empty {
+            <tr>
+              <td colspan=4>No processed found</td>
+            </tr>
+          }
+
+        </tbody>
+      </nz-table>
+    </div>
+  </nz-tab>
+  <nz-tab nzTitle="Finished" (nzSelect)="handleData(2)">
+    <div style="font-weight: normal">
+      <nz-table [nzPageSize]="12" [nzLoading]="isLoading"  #basicTable [nzData]="listOfData" class="custom-table">
+        <thead>
+        <tr>
+          <th>STT</th>
+          <th>Price</th>
+          <th>Commission</th>
+          <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+          @for (data of basicTable.data; track i; let i = $index) {
+            <tr>
+              <td>{{ i+1 }}</td>
+              <td>${{ data?.total_price }}</td>
+              <td>${{ data?.commission }}</td>
+              <td>
+                <nz-tag class="custom-tag" [nzColor]="data?.status === 2 ? 'success' : data?.status === 1 ? 'processing' : 'error'">
+                  <span nz-icon [nzType]="data?.status === 2 ? 'check-circle' : data?.status === 1 ? 'sync' : 'circle'"></span>
+                  <span>{{data?.status === 2 ? 'Completed' : data?.status === 1 ? 'Processing' : 'Failed'}}</span>
+                </nz-tag>
+              </td>
+            </tr>
+          } @empty {
+            <tr>
+              <td colspan=4>No Finished found</td>
+            </tr>
+          }
+
+        </tbody>
+      </nz-table>
+    </div>
+  </nz-tab>
+  <nz-tab nzTitle="Frozen" (nzSelect)="handleData(0)">
+    <div style="font-weight: normal">
+      <nz-table [nzPageSize]="12" [nzLoading]="isLoading"  #basicTable [nzData]="listOfData" class="custom-table">
+        <thead>
+        <tr>
+          <th>STT</th>
+          <th>Price</th>
+          <th>Commission</th>
+          <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+          @for (data of basicTable.data; track i; let i = $index) {
+            <tr>
+              <td>{{ i+1 }}</td>
+              <td>${{ data?.total_price }}</td>
+              <td>${{ data?.commission }}</td>
+              <td>
+                <nz-tag class="custom-tag" [nzColor]="data?.status === 2 ? 'success' : data?.status === 1 ? 'processing' : 'error'">
+                  <span nz-icon [nzType]="data?.status === 2 ? 'check-circle' : data?.status === 1 ? 'sync' : 'circle'"></span>
+                  <span>{{data?.status === 2 ? 'Completed' : data?.status === 1 ? 'Processing' : 'Failed'}}</span>
+                </nz-tag>
+              </td>
+            </tr>
+          } @empty {
+            <tr>
+              <td colspan=4>No frozen found</td>
+            </tr>
+          }
+        </tbody>
+      </nz-table>
+    </div>
+  </nz-tab>
+</nz-tabset>

@@ -18,6 +18,8 @@ import {NzColDirective, NzRowDirective} from "ng-zorro-antd/grid";
 import {NzFormControlComponent, NzFormDirective, NzFormItemComponent, NzFormLabelComponent} from "ng-zorro-antd/form";
 import {NzInputDirective, NzInputGroupComponent} from "ng-zorro-antd/input";
 import {NzIconDirective} from "ng-zorro-antd/icon";
+import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'jhi-login',
@@ -44,7 +46,8 @@ export default class LoginComponent implements OnInit, AfterViewInit {
     private accountService: AccountService,
     private loginService: LoginService,
     private router: Router,
-    private fb: NonNullableFormBuilder
+    private fb: NonNullableFormBuilder,
+    private notification: NzNotificationService
   ) {
     this.loginForm = this.fb.group({
       phone: [null, [Validators.required, Validators.pattern(/^\d+$/)]],
@@ -88,8 +91,17 @@ export default class LoginComponent implements OnInit, AfterViewInit {
             // There were no routing during login (eg from navigationToStoredUrl)
             this.router.navigate(['']);
           }
+
+          this.notification.create('success', 'Login successful', '', {
+            nzStyle: {
+              textAlign: 'left'
+            },
+          });
         },
-        error: () => (this.authenticationError = true),
+        error: (err) => {
+          this.authenticationError = true;
+          this.processError(err);
+        },
       });
     } else {
       Object.values(this.loginForm.controls).forEach(control => {
@@ -99,6 +111,15 @@ export default class LoginComponent implements OnInit, AfterViewInit {
         }
       });
     }
+  }
+
+  private processError(response: HttpErrorResponse): void {
+    const keyErrors = Object.keys(response.error);
+    this.notification.create('error', response.error[keyErrors[0]], '', {
+      nzStyle: {
+        textAlign: 'left'
+      },
+    });
   }
 
   protected readonly left = left;
