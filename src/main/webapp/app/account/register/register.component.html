@@ -1,6 +1,6 @@
 <div class="home-page">
   <section class="banner mt-3 mb-5">
-    <img src="content/images/saksoff.jpeg" alt="saksoff" style="width: 190px;height: 150px;">
+    <img src="content/images/saksoff.jpeg" alt="saksoff" style="width: 115px;height: 96px;">
   </section>
   <section class="info">
     <form nz-form [formGroup]="registerForm" (ngSubmit)="submitForm()">
@@ -11,7 +11,21 @@
       </nz-form-item>
       <nz-form-item class="mb-4">
         <nz-form-control style="text-align: left"  [nzSm]="24" [nzXs]="24" nzErrorTip="Please input your phone number!">
-          <input class="custom-input" nz-input formControlName="phone" placeholder="Please enter your username or mobile number" id="phone" />
+          <nz-input-group  [nzAddOnBefore]="addOnBeforeTemplate">
+            <ng-template #addOnBeforeTemplate>
+              <nz-select formControlName="countryCode" class="phone-select">
+                @for (item of countryCodeList; track i; let i = $index) {
+                  <nz-option  nzCustomContent [nzLabel]="item?.dialCode" [nzValue]="item?.dialCode">
+                    <div class="d-flex align-items-center">
+                      <img style="width: 20px;height: 15px;" [src]="item?.image" [alt]="item?.code">
+                      <div class="mx-2"> {{item?.name}} ({{item?.dialCode}})</div>
+                    </div>
+                  </nz-option>
+                }
+              </nz-select>
+            </ng-template>
+            <input class="custom-input" nz-input formControlName="phone" placeholder="Please enter mobile number" id="phone" />
+          </nz-input-group>
         </nz-form-control>
       </nz-form-item>
       <nz-form-item class="mb-4">
@@ -32,6 +46,11 @@
               <span style="cursor: pointer" (click)="isShowConfirmPassword = !isShowConfirmPassword" nz-icon [nzType]="isShowConfirmPassword ? 'eye-invisible' : 'eye'" nzTheme="outline"></span>
             </ng-template>
           </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item class="mb-4">
+        <nz-form-control style="text-align: left" [nzSm]="24" [nzXs]="24" nzErrorTip="Please input your pin code(number)">
+          <input class="custom-input" maxlength="6" nz-input formControlName="pinCode" placeholder="Please enter your pin code" id="pinCode" />
         </nz-form-control>
       </nz-form-item>
 

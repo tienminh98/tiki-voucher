@@ -21,11 +21,13 @@ import { NzFormControlComponent, NzFormDirective, NzFormItemComponent } from 'ng
 import { NzIconDirective } from 'ng-zorro-antd/icon';
 import { NzInputDirective, NzInputGroupComponent } from 'ng-zorro-antd/input';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
+import {NzOptionComponent, NzSelectComponent} from "ng-zorro-antd/select";
+import {COUNTRY_CODE} from "../../app.constants";
 
 @Component({
   selector: 'jhi-register',
   standalone: true,
-  imports: [SharedModule, RouterModule, FormsModule, ReactiveFormsModule, PasswordStrengthBarComponent, NzButtonComponent, NzColDirective, NzFormControlComponent, NzFormDirective, NzFormItemComponent, NzIconDirective, NzInputDirective, NzInputGroupComponent, NzRowDirective],
+  imports: [SharedModule, RouterModule, FormsModule, ReactiveFormsModule, PasswordStrengthBarComponent, NzButtonComponent, NzColDirective, NzFormControlComponent, NzFormDirective, NzFormItemComponent, NzIconDirective, NzInputDirective, NzInputGroupComponent, NzRowDirective, NzSelectComponent, NzOptionComponent],
   templateUrl: './register.component.html',
   styleUrl: '../../home/home.component.scss',
 
@@ -45,6 +47,9 @@ export default class RegisterComponent implements AfterViewInit {
 
   registerForm!: FormGroup;
 
+  countryCodeList: any[] = COUNTRY_CODE;
+
+
   constructor(
     private translateService: TranslateService,
     private registerService: RegisterService,
@@ -53,9 +58,11 @@ export default class RegisterComponent implements AfterViewInit {
     private router: Router,
   ) {
     this.registerForm = this.fb.group({
+      countryCode: ['+84'],
       phone: [null, [Validators.required, Validators.pattern(/^\d+$/)]],
       password: ['', [Validators.required]],
       confirmPassword: ['', [Validators.required]],
+      pinCode: [null, [Validators.required, Validators.pattern(/^\d+$/)]],
       name: ['', [Validators.required]],
     });
   }
