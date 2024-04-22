@@ -21,4 +21,8 @@ export class DetailBillsService {
   getWithdrawals(): Observable<any> {
     return this.http.get(`${this.hostBase}/user/withdrawals` , {observe: 'response'});
   }
+
+  changeImage(file: FormData): Observable<any> {
+    return this.http.post(`${this.hostBase}/users/avatar` ,file, {observe: 'response'});
+  }
 }

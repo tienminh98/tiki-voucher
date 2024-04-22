@@ -11,11 +11,11 @@
       </nz-form-item>
       <nz-form-item class="mb-4">
         <nz-form-control style="text-align: left"  [nzSm]="24" [nzXs]="24" nzErrorTip="Please input your phone number!">
-          <nz-input-group  [nzAddOnBefore]="addOnBeforeTemplate">
+          <nz-input-group [nzAddOnBefore]="addOnBeforeTemplate">
             <ng-template #addOnBeforeTemplate>
               <nz-select formControlName="countryCode" class="phone-select">
                 @for (item of countryCodeList; track i; let i = $index) {
-                  <nz-option  nzCustomContent [nzLabel]="item?.dialCode" [nzValue]="item?.dialCode">
+                  <nz-option nzCustomContent [nzLabel]="item?.dialCode" [nzValue]="item?.dialCode">
                     <div class="d-flex align-items-center">
                       <img style="width: 20px;height: 15px;" [src]="item?.image" [alt]="item?.code">
                       <div class="mx-2"> {{item?.name}} ({{item?.dialCode}})</div>

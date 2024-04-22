@@ -2,10 +2,20 @@
   .info-transaction {
     margin-top: 36px;
     .card-transaction {
-      background-image: url(../../../content/images/bkse.png);
-      background-size: 100% 100%;
-      background-repeat: no-repeat;
+      position: relative;
       height: 200px;
+      .img {
+        position: absolute;
+        top:0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        background-image: url(../../../content/images/m10.jpg);
+        clip-path: polygon(100% 0, 100% 0, 100% 100%, 0 100%);
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+      }
+
     }
     .transaction {
       color: #333333;
@@ -13,20 +23,20 @@
 
       .info-label {
         & > div  {
-          margin-top: 20px;
+          margin-top: 16px;
         }
         width: 160px;
       }
       .info-value {
         & > div  {
-          margin-top: 20px;
+          margin-top: 15px;
         }
         text-align: center;
       }
     }
   }
   .finance {
-    margin-top: 36px;
+    margin-top: 15px;
     .surplus {
       font-size: 1.7rem;
       color: #333333;
@@ -55,6 +65,28 @@
     border-radius: 10px;
     height: 80px;
     text-align: center;
+  }
+  .info-user {
+    .user-img {
+      border-radius: 50%;
+      cursor: pointer;
+      .edit-img {
+        display: none;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      &:hover {
+        img {
+          opacity: .7;
+        }
+        .edit-img {
+          display: block;
+          z-index: 1;
+        }
+      }
+
+    }
   }
 }
 

@@ -67,7 +67,7 @@ export class AddressComponent {
     );
   }
 
-  updateInfor(): void {
+  updateInfo(): void {
     this.registerService
       .update(this.userForm.getRawValue())
       .subscribe({ next: (res: any) => {
@@ -79,7 +79,7 @@ export class AddressComponent {
   submitForm(): void {
     if (this.userForm.valid) {
       // console.log('submit', this.loginForm.value);
-      this.updateInfor();
+      this.updateInfo();
     } else {
       Object.values(this.userForm.controls).forEach(control => {
         if (control.invalid) {
