@@ -6,7 +6,7 @@
     color: #333;
   }
   .action-support {
-    margin-top: 36px;
+    margin-top: 14px;
     padding: 0 4.4rem;
   }
 
@@ -24,7 +24,7 @@
 }
 
 .question {
-  margin-top: 36px;
+  margin-top: 20px;
   .title {
     font-weight: normal;
   }
@@ -33,6 +33,10 @@
     font-weight: normal;
     color: #888;
     text-align: left;
+  }
+  ul > li {
+    color: #888;
+    letter-spacing: 1px;
   }
 }
 
