@@ -67,4 +67,12 @@ export class MatchingService {
   withdraw(body: any): Observable<any> {
     return this.http.post(`${this.hostBase}/users/withdraw`, body, {observe: 'response'});
   }
+
+  isProceed(): boolean {
+    const currentDate = new Date();
+    const newYorkHour = new Date(currentDate.toLocaleString("en-US", {timeZone: "America/New_York"})).getHours();
+
+    return newYorkHour >= 10 && newYorkHour <= 22;
+  }
+
 }

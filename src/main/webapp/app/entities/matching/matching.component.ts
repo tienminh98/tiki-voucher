@@ -3,6 +3,8 @@ import {NzButtonComponent} from 'ng-zorro-antd/button';
 import { MatchingService } from './matching.service';
 import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import { StateStorageService } from '../../core/auth/state-storage.service';
+import {tap} from "rxjs/operators";
+import {NzNotificationService} from "ng-zorro-antd/notification";
 
 @Component({
   selector: 'jhi-matching',
@@ -23,17 +25,23 @@ export class MatchingComponent {
     private matchingService: MatchingService,
     private stateStorageService: StateStorageService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private notification: NzNotificationService,
   ) {
     this.account = stateStorageService.getUser();
   }
 
   getProducts(): void {
-    this.router.navigate(['detail'], {relativeTo: this.route}).then();
-    /*this.matchingService.getProducts().subscribe((res: any) => {
-      if (res.status === 200) {
-        this.productList = res.body;
-      }
-    })*/
+    if (this.matchingService.isProceed()) {
+      this.router.navigate(['detail'], {relativeTo: this.route}).then();
+    }
+    else {
+      this.notification.create('error',
+        'Order tasks are currently being processed and ready for customers from 10:00 a.m to 10:00 p.m New York time',
+        '', {
+          nzStyle: {
+            textAlign: 'left'
+          }})
+    }
   }
 }

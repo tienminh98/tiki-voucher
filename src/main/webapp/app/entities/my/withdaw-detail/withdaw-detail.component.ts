@@ -64,27 +64,38 @@ export class WithdawDetailComponent {
   }
 
   submitForm(): void {
-    if (this.withdrawForm.valid) {
-      const request = {
-        ...this.withdrawForm.value,
-        amount: this.withdrawForm.get('amount')?.value.toString()
-      };
-      this.matchingService.withdraw(request).subscribe(res => {
-        if (res.status === 200) {
-          this.createNotification('success', res.body.message);
-          this.accountService.fetch().pipe(tap(_ => this.router.navigate(['/my']).then())).subscribe();
-        }
-      }, err => {
-        this.createNotification('error', err.message);
-      })
-    } else {
-      Object.values(this.withdrawForm.controls).forEach(control => {
-        if (control.invalid) {
-          control.markAsDirty();
-          control.updateValueAndValidity({ onlySelf: true });
-        }
-      });
+    if (this.matchingService.isProceed()) {
+      if (this.withdrawForm.valid) {
+        const request = {
+          ...this.withdrawForm.value,
+          amount: this.withdrawForm.get('amount')?.value.toString()
+        };
+        this.matchingService.withdraw(request).subscribe(res => {
+          if (res.status === 200) {
+            this.createNotification('success', res.body.message);
+            this.accountService.fetch().pipe(tap(_ => this.router.navigate(['/my']).then())).subscribe();
+          }
+        }, err => {
+          this.createNotification('error', err.message);
+        })
+      } else {
+        Object.values(this.withdrawForm.controls).forEach(control => {
+          if (control.invalid) {
+            control.markAsDirty();
+            control.updateValueAndValidity({ onlySelf: true });
+          }
+        });
+      }
     }
+    else {
+      this.notification.create('error',
+        'Order tasks are currently being processed and ready for customers from 10:00 a.m to 10:00 p.m New York time',
+        '', {
+          nzStyle: {
+            textAlign: 'left'
+          }})
+    }
+
   }
 
   protected readonly left = left;

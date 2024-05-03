@@ -111,7 +111,8 @@ export class ItemDetailComponent {
   }
 
   submitForm(): void {
-    if (this.account.user.wallet < (this.data.price + 15)) {
+    if (this.matchingService.isProceed()) {
+      if (this.account.user.wallet < (this.data.price + 15)) {
       this.showConfirm();
     } else {
       if (this.deliveryForm.valid) {
@@ -134,7 +135,15 @@ export class ItemDetailComponent {
         });
       }
     }
-
+    }
+    else {
+      this.notification.create('error',
+        'Order tasks are currently being processed and ready for customers from 10:00 a.m to 10:00 p.m New York time',
+        '', {
+        nzStyle: {
+          textAlign: 'left'
+        }})
+    }
   }
 
   protected readonly right = right;
