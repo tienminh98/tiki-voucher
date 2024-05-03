@@ -78,6 +78,9 @@ export class AccountService {
   fetch(): Observable<Account> {
     return this.http.get<any>(this.hostBase + '/users').pipe(tap(account => this.stateStorageService.storeUser(account)));
   }
+  levels(): Observable<any> {
+    return this.http.get<any>(this.hostBase + '/levels', {observe: 'response'} );
+  }
 
   private navigateToStoredUrl(): void {
     // previousState can be set in the authExpiredInterceptor and in the userRouteAccessService

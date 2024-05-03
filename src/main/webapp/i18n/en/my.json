@@ -18,6 +18,15 @@
     },
     "platformIntro": {
       "title": "Platform intro"
+    },
+    "crypto": {
+      "title": "Crypto"
+    },
+    "bank": {
+      "title": "bank"
+    },
+    "withdrawDetail": {
+      "title": "Withdraw detail"
     }
   }
 }

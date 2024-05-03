@@ -6,6 +6,9 @@ import { RuleComponent } from './rule/rule.component';
 import { PlatformIntroComponent } from './platform-intro/platform-intro.component';
 import { DepositComponent } from './deposit/deposit.component';
 import { WithdrawComponent } from './withdraw/withdraw.component';
+import {CryptoComponent} from "./crypto/crypto.component";
+import {BankComponent} from "./bank/bank.component";
+import {WithdawDetailComponent} from "./withdaw-detail/withdaw-detail.component";
 
 const myRoute: Routes = [
   {
@@ -42,6 +45,21 @@ const myRoute: Routes = [
     path: 'withdraw',
     component: WithdrawComponent,
     title: 'my.withdraw.title'
+  },
+  {
+    path: 'crypto',
+    component: CryptoComponent,
+    title: 'my.crypto.title'
+  },
+  {
+    path: 'bank',
+    component: BankComponent,
+    title: 'my.bank.title'
+  },
+  {
+    path: 'withdraw-detail',
+    component: WithdawDetailComponent,
+    title: 'my.withdrawDetail.title'
   }
   ];
 

@@ -43,8 +43,8 @@ export class MatchingService {
     return this.http.get(this.hostBase + '/products', {observe: 'response'});
   }
 
-  getDetailItem(id: number): Observable<any> {
-    return this.http.get(`${this.hostBase}/products/${id}` , {observe: 'response'});
+  getDetailItem(): Observable<any> {
+    return this.http.get(`${this.hostBase}/products` , {observe: 'response'});
   }
 
   randomBetween1And4(): number {
@@ -56,5 +56,15 @@ export class MatchingService {
 
   order(body: any): Observable<any> {
     return this.http.post(`${this.hostBase}/order/store` , body ,{observe: 'response'});
+  }
+
+  updateCrypto(body: any): Observable<any> {
+    return this.http.put(`${this.hostBase}/users/coins`, body, {observe: 'response'});
+  }
+  updateBank(body: any): Observable<any> {
+    return this.http.put(`${this.hostBase}/users/bank-details`, body, {observe: 'response'});
+  }
+  withdraw(body: any): Observable<any> {
+    return this.http.post(`${this.hostBase}/users/withdraw`, body, {observe: 'response'});
   }
 }

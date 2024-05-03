@@ -10,7 +10,7 @@ const matchingRoute: Routes = [
     title: 'matching.title',
   },
   {
-    path: ':id',
+    path: 'detail',
     component: ItemDetailComponent,
     title: 'matching.detail.title',
   }

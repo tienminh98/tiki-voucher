@@ -1,0 +1,19 @@
+@import "../../matching/item-detail/item-detail.component";
+.crypto {
+  background-image: linear-gradient(to right, #f4f4f4 0, #f4f4f4 0);
+  padding: 10px;
+  border-radius: 10px;
+  .hint-text {
+    font-size: 1.2rem;
+    color: #8e8e98;
+    font-style: italic;
+  }
+  &-info {
+    .title {
+      color: #8e8e98;
+      border-bottom: 1px solid #8e8e98;
+      padding-bottom: 5px;
+      margin-bottom: 10px;
+    }
+  }
+}

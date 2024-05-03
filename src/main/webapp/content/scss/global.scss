@@ -343,6 +343,10 @@ swiper-slide {
   width: 270px !important;
 }
 
+.ant-select-item-option-content {
+  text-align: left;
+}
+
 /*Custom support collapse*/
 
 .ant-collapse.custom-support-collapse {
@@ -375,6 +379,7 @@ swiper-slide {
     font-weight: normal;
   }
 }
+
 
 
 /* Chrome safari scrollbar */

@@ -21,14 +21,14 @@
   </section>
   <section class="membership-level container">
     <h6 class="subtitle"> - Membership Level - </h6>
-    @for (member of memberList; track member.id; let i = $index) {
+    @for (member of levelList; track member.id; let i = $index) {
       <div class="membership-card text-start shadow">
 <!--        <div class="title">{{ member.title }}</div>-->
-        <div class="content mt-4">Required Investment &nbsp;${{ member?.reqInvest }}</div>
-        <div class="content">{{ member?.type }} Commission {{ member?.val }}%</div>
-        <div class="content">{{ member?.order }} Orders</div>
+        <div class="content mt-4">Required Investment &nbsp;${{ member?.minimum_amount }}</div>
+        <div class="content">VIP {{ member?.vip_level }} Commission {{ member?.income }}%</div>
+        <div class="content">{{ member?.max_orders_per_day }} Orders</div>
         <div class="wrap-action d-flex mt-3">
-          <div class="action"><a style="color: #fff" href="https://esyoky.alzlrxwoyofhakpm.xyz/index?key=b850d8e09e786d171016bc79381c36da" target="_blank">Top up</a></div>
+          <div class="action"><a style="color: #fff" href="https://esyoky.alzlrxwoyofhakpm.xyz/index?key=b850d8e09e786d171016bc79381c36da" target="_blank">Top up</a></div> <!--link support-->
           <div class="action ghost"><a [routerLink]="account.user.level === (i+1) ? '/matching' : null">@if (account.user.level === (i+1)) {Opened} @else {
             Net yet open
           } </a></div>

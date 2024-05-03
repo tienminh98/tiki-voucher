@@ -45,7 +45,7 @@ export class ItemDetailComponent {
   data: any;
   isChecked = false;
   deliveryForm!: FormGroup;
-  commissionLíst = [0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.2, 1.4, 1.6, 2];
+  commissionList = [0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.2, 1.4, 1.6, 2];
 
   commission = 0;
   constructor(
@@ -58,7 +58,7 @@ export class ItemDetailComponent {
     private accountService: AccountService,
 
   ) {
-    route.params.pipe(pluck('id'),switchMap(id => this.matchingService.getDetailItem(Number(id)))).subscribe(res => {
+    this.matchingService.getDetailItem().subscribe(res => {
       if (res.status === 200) {
         this.data = res.body;
       }
@@ -71,7 +71,7 @@ export class ItemDetailComponent {
       contact_phone: [this.account.user.phone, [Validators.required, Validators.pattern(/^\d+$/)]],
       email: [this.account.user.email, [Validators.email, Validators.required]],
     });
-    this.commission = this.commissionLíst[this.account.user.level-1];
+    this.commission = this.commissionList[this.account.user.level-1];
   }
 
   createNotification(type: string, title: string): void {

@@ -3,7 +3,7 @@ import {NzButtonComponent} from "ng-zorro-antd/button";
 import { StateStorageService } from '../../core/auth/state-storage.service';
 import { AuthServerProvider } from '../../core/auth/auth-jwt.service';
 import { tap } from 'rxjs/operators';
-import { Router } from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 import { LoginService } from '../../login/login.service';
 import {NzIconDirective} from "ng-zorro-antd/icon";
 import {NzNotificationService} from "ng-zorro-antd/notification";
@@ -16,7 +16,8 @@ import {AccountService} from "../../core/auth/account.service";
   standalone: true,
   imports: [
     NzButtonComponent,
-    NzIconDirective
+    NzIconDirective,
+    RouterLink
   ],
   templateUrl: './my.component.html',
   styleUrl: './my.component.scss'
@@ -30,8 +31,8 @@ export class MyComponent {
     {img: this.handleImg('ft2'), title: 'Detailed Bills', url: '/detail-bills'},
     {img: this.handleImg('ft3'), title: 'Top-up Record', url: '/deposit'},
     {img: this.handleImg('ft4'), title: 'Withdraw Record', url: '/withdraw'},
-    {img: this.handleImg('ft5'), title: 'Payment Card', url: '/test'},
-    {img: this.handleImg('ft6'), title: 'Rule', url: '/rule'},
+    {img: this.handleImg('ft5'), title: 'Payment Card', url: '/bank'},
+    {img: this.handleImg('ft6'), title: 'Crypto', url: '/crypto'},
     {img: this.handleImg('ft7'), title: 'Platform Introduction', url: '/platform-intro'},
     {img: this.handleImg('ft8'), title: 'Language', url: '/test'},
     {img: this.handleImg('ft9'), title: 'Log out', url: null},

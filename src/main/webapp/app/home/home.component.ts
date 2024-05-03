@@ -1,15 +1,15 @@
-import { Component, OnInit, OnDestroy, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import {Component, OnInit, OnDestroy, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import {Router, RouterModule} from '@angular/router';
+import {Subject} from 'rxjs';
+import {takeUntil} from 'rxjs/operators';
 
 import SharedModule from 'app/shared/shared.module';
-import { AccountService } from 'app/core/auth/account.service';
-import { Account } from 'app/core/auth/account.model';
+import {AccountService} from 'app/core/auth/account.service';
+import {Account} from 'app/core/auth/account.model';
 import {NgOptimizedImage} from "@angular/common";
 import {ReactiveFormsModule} from "@angular/forms";
 import {NzButtonComponent, NzButtonSize} from 'ng-zorro-antd/button';
-import { StateStorageService } from '../core/auth/state-storage.service';
+import {StateStorageService} from '../core/auth/state-storage.service';
 
 
 @Component({
@@ -30,6 +30,7 @@ export default class HomeComponent implements OnInit, OnDestroy {
   memberList: any[] = [];
   memberImageList: any[] = [];
   annList: any[] = [];
+  levelList: any = [];
 
   public targetList = [
     {reqInvest: 300, commission: 0.5, order: 40},
@@ -49,8 +50,8 @@ export default class HomeComponent implements OnInit, OnDestroy {
     private router: Router,
     private stateStorageService: StateStorageService,
   ) {
-    this.commodityList = this.fakeArray(12).map((_, index) => `content/images/g${index+1}.jpg`);
-    this.memberImageList = this.fakeArray(9).map((_, index) => `content/images/h${index+1}.jpg`);
+    this.commodityList = this.fakeArray(12).map((_, index) => `content/images/g${index + 1}.jpg`);
+    this.memberImageList = this.fakeArray(9).map((_, index) => `content/images/h${index + 1}.jpg`);
     this.memberList = this.fakeArray(10).map((_, index) => ({
       bgImg: `content/images/m${this.randomBetween1And4()}.jpg`,
       title: 'SAKS OFF 5TH',
@@ -59,10 +60,61 @@ export default class HomeComponent implements OnInit, OnDestroy {
       val: this.targetList[index].commission,
       order: this.targetList[index].order,
     }));
-    this.annList = this.fakeArray(20).map((_, index) => ({
-      cardNumber: '[****2512]',
-      money: 2512201,
-    }));
+ /*   this.annList = this.fakeArray(10).map((_, index) => ({
+      cardNumber: '[****1806]',
+      money: 251221,
+    }));*/
+    this.annList = [
+      {
+        cardNumber: '[****2512]',
+        money: 180698,
+      },
+      {
+        cardNumber: '[****2190]',
+        money: 2193,
+      },
+      {
+        cardNumber: '[****4121]',
+        money: 15612,
+      },
+      {
+        cardNumber: '[****7567]',
+        money: 31334,
+      },
+      {
+        cardNumber: '[****9299]',
+        money: 1244,
+      },
+      {
+        cardNumber: '[****0678]',
+        money: 91249,
+      },
+      {
+        cardNumber: '[****0510]',
+        money: 641814,
+      },
+      {
+        cardNumber: '[****1388]',
+        money: 41241,
+      },
+      {
+        cardNumber: '[****5321]',
+        money: 9129,
+      },
+      {
+        cardNumber: '[****3233]',
+        money: 21980,
+      },
+      {
+        cardNumber: '[****7138]',
+        money: 30193,
+      },
+    ]
+    this.accountService.levels().subscribe(res => {
+      if (res.status === 200) {
+        this.levelList = res.body;
+      }
+    })
     this.account = this.stateStorageService.getUser();
     console.log('account', this.account);
   }
