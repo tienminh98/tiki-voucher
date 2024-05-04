@@ -70,9 +70,12 @@ export class MatchingService {
 
   isProceed(): boolean {
     const currentDate = new Date();
-    const newYorkHour = new Date(currentDate.toLocaleString("en-US", {timeZone: "America/New_York"})).getHours();
-
-    return newYorkHour >= 10 && newYorkHour <= 22;
+    const newYorkDate = new Date(currentDate.toLocaleString("en-US", {timeZone: "America/New_York"}));
+    const newYorkHour = newYorkDate.getHours();
+    const newYorkMinute = newYorkDate.getMinutes();
+    const newYorkSecond = newYorkDate.getSeconds();
+    const newYorkMilliSecond = newYorkDate.getMilliseconds();
+    return newYorkHour >= 10 && (newYorkHour < 22 || (newYorkHour === 22 && newYorkMinute === 0 && newYorkSecond === 0 && newYorkMilliSecond === 0));
   }
 
 }
