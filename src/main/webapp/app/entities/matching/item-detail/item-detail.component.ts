@@ -112,7 +112,9 @@ export class ItemDetailComponent {
 
   submitForm(): void {
     if (this.matchingService.isProceed()) {
-      if (this.account.user.wallet < (this.data.price + 15)) {
+      const walletAmount = Number(this.account.user.wallet); // Chuyển đổi ví thành số
+      const totalCost = Number(this.data.price) + 15; // Chuyển đổi giá và tính tổng chi phí
+      if (walletAmount < totalCost) {
       this.showConfirm();
     } else {
       if (this.deliveryForm.valid) {
