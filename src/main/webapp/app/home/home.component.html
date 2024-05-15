@@ -25,13 +25,12 @@
       <div class="membership-card text-start shadow">
 <!--        <div class="title">{{ member.title }}</div>-->
         <div class="content mt-4">Required Investment &nbsp;${{ member?.minimum_amount }}</div>
-        <div class="content">VIP {{ member?.vip_level }} Commission {{ member?.income }}%</div>
+        <div class="content">VIP {{ member?.vip_level }} Commission {{ member?.income * 100 | number:'1.0-1' }} %</div>
         <div class="content">{{ member?.max_orders_per_day }} Orders</div>
         <div class="wrap-action d-flex mt-3">
           <div class="action"><a style="color: #fff" href="https://lyst686.com/admin/chat" target="_blank">Top up</a></div> <!--link support-->
           <div class="action ghost"><a [routerLink]="account.user.level === (i+1) ? '/matching' : null">@if (account.user.level === (i+1)) {Opened} @else {
-            Net yet open
-
+            You have not upgraded
           } </a></div>
 
         </div>

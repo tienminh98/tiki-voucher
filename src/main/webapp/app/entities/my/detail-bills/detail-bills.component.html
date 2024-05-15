@@ -17,9 +17,9 @@
         <td>${{ data?.total_price }}</td>
         <td>${{ data?.commission }}</td>
         <td>
-          <nz-tag class="custom-tag" [nzColor]="data?.status === 2 ? 'success' : data?.status === 1 ? 'processing' : 'error'">
-            <span nz-icon [nzType]="data?.status === 2 ? 'check-circle' : data?.status === 1 ? 'sync' : 'circle'"></span>
-            <span>{{data?.status === 2 ? 'Completed' : data?.status === 1 ? 'Processing' : 'Failed'}}</span>
+          <nz-tag class="custom-tag" [nzColor]="data?.status === 2 ? 'success' : data?.status === 1 ? 'success' : 'success'">
+            <span nz-icon [nzType]="data?.status === 2 ? 'check-circle' : data?.status === 1 ? 'check-circle' : 'check-circle'"></span>
+            <span>Completed</span>
           </nz-tag>
         </td>
       </tr>

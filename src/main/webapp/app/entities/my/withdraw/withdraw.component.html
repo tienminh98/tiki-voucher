@@ -16,7 +16,7 @@
         <td>${{ data?.amount }}</td>
         <td>
           <nz-tag [nzColor]="data?.type === 0 ? 'geekblue' : 'volcano'" [nzBordered]="false">
-            {{ data?.type === 0 ? 'Bank' : 'Coin' }}
+            {{ data?.type === "0" ? 'Bank' : 'Coin' }}
           </nz-tag>
         </td>
         <td>
