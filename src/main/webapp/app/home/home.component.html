@@ -1,10 +1,45 @@
 <div class="home-page">
-  <section class="banner mt-3">
-    <img src="content/images/logo.png" alt="logo" style="width: 138px;height: 50px;">
-    <video class="w-100" [controls]="false" [loop]="true" [autoplay]="true" [muted]="true">
-      <source src="content/videos/v1.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
+  <section class="my-3">
+    <div class="d-flex justify-content-between">
+      <svg style="width: 200px;height: 40px">
+        <use href="#logo"></use>
+      </svg>
+      <nz-input-group class="custom-input" [nzSuffix]="search">
+        <input nz-input placeholder="Tìm kếm"/>
+        <ng-template #search>
+          <span nz-icon nzType="search" nzTheme="outline"></span>
+        </ng-template>
+      </nz-input-group>
+    </div>
+  </section>
+  <section class="job-horizon">
+    <div class="job-list d-flex">
+      @for (job of jobList; track i; let i = $index) {
+        <div class="job-item">
+          <div class="job-img">
+            <img style="width: 144px;height: 108px;" [src]="job?.image || 'content/images/job-0.png'" alt="image">
+            <div class="job-tag position-absolute">{{ job?.tag?.text }}</div>
+            <span class="job-favorite position-absolute" nz-icon nzType="heart" nzTheme="outline"></span>
+          </div>
+          <div class="job-info mt-2">
+            <div class="job-title" [title]="job?.title">{{ job?.title }}</div>
+            <div class="job-price">{{ job?.price }}</div>
+            <div class="d-flex" style="color: #717375">
+              <div class="job-time d-flex">
+                <div>
+                  <img src="content/images/clock.png" alt="clock">
+                </div>
+                <div class="mx-1">{{ job?.time }}</div>
+                <div >
+                  <img src="content/images/place.png" alt="place">
+              </div>
+              <div class="content">{{ job?.address }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
   </section>
   <section class="commodity">
     <div class="title my-3" style="font-size: 21px">- Commodity -</div>
@@ -23,19 +58,24 @@
     <h6 class="subtitle"> - Membership Level - </h6>
     @for (member of levelList; track member.id; let i = $index) {
       <div class="membership-card text-start shadow">
-<!--        <div class="title">{{ member.title }}</div>-->
+        <!--        <div class="title">{{ member.title }}</div>-->
         <div class="content mt-4">Required Investment &nbsp;${{ member?.minimum_amount }}</div>
         <div class="content">VIP {{ member?.vip_level }} Commission {{ member?.income * 100 | number:'1.0-1' }} %</div>
         <div class="content">{{ member?.max_orders_per_day }} Orders</div>
         <div class="wrap-action d-flex mt-3">
-          <div class="action"><a style="color: #fff" href="https://lyst686.com/admin/chat" target="_blank">Top up</a></div> <!--link support-->
-          <div class="action ghost"><a [routerLink]="account.user.level === (i+1) ? '/matching' : null">@if (account.user.level === (i+1)) {Opened} @else {
+          <div class="action"><a style="color: #fff" href="https://lyst686.com/admin/chat" target="_blank">Top up</a>
+          </div> <!--link support-->
+          <div class="action ghost"><a
+            [routerLink]="account.user.level === (i+1) ? '/matching' : null">@if (account.user.level === (i + 1)) {
+            Opened
+          } @else {
             You have not upgraded
           } </a></div>
 
         </div>
-        <div class="position-absolute" style="top: 0;right: 0;width: 55px;height: 55px;background: linear-gradient(90deg, hsla(235, 100%, 78%, 1) 0%, hsla(222, 77%, 33%, 1) 100%);border-radius: 0 0 0 100%;opacity: .7">
-<!--          <img src="content/images/logo.png" alt="logo" style="width: 202px;height: 80px;">-->
+        <div class="position-absolute"
+             style="top: 0;right: 0;width: 55px;height: 55px;background: linear-gradient(90deg, hsla(235, 100%, 78%, 1) 0%, hsla(222, 77%, 33%, 1) 100%);border-radius: 0 0 0 100%;opacity: .7">
+          <!--          <img src="content/images/logo.png" alt="logo" style="width: 202px;height: 80px;">-->
         </div>
         <div class="position-absolute" style="bottom: 5px; right: 10px;">
           <img src="content/images/logo.png" alt="logo" style="width: 202px;height: 75px;">
@@ -80,7 +120,7 @@
       <a class="w-20" href=""><img style="width: 25px;height: 25px;" src="content/images/l5.png" alt="ytb"></a>
     </div>
     <div class="text">
-      ©2024. OFF5TH  CA Transparency in Supply Chains Act
+      ©2024. OFF5TH CA Transparency in Supply Chains Act
     </div>
   </section>
 </div>

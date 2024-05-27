@@ -22,6 +22,10 @@ Main page styles
   }
 }
 
+.home-page {
+  font-weight: 500;
+}
+
 .membership {
   &-level {
     padding-right: 15px;
@@ -139,9 +143,66 @@ Main page styles
 }
 
 .custom-input {
-  line-height: 42px;
+  width: 40%;
+  height: 36px;
   border-radius: 30px;
 }
+
+.job-horizon {
+  margin: 0 -8px;
+  .job {
+    &-list {
+      overflow-x: auto;
+      padding: 16PX 0;
+      background: linear-gradient(180deg, #ffe2c6, rgba(255, 241, 235, .4) 53.12%, #fff 88.98%, #fff);
+    }
+    &-item {
+      width: 160px;
+      background-color: #fff;
+      padding: 8px;
+      margin: 0 4px;
+    }
+    &-img {
+      position: relative;
+      img {
+        object-fit: cover;
+      }
+    }
+    &-favorite {
+      top: 10px;
+      left: 10px;
+
+    }
+    &-tag {
+      bottom: 10px;
+      right: 10px;
+    }
+    &-title {
+      font-size: 1.4rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+    }
+    &-price {
+      font-size: 1.5rem;
+      margin-top: 16px;
+      color: #d14200;
+    }
+    &-time, &-address {
+      font-size: 1rem;
+      white-space: nowrap;
+      overflow: hidden;
+      .content {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-left: 2.5px;
+      }
+    }
+  }
+}
+
 
 @media screen and (min-width: 750px) {
   .membership-card {

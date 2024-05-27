@@ -10,6 +10,8 @@ import {NgOptimizedImage} from "@angular/common";
 import {ReactiveFormsModule} from "@angular/forms";
 import {NzButtonComponent, NzButtonSize} from 'ng-zorro-antd/button';
 import {StateStorageService} from '../core/auth/state-storage.service';
+import {NzIconDirective} from "ng-zorro-antd/icon";
+import {NzInputDirective, NzInputGroupComponent} from "ng-zorro-antd/input";
 
 
 @Component({
@@ -17,7 +19,7 @@ import {StateStorageService} from '../core/auth/state-storage.service';
   selector: 'jhi-home',
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
-  imports: [SharedModule, RouterModule, NgOptimizedImage, ReactiveFormsModule, NzButtonComponent],
+    imports: [SharedModule, RouterModule, NgOptimizedImage, ReactiveFormsModule, NzButtonComponent, NzIconDirective, NzInputDirective, NzInputGroupComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export default class HomeComponent implements OnInit, OnDestroy {
@@ -31,6 +33,8 @@ export default class HomeComponent implements OnInit, OnDestroy {
   memberImageList: any[] = [];
   annList: any[] = [];
   levelList: any = [];
+
+  jobList: any = [];
 
   public targetList = [
     {reqInvest: 300, commission: 0.5, order: 40},
@@ -50,20 +54,130 @@ export default class HomeComponent implements OnInit, OnDestroy {
     private router: Router,
     private stateStorageService: StateStorageService,
   ) {
-    this.commodityList = this.fakeArray(12).map((_, index) => `content/images/g${index + 1}.jpg`);
-    this.memberImageList = this.fakeArray(9).map((_, index) => `content/images/h${index + 1}.jpg`);
+    this.commodityList = this.fakeArray(12).map((_, index) => `content/imagess/g${index + 1}.jpg`);
+    this.memberImageList = this.fakeArray(9).map((_, index) => `content/imagess/h${index + 1}.jpg`);
     this.memberList = this.fakeArray(10).map((_, index) => ({
-      bgImg: `content/images/m${this.randomBetween1And4()}.jpg`,
+      bgImg: `content/imagess/m${this.randomBetween1And4()}.jpg`,
       title: 'SAKS OFF 5TH',
       reqInvest: this.targetList[index].reqInvest,
       type: `VIP${index}`,
       val: this.targetList[index].commission,
       order: this.targetList[index].order,
     }));
- /*   this.annList = this.fakeArray(10).map((_, index) => ({
-      cardNumber: '[****1806]',
-      money: 251221,
-    }));*/
+
+
+    this.jobList = [
+      {
+        tag: {
+          type: 0,
+          text: "nổi bật"
+        },
+        image: 'content/images/job-1.jpg',
+        title: 'Tuyển dụng gấp: 5 nam kỹ sư xây dựng tại cầu giấy',
+        price: "15-20 triệu/tháng",
+        time: "Hôm nay",
+        address: "Quận Cầu Giấy"
+      },
+      {
+        tag: {
+          type: 0,
+          text: "nổi bật"
+        },
+        image: 'content/images/job-2.jpg',
+        title: 'Tuyển nhân viên tổ chức hành chính tại đống đa',
+        price: "10-12 triệu/tháng",
+        time: "Hôm nay",
+        address: "Quận Đống Đa"
+      },
+      {
+        tag: {
+          type: 0,
+          text: "nổi bật"
+        },
+        image: 'content/images/job-3.jpg',
+        title: 'Tuyển đầu bếp chuyên nghiệp tại thanh xuân',
+        price: "12-15 triệu/tháng",
+        time: "Hôm qua",
+        address: "Quận Thanh Xuân"
+      },
+      {
+        tag: {
+          type: 0,
+          text: "nổi bật"
+        },
+        image: 'content/images/job-4.jpg',
+        title: 'Tuyển lái xe tải kinh nghiệm tại hai bà trưng',
+        price: "Thỏa thuận",
+        time: "2 ngày trước",
+        address: "Quận Hai Bà Trưng"
+      },
+      {
+        tag: {
+          type: 0,
+          text: "nổi bật"
+        },
+        image: 'content/images/job-5.jpg',
+        title: 'Tuyển nhân viên massage tại hoàn kiếm',
+        price: "8-10 triệu/tháng",
+        time: "Hôm nay",
+        address: "Quận Hoàn Kiếm"
+      },
+      {
+        tag: {
+          type: 0,
+          text: "nổi bật"
+        },
+        image: 'content/images/job-1.png',
+        title: 'Tuyển dụng gấp: 7 nam công nhân sản xuất tại bắc từ liêm',
+        price: "10-12 triệu/tháng",
+        time: "Hôm qua",
+        address: "Quận Bắc Từ Liêm"
+      },
+      {
+        tag: {
+          type: 0,
+          text: "nổi bật"
+        },
+        image: 'content/images/job-2.jpg',
+        title: 'Tuyển nhân viên tổ chức hành chính tại tây hồ',
+        price: "6-8 triệu/tháng",
+        time: "3 ngày trước",
+        address: "Quận Tây Hồ"
+      },
+      {
+        tag: {
+          type: 0,
+          text: "nổi bật"
+        },
+        image: 'content/images/job-3.jpg',
+        title: 'Tuyển đầu bếp chuyên nghiệp tại long biên',
+        price: "7-9 triệu/tháng",
+        time: "Hôm nay",
+        address: "Quận Long Biên"
+      },
+      {
+        tag: {
+          type: 0,
+          text: "nổi bật"
+        },
+        image: '',
+        title: 'Tuyển lái xe tải kinh nghiệm tại hoàng mai',
+        price: "12-15 triệu/tháng",
+        time: "Hôm qua",
+        address: "Quận Hoàng Mai"
+      },
+      {
+        tag: {
+          type: 0,
+          text: "nổi bật"
+        },
+        image: 'content/images/job-6.jpg',
+        title: 'Tuyển nhân viên massage tại hà đông',
+        price: "Thỏa thuận",
+        time: "4 ngày trước",
+        address: "Quận Hà Đông"
+      }
+    ];
     this.annList = [
       {
         cardNumber: '[****2512]',
