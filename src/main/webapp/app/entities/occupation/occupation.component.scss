@@ -47,15 +47,12 @@
         justify-content: center;
       }
       &-item {
-        width: 129px;
         text-align: center;
         background-color: #fff;
         padding: 8px 0 5px 0;
-        margin-bottom: 8px;
         border-radius: 4px;
-        &:nth-of-type(odd) {
-          margin-right: 8px;
-        }
+        height: 100%;
+        cursor: pointer;
       }
 
       &-img {

@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
+import {RouterLink} from "@angular/router";
 
 @Component({
   selector: 'jhi-occupation',
   standalone: true,
-  imports: [],
+  imports: [
+    RouterLink
+  ],
   templateUrl: './occupation.component.html',
   styleUrl: './occupation.component.scss'
 })
