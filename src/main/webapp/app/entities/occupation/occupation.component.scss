@@ -1,0 +1,71 @@
+.banner-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  color: #fff;
+  background: linear-gradient(90deg,#500cfd,#9e9ce7);
+  height: 56px;
+}
+
+.job-wrap {
+  display: flex;
+  height: calc(100% - 52px);
+  .left {
+    width: 30%;
+    height: 100%;
+
+    .trigger {
+      position: relative;
+      padding: 28px;
+      background-color: #f2f2f5;
+      color: #500cfd;
+      font-size: 1rem;
+      text-align: center;
+      &-active {
+        position: absolute;
+        top: 20px;
+        left: 5px;
+        width: 6px;
+        height: 38px;
+        border-radius: 8px;
+        background-color: #500cfd;
+
+      }
+    }
+  }
+
+  .right {
+    width: 70%;
+    height: 100%;
+    background-color: #f2f2f5;
+    padding: 11px;
+    .job {
+      &-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      &-item {
+        width: 129px;
+        text-align: center;
+        background-color: #fff;
+        padding: 8px 0 5px 0;
+        margin-bottom: 8px;
+        border-radius: 4px;
+        &:nth-of-type(odd) {
+          margin-right: 8px;
+        }
+      }
+
+      &-img {
+        img {
+          width: 114px;
+          height: 114px;
+          border-radius: 16px
+        }
+      }
+
+    }
+  }
+}

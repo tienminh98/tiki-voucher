@@ -1,0 +1,27 @@
+<div class="occupation-home" style="margin: 0 -8px; font-weight: 500;height: 100%;">
+  <section class="banner">
+    <div class="banner-text">NGÀNH NGHỀ</div>
+  </section>
+  <section class="job-wrap">
+    <div class="left">
+      <div class="trigger">
+        <div class="trigger-active"></div>
+        <div class="trigger-text">Tất cả</div>
+      </div>
+    </div>
+    <div class="right">
+      <div class="job-list">
+        @for (job of jobList; track i; let i = $index) {
+          <div class="job-item">
+            <div class="job-img">
+              <img [src]="job?.image" alt="image-job">
+            </div>
+            <div class="job-title">
+              {{job?.title}}
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+</div>

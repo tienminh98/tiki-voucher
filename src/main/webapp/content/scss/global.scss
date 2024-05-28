@@ -271,7 +271,7 @@ body {
   //text-align: center;
   jhi-app {
     display: flex;
-    height: calc(100% - 52px);
+    height: calc(100% - 42px);
     justify-content: center;
     overflow-y: auto;
     jhi-main {
@@ -285,6 +285,7 @@ body {
 
 .wrapper {
   width: 100%;
+  height: 100%;
   transition: all ease 0.5s;
   -webkit-transition: all ease 0.5s;
   -moz-transition: all ease 0.5s;

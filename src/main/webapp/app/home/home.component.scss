@@ -26,98 +26,6 @@ Main page styles
   font-weight: 500;
 }
 
-.membership {
-  &-level {
-    padding-right: 15px;
-    padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto;
-    .subtitle {
-      font-size: 1.6rem;
-      line-height: 26px;
-      margin-top: 30px;
-      margin-bottom: 15px;
-      text-transform: uppercase;
-    }
-
-  }
-
-  &-card {
-    position: relative;
-    background-size: 100% !important;
-    height: 159px;
-    margin-bottom: 16px;
-    padding: 1.5rem 1.5rem 1.5rem 3rem;
-    border-radius: 10px;
-
-    .title {
-      font-size: 2rem;
-    }
-    .content {
-      font-size: 1.2rem;
-    }
-
-    .title, .content {
-      color: #000000;
-      opacity: 0.7;
-    }
-
-    .wrap-action {
-      width: 40%;
-      .action {
-        width: 50%;
-        height: 30px;
-        background-color: #000000;
-        font-size: .9rem;
-        color: #ffffff;
-        text-align: center;
-        line-height: 30px;
-        cursor: pointer;
-        &.ghost {
-          background-color: #ffffff;
-          color: #000000;
-        }
-      }
-    }
-  }
-}
-
-.ann {
-  .title {
-    font-size: 2.1rem;
-    margin-top: 22px;
-    margin-bottom: 10px;
-  }
-  &-card {
-    background-image: url(../../content/images/rolls.jpg);
-    background-size: 100% 100%;
-    background-color: #3e8acc;
-    background-repeat: no-repeat;
-    padding: 2rem;
-  }
-  &-item {
-    background-color: rgb(247, 247, 247);
-    opacity: 0.5;
-    margin-bottom: 10px;
-    border-radius: 10px;
-    font-size: 1.6rem;
-    font-weight: normal;
-  }
-}
-
-.social-network {
-  img {
-    transition: .3s;
-    &:hover {
-      scale: 1.3;
-    }
-  }
-}
-
-.w-20 {
-  width: 20%;
-}
-
 /*Custom btn*/
 
 .custom-btn {
@@ -162,6 +70,31 @@ Main page styles
       padding: 8px;
       margin: 0 4px;
     }
+  }
+}
+
+.job-normal {
+  .job {
+    &-item {
+      padding: 16px 0;
+      &:not(:last-child) {
+        border-bottom: 1px solid #ecedef;
+      }
+     /* &:first-child {
+        margin-top: 16px
+      }
+      &:not(:last-child) {
+        margin-bottom: 16px
+      }*/
+    }
+    &-img {
+      margin-right: 8px
+    }
+  }
+}
+
+.job-normal, .job-horizon {
+  .job {
     &-img {
       position: relative;
       img {
@@ -169,13 +102,19 @@ Main page styles
       }
     }
     &-favorite {
-      top: 10px;
-      left: 10px;
-
+      top: 6px;
+      right: 6px;
+      color: #fff;
     }
     &-tag {
-      bottom: 10px;
-      right: 10px;
+      top: 6px;
+      left: 6px;
+      background-color: #bf1d28;
+      color: #fff;
+      font-size: 1rem;
+      padding: 8px;
+      line-height: 2px;
+      border-radius: 4px;
     }
     &-title {
       font-size: 1.4rem;
