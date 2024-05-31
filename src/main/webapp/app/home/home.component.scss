@@ -12,10 +12,10 @@ Main page styles
 
 /* wait autoprefixer update to allow simple generation of high pixel density media query */
 @media only screen and (-webkit-min-device-pixel-ratio: 2),
-  only screen and (-moz-min-device-pixel-ratio: 2),
-  only screen and (-o-min-device-pixel-ratio: 2/1),
-  only screen and (min-resolution: 192dpi),
-  only screen and (min-resolution: 2dppx) {
+only screen and (-moz-min-device-pixel-ratio: 2),
+only screen and (-o-min-device-pixel-ratio: 2/1),
+only screen and (min-resolution: 192dpi),
+only screen and (min-resolution: 2dppx) {
   .hipster {
     background: url('../../content/images/jhipster_family_member_2.svg') no-repeat center top;
     background-size: contain;
@@ -24,6 +24,104 @@ Main page styles
 
 .home-page {
   font-weight: 500;
+  background-image: url('../../content/images/bg-home.jpg');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  height: 100%;
+}
+
+.banner {
+  position: relative;
+  padding: 10px 0;
+  text-align: center;
+
+  .marquee {
+    overflow: hidden;
+    white-space: nowrap;
+    box-sizing: border-box;
+    position: absolute;
+    top: 11px;
+    left: 100px;
+    right: 60px;
+  }
+
+  .marquee-inner {
+    font-size: 1.2rem;
+    display: inline-block;
+    animation: marquee 20s linear infinite;
+  }
+
+  @keyframes marquee {
+    from {
+      transform: translateX(300px);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
+}
+
+.advertise {
+  display: flex;
+  justify-content: center;
+  margin-top: 215px;
+
+  .marquee-container {
+    width: 365px; /* Điều chỉnh chiều rộng tùy ý */
+    height: 100px; /* Điều chỉnh chiều cao để phù hợp với 5 mục li */
+    overflow: hidden;
+    position: relative;
+  }
+
+  .marquee-vertical {
+    display: flex;
+    flex-direction: column;
+    animation: marqueeVertical 30s linear infinite;
+  }
+
+  .marquee-vertical li {
+    list-style-type: none;
+    font-size: 1.2rem;
+    color: #fff;
+  }
+}
+
+.product {
+  &-list {
+    padding: 30px
+  }
+
+  &-item {
+    display: flex;
+    border: 2px solid #7b819d;
+    border-radius: 16px;
+    padding: 10px;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  &-img {
+    margin-right: 8px;
+
+    img {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  &-title {
+    color: #fff;
+    font-size: 1.3rem;
+  }
+}
+
+@keyframes marqueeVertical {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
 }
 
 /*Custom btn*/
@@ -33,16 +131,19 @@ Main page styles
   background-color: #00D0EA;
   color: #ffffff;
   border-radius: 10px;
+
   &:hover {
     border-color: #00d0eab8;
     background: #00d0eab8;
     color: #ffffff;
   }
+
   &.login {
     line-height: 42px;
     background-color: #000000;
     color: #ffffff;
     border-radius: 30px;
+
     &:hover {
       border-color: #000000c2;
       background: #000000c2;
@@ -58,12 +159,14 @@ Main page styles
 
 .job-horizon {
   margin: 0 -8px;
+
   .job {
     &-list {
       overflow-x: auto;
       padding: 16PX 0;
       background: linear-gradient(180deg, #ffe2c6, rgba(255, 241, 235, .4) 53.12%, #fff 88.98%, #fff);
     }
+
     &-item {
       width: 160px;
       background-color: #fff;
@@ -77,16 +180,19 @@ Main page styles
   .job {
     &-item {
       padding: 16px 0;
+
       &:not(:last-child) {
         border-bottom: 1px solid #ecedef;
       }
-     /* &:first-child {
-        margin-top: 16px
-      }
-      &:not(:last-child) {
-        margin-bottom: 16px
-      }*/
+
+      /* &:first-child {
+         margin-top: 16px
+       }
+       &:not(:last-child) {
+         margin-bottom: 16px
+       }*/
     }
+
     &-img {
       margin-right: 8px
     }
@@ -97,15 +203,18 @@ Main page styles
   .job {
     &-img {
       position: relative;
+
       img {
         object-fit: cover;
       }
     }
+
     &-favorite {
       top: 6px;
       right: 6px;
       color: #fff;
     }
+
     &-tag {
       top: 6px;
       left: 6px;
@@ -116,6 +225,7 @@ Main page styles
       line-height: 2px;
       border-radius: 4px;
     }
+
     &-title {
       font-size: 1.4rem;
       overflow: hidden;
@@ -124,15 +234,18 @@ Main page styles
       -webkit-box-orient: vertical;
       -webkit-line-clamp: 2;
     }
+
     &-price {
       font-size: 1.5rem;
       margin-top: 16px;
       color: #d14200;
     }
+
     &-time, &-address {
       font-size: 1rem;
       white-space: nowrap;
       overflow: hidden;
+
       .content {
         overflow: hidden;
         text-overflow: ellipsis;

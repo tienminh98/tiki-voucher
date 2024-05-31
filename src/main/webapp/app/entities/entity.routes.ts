@@ -24,6 +24,10 @@ const routes: Routes = [
   {
     path: 'occupation',
     loadChildren: () => import(`../entities/occupation/occupation.route`),
+  },
+  {
+    path: 'voucher',
+    loadChildren: () => import(`../entities/voucher/voucher.route`),
   }
   /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
 ];

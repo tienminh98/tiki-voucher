@@ -271,7 +271,7 @@ body {
   //text-align: center;
   jhi-app {
     display: flex;
-    height: calc(100% - 42px);
+    height: 100%;
     justify-content: center;
     overflow-y: auto;
     jhi-main {
@@ -406,7 +406,7 @@ swiper-slide {
 
 @media screen and (min-width: 787px) {
   body {
-    text-align: center;
+    //text-align: center;
     display: block;
     background: #fff !important;
     jhi-main, .footer {
@@ -420,7 +420,7 @@ swiper-slide {
 
 @media screen and (max-width: 786px) {
   .wrapper {
-    padding: 0 8px;
+    //padding: 0 8px;
     &.show-order {
       transform: translateX(-96%) !important;
       & .product {

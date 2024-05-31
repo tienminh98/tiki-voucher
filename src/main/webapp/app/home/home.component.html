@@ -1,5 +1,13 @@
 <div class="home-page">
-  <section class="my-3">
+  <section class="banner">
+    <img style="width: 93%;" src="content/images/label-home.png" alt="label">
+    <div class="marquee">
+      <div class="marquee-inner">
+        Cảm ơn quý khách hàng đã không ngừng ủng hộ TiKi Mall , TiKi Merchant Mall . Sẽ triển khai nhiều Chương Trình ưu đãi nhiều hơn nữa . Chúng Tôi mong rằng quý khách hàng sẽ tuân thủ theo quy định của Công Ty chúng tôi ! Chân Thành Cảm Ơn .
+      </div>
+    </div>
+    <img style="width: 240px;height: 120px;margin-top: 50px"  src="content/images/logo-home.png" alt="logo">
+<!--
     <div class="d-flex justify-content-between">
       <svg style="width: 200px;height: 40px">
         <use href="#logo"></use>
@@ -11,8 +19,62 @@
         </ng-template>
       </nz-input-group>
     </div>
+-->
+
   </section>
-  <section class="job-horizon">
+  <section class="advertise">
+    <div class="marquee-container">
+      <ul class="marquee-vertical">
+        <li *ngFor="let item of marqueeList">{{ item }}</li>
+        <li *ngFor="let item of marqueeList">{{ item }}</li>
+      </ul>
+    </div>
+  </section>
+  <section class="product">
+    <div class="product-list row g-3">
+      <div class="col-6">
+        <div class="product-item" routerLink="./voucher" [queryParams]="{type: 'giadung'}">
+          <div class="product-img">
+            <img src="content/images/giadung.png" alt="giadung">
+          </div>
+          <div class="product-title">
+            Bấm để vào sảnh ĐỒ GIA DỤNG
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="product-item" routerLink="./voucher" [queryParams]="{type: 'dientu'}">
+          <div class="product-img">
+            <img src="content/images/dientu.png" alt="dientu">
+          </div>
+          <div class="product-title">
+            Bấm để vào sảnh ĐIỆN TỬ
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="product-item" routerLink="./voucher" [queryParams]="{type: 'thoitrang'}">
+          <div class="product-img">
+            <img src="content/images/thoitrang.png" alt="thoitrang">
+          </div>
+          <div class="product-title">
+            Bấm để vào sảnh THỜI TRANG
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="product-item" routerLink="./voucher" [queryParams]="{type: 'oto'}">
+          <div class="product-img">
+            <img src="content/images/oto.png" alt="oto">
+          </div>
+          <div class="product-title">
+            Bấm để vào sảnh  Ô TÔ-XE MÁY
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+<!--  <section class="job-horizon">
     <div class="job-list d-flex">
       @for (job of jobList; track i; let i = $index) {
         <div class="job-item">
@@ -70,5 +132,5 @@
       }
     </div>
 
-  </section>
+  </section>-->
 </div>

@@ -36,6 +36,32 @@ export default class HomeComponent implements OnInit, OnDestroy {
 
   jobList: any = [];
 
+  marqueeList = [
+    'Doanh thu của cửa hàng quần áo Thu Đông Shop Hà Nội đã vượt mức doanh số bán ra, và ra mắt sự kiện đặc biệt 30%.',
+    'Siêu thị Bách hóa XANH 49 Huỳnh Tịnh Của ở quận mới của Thành phố Hồ Chí Minh đã tham gia sự kiện kỷ niệm và tiết kiệm 3.000.000.000 để nhận 300.000 phiếu giảm giá.',
+    'Cửa hàng bách hóa Hạ Long đã được nâng cấp thành thành viên VIP.',
+    'Cửa hàng bách hóa Đà Nẵng đã được nâng cấp thành thành viên VIP.',
+    'Công Ty CPCN Và TM ĐÔNG BẮC Á đã tham gia sự kiện kỷ niệm và tiết kiệm 3.000.000.000 để có 3.000.000. phiếu mua hàng.',
+    'Cửa hàng bách hóa 1989 Hà Đông, thành phố Hà Nội, đã được nâng cấp thành thành viên cao cấp.',
+    'Siêu thị Bách hóa XANH 216 Kênh 19 tháng 5 tại Thành phố Hồ Chí Minh, với doanh thu 1.673.000 triệu, có thể tham gia hoạt động lấy phiếu mua hàng.',
+    'Hanoi Lyra shop với doanh thu 9,2 triệu có thể tham gia hoạt động nhận phiếu mua hàng.',
+    'Tập đoàn Xăng dầu Việt Nam. được nâng cấp lên thành viên VIP.',
+    'Công ty cổ phần Tập đoàn Hòa Phát, đã tham gia sự kiện kỷ niệm và tiết kiệm 3.000.000.000 để nhận được 3.000.000 phiếu giảm giá.',
+    'Tây Ninh rất mong đợi cửa hàng bách hóa mùa hè, doanh thu 5,37 triệu, có thể tham gia hoạt động lấy phiếu.',
+    'Trung tâm Kinh doanh Phú Tài, nâng cấp lên thành viên cao cấp.',
+    'Công ty TNHH Thương mại Đà Nẵng, với doanh thu 8,63 nghìn tỷ đồng, có thể tham gia hoạt động lấy phiếu mua hàng.',
+    'Ngân hàng TMCP Đầu tư và Phát triển Việt Nam. Tham gia sự kiện kỷ niệm và tiết kiệm 300 triệu để nhận 300 triệu phiếu mua hàng.',
+    'Công ty TNHH Thương mại Toàn Thắng Cần Thơ với doanh thu 10,61 tỷ được tham gia hoạt động lấy phiếu thu.',
+    'Công ty TNHH Samsung Electronics Việt Nam Thái Nguyên, tham gia sự kiện kỷ niệm, và tiết kiệm 300 triệu để nhận 300 triệu coupon.',
+    'Bách Hóa Thanh Xuân Mart Hà Nội đã được nâng cấp thành thành viên VIP.',
+    'Bách Hóa 41 Phú Viên thành phố Hà Nội đã được nâng cấp thành thành viên VIP.',
+    'Công ty TNHH Đầu Tư Tài Chính Thành phố Hồ Chí Minh, tham gia sự kiện kỷ niệm, đặt cọc 3.000.000.000 ₫ và nhận phiếu giảm giá 1.000.000.000 ₫.',
+    'Thịnh Tươi Bách Hóa Tổng Hợp, thành phố Hà Nội, được nâng cấp thành thành viên cao cấp.',
+    'Tập đoàn Công nghiệp - Viễn thông Quân đội được nâng cấp thành thành viên cao cấp.',
+    'Cửa hàng quần áo Trang Đoàn tại Tiền Giang, được nâng cấp lên thành viên cao cấp.',
+    'Cửa hàng Bách hóa Nguyên chất Thành phố Hồ Chí Minh, với doanh thu 6,52 triệu, có thể tham gia hoạt động lấy phiếu mua hàng.'
+  ];
+
   public targetList = [
     {reqInvest: 300, commission: 0.5, order: 40},
     {reqInvest: 1000, commission: 0.6, order: 60},

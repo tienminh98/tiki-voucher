@@ -1,0 +1,28 @@
+<div class="voucher-page" style="font-weight: 500;height: 100%;">
+  <section class="banner">
+    <span class="position-absolute" style="left: 14px;top: 18px;font-size: 1.4rem;color: #1989fa;cursor: pointer"
+          nz-icon nzType="left" nzTheme="outline" routerLink="/"></span>
+    <div class="banner-text">Danh sách sản phẩm</div>
+  </section>
+  <section class="voucher">
+    <div class="voucher-text">Vui lòng lấy phiếu giảm giá</div>
+    <div class="voucher-list">
+      @for (voucher of voucherList; track i; let i = $index) {
+        <div class="voucher-item">
+          <div class="d-flex">
+            <div class="voucher-img">
+              <img [src]="voucher?.img" alt="voucher">
+            </div>
+            <div class="d-flex flex-column justify-content-between">
+              <div class="voucher-title">{{voucher?.title}}</div>
+              <div class="voucher-price">{{voucher?.price}}</div>
+            </div>
+          </div>
+          <div class="d-flex justify-content-end">
+            <div class="discount">Nhận được {{voucher?.discount}}% giảm giá</div>
+          </div>
+        </div>
+      }
+    </div>
+  </section>
+</div>
