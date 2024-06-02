@@ -33,7 +33,7 @@ export default class MainComponent implements OnInit {
       filter(event => event instanceof NavigationEnd)
     ).subscribe((event: any) => {
       const currentUrl = event.url;
-      this.isLoginOrRegisterPage = currentUrl.includes('/login') || currentUrl.includes('/register');
+      this.isLoginOrRegisterPage = currentUrl.includes('/login') || currentUrl.includes('/register') || currentUrl === '/';
     });
 
   }
