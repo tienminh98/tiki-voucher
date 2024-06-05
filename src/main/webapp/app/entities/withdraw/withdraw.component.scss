@@ -1,0 +1,19 @@
+@import "../voucher/voucher.component";
+
+.withdraw-info {
+  border: 1px solid #ebedf0;
+  margin-top: 50px;
+  .d-flex {
+    padding: 10px 16px;
+    &:first-child {
+      padding: 10px 16px;
+      border-bottom: 1px solid #ebedf0;
+    }
+  }
+  .content {
+    color: #969799;
+  }
+  .title, .content {
+    font-size: 1.4rem;
+  }
+}
