@@ -55,7 +55,7 @@ export class MyComponent {
   avatar = '';
   constructor(
               private stateStorageService: StateStorageService,
-              private loginService: LoginService,
+              public loginService: LoginService,
               private notification: NzNotificationService,
               private detailBillsService: DetailBillsService,
               private accountService: AccountService,

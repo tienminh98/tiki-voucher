@@ -88,8 +88,11 @@ export default class RegisterComponent implements AfterViewInit {
     if (password !== confirmPassword) {
       this.createNotification('error', 'The password and its confirmation do not match!')
     } else {
+      const formValue = this.registerForm.getRawValue();
+      const { confirmPassword, ...cleanedFormValue } = formValue;
+
       this.registerService
-        .save(this.registerForm.getRawValue())
+        .save(cleanedFormValue)
         .subscribe({ next: () => {
             if (!this.router.getCurrentNavigation()) {
               // There were no routing during login (eg from navigationToStoredUrl)

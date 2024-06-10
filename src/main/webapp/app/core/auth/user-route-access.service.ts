@@ -25,7 +25,7 @@ export const UserRouteAccessService: CanActivateFn = (next: ActivatedRouteSnapsh
         return false;
       }
       stateStorageService.storeUrl(state.url);
-      // router.navigate(['/login']);
+      router.navigate(['/login']);
       return true;
     }),
   );

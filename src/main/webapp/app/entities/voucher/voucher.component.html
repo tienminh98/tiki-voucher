@@ -8,21 +8,24 @@
     <div class="voucher-text">Vui lòng lấy phiếu giảm giá</div>
     <div class="voucher-list">
       @for (voucher of voucherList; track i; let i = $index) {
-        <div class="voucher-item" (click)="showConfirm()">
+        <div class="voucher-item" (click)="handleAction(voucher.id)">
           <div class="d-flex">
             <div class="voucher-img">
-              <img [src]="voucher?.img" alt="voucher">
+              <img [src]="hostBase + voucher?.image" alt="voucher">
             </div>
             <div class="d-flex flex-column justify-content-between">
-              <div class="voucher-title">{{voucher?.title}}</div>
+              <div class="voucher-title">{{voucher?.name}}</div>
               <div class="voucher-price">{{voucher?.price}}</div>
             </div>
           </div>
           <div class="d-flex justify-content-end">
-            <div class="discount">Nhận được {{voucher?.discount}}% giảm giá</div>
+            <div class="discount">Nhận được {{Number(voucher?.commission)}}% giảm giá</div>
           </div>
         </div>
       }
+      <div *ngIf="!voucherList.length" class="no-data text-center">
+        Không còn nữa
+      </div>
     </div>
   </section>
 </div>

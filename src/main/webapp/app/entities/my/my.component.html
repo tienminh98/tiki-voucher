@@ -9,7 +9,7 @@
       <img style="width: 80px;height: 80px;" src="content/images/csfoot.png" alt="tiki">
     </div>
     <div class="">Tên cửa hàng:</div>
-    <div class="">Tên tài khoản:</div>
+    <div class="">Tên tài khoản: {{account?.user?.name}}</div>
   </section>
   <section class="info-money">
     <div class="row g-3">
@@ -18,7 +18,7 @@
           <div class="money-img">
             <span nz-icon nzType="dollar-circle" nzTheme="outline"></span>
           </div>
-          <div>0</div>
+          <div>{{account?.user?.wallet}} VNĐ</div>
         </div>
       </div>
       <div class="col-4">
@@ -58,8 +58,8 @@
       <span style="font-size: 1.4rem" nz-icon nzType="right" nzTheme="outline"></span>
     </div>
     <div class="action-support px-5">
-      <button class="custom-btn w-100" nz-button type="submit" nzSize="large" nzType="default">
-        Xác nhận gửi
+      <button class="custom-btn w-100" nz-button type="submit" nzSize="large" nzType="default" (click)="loginService.logout()">
+        Đăng xuất
       </button>
     </div>
   </section>
