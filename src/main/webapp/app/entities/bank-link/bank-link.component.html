@@ -25,7 +25,7 @@
             <input style="border: none; box-shadow: none" nz-input placeholder="Nhập tên ngân hàng" formControlName="bank" id="bank"/>
           </nz-form-control>
         </nz-form-item>
-        <div class="action-support">
+        <div *ngIf="isShowUpdate" class="action-support">
           <button class="custom-btn w-100" nz-button type="submit" nzSize="large" nzType="default">
             Cập nhật
           </button>

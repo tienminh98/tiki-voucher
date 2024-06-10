@@ -15,7 +15,7 @@
             </div>
             <div class="d-flex flex-column justify-content-between">
               <div class="voucher-title">{{voucher?.name}}</div>
-              <div class="voucher-price">{{voucher?.price}}</div>
+              <div class="voucher-price">{{voucher?.price}} ₫</div>
             </div>
           </div>
           <div class="d-flex justify-content-end">
@@ -31,6 +31,6 @@
 </div>
 <ng-template #notificationBtnTpl let-notification>
   <button style="width: 95px;" class="custom-btn" nz-button nzType="default" nzSize="small" (click)="notification.close()">
-    <a style="color: #fff" href="https://lyst686.com/admin/chat" target="_blank">Top up</a> <!--link support-->
+    <a style="color: #fff" (click)="onOpenChatBox()">Nạp tiền</a> <!--link support-->
   </button>
 </ng-template>

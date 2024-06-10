@@ -61,7 +61,9 @@ export class WithdrawComponent {
             this.accountService.fetch().pipe(tap(_ => this.router.navigate(['/']).then())).subscribe();
           }
         }, err => {
-          this.createNotification('error', err.error.message);
+          if (err.status === 400) {
+            this.createNotification('warning', err.error.message);
+          }
         })
 
       }

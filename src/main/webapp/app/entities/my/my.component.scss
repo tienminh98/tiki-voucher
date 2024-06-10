@@ -135,11 +135,13 @@
       border-radius: 5px;
       background-color: #ebedf0;
       margin-bottom: 6px;
+      cursor: pointer;
       span {
         font-size: 25px;
       }
       & ~ div {
         font-size: 1.4rem;
+        cursor: pointer;
       }
     }
   }

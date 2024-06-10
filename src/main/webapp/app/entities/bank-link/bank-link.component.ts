@@ -6,7 +6,7 @@ import { NzFormControlComponent, NzFormDirective, NzFormItemComponent, NzFormLab
 import { NzIconDirective } from 'ng-zorro-antd/icon';
 import { NzInputDirective } from 'ng-zorro-antd/input';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
-import { Location } from '@angular/common';
+import { Location, NgIf } from '@angular/common';
 import { Router } from '@angular/router';
 import { StateStorageService } from '../../core/auth/state-storage.service';
 import { MatchingService } from '../matching/matching.service';
@@ -26,7 +26,8 @@ import { AccountService } from '../../core/auth/account.service';
     NzIconDirective,
     NzInputDirective,
     NzRowDirective,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgIf
   ],
   templateUrl: './bank-link.component.html',
   styleUrl: './bank-link.component.scss'
@@ -34,15 +35,19 @@ import { AccountService } from '../../core/auth/account.service';
 export class BankLinkComponent {
   bankLinkForm!: FormGroup;
   account!: any;
+  isShowUpdate = false;
   constructor(private accountService: AccountService,private matchingService: MatchingService, private fb: NonNullableFormBuilder,private stateStorageService: StateStorageService, private notification: NzNotificationService, private location: Location, private router: Router
   ) {
     this.account = this.stateStorageService.getUser();
 
+    console.log('this.account', this.account);
     this.bankLinkForm = this.fb.group({
       account_name: [this.account?.user?.account_name || '', [Validators.required]],
       account_number: [this.account?.user?.account_number || '', [Validators.required]],
       bank: [this.account?.user?.bank || '', [Validators.required]],
     });
+
+    this.isShowUpdate = !(this.account?.user?.account_name && this.account?.user?.account_number && this.account?.user?.bank)
   }
   goBack() {
     if (window.history.length > 1) {
@@ -92,7 +97,9 @@ export class BankLinkComponent {
       this.matchingService.updateBank(request).subscribe(res => {
         if (res.status === 200) {
           this.createNotification('success', res.body.message);
-          this.accountService.fetch().subscribe();
+          this.accountService.fetch().subscribe(res => {
+            this.isShowUpdate = !(this.account?.user?.account_name && this.account?.user?.account_number && this.account?.user?.bank)
+          });
         }
       }, err => {
         this.createNotification('error', err.message);

@@ -5,6 +5,7 @@ import { Location, NgIf } from '@angular/common';
 import { VoucherService } from './voucher.service';
 import { NzNotificationComponent, NzNotificationService } from 'ng-zorro-antd/notification';
 import { NzButtonComponent } from 'ng-zorro-antd/button';
+import { EventManager } from '../../core/util/event-manager.service';
 
 @Component({
   selector: 'jhi-voucher',
@@ -24,7 +25,7 @@ export class VoucherComponent {
   hostBase = 'https\://www.tikievents.net/admin/storage/app/public/';
   voucherList: any[] = [];
 
-  constructor(private location: Location,private notification: NzNotificationService,
+  constructor(private eventManager: EventManager,private location: Location,private notification: NzNotificationService,
               private route: ActivatedRoute, private router: Router, private voucherService: VoucherService) {
     this.route.queryParams.subscribe(params => {
       this.id = params.id;
@@ -46,8 +47,20 @@ export class VoucherComponent {
   handleAction(id: string): void {
     this.voucherService.order(id).subscribe(res => {
       console.log('res', res);
+      if (res.status === 200) {
+        this.notification.create(
+          'success',
+          res.body.message,
+          '',
+          {
+            nzStyle: {
+              textAlign: 'left'
+            },
+          }
+
+        );
+      }
     },err => {
-      console.log('err', err);
       if (err.status === 400) {
         this.showConfirm(String(err.error.error));
       }
@@ -75,6 +88,12 @@ export class VoucherComponent {
       }
     );
   }
+
+  onOpenChatBox(): void {
+    this.eventManager.broadcast('open-chat');
+  }
+
+
 
   protected readonly Number = Number;
 }

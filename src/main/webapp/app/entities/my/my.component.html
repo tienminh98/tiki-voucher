@@ -8,7 +8,6 @@
     <div class="ìno-image">
       <img style="width: 80px;height: 80px;" src="content/images/csfoot.png" alt="tiki">
     </div>
-    <div class="">Tên cửa hàng:</div>
     <div class="">Tên tài khoản: {{account?.user?.name}}</div>
   </section>
   <section class="info-money">
@@ -22,7 +21,7 @@
         </div>
       </div>
       <div class="col-4">
-        <div class="money-card">
+        <div class="money-card" (click)="onOpenChatBox()">
           <div class="money-img">
             <span nz-icon nzType="credit-card" nzTheme="outline"></span>
           </div>

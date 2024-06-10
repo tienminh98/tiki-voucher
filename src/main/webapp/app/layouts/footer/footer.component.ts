@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { NzIconDirective } from 'ng-zorro-antd/icon';
+import { EventManager } from '../../core/util/event-manager.service';
 
 @Component({
   standalone: true,
@@ -12,4 +13,11 @@ import { NzIconDirective } from 'ng-zorro-antd/icon';
     RouterLinkActive
   ]
 })
-export default class FooterComponent {}
+export default class FooterComponent {
+  constructor(private eventManager: EventManager) {
+  }
+
+  onOpenChatBox(): void {
+    this.eventManager.broadcast('open-chat');
+  }
+}

@@ -15,6 +15,7 @@ import { NzColDirective, NzRowDirective } from 'ng-zorro-antd/grid';
 import { NzFormControlComponent, NzFormDirective, NzFormItemComponent, NzFormLabelComponent } from 'ng-zorro-antd/form';
 import { NzInputDirective } from 'ng-zorro-antd/input';
 import { Location } from '@angular/common';
+import { EventManager } from '../../core/util/event-manager.service';
 
 @Component({
   selector: 'jhi-my',
@@ -60,8 +61,8 @@ export class MyComponent {
               private detailBillsService: DetailBillsService,
               private accountService: AccountService,
               private location: Location,
-              private router: Router
-
+              private router: Router,
+              private eventManager: EventManager
   ) {
     this.account = stateStorageService.getUser();
     this.avatar =  this.account?.user?.avatar || '';
@@ -141,5 +142,9 @@ export class MyComponent {
     } else {
       this.router.navigate(['/']);
     }
+  }
+
+  onOpenChatBox(): void {
+    this.eventManager.broadcast('open-chat');
   }
 }
