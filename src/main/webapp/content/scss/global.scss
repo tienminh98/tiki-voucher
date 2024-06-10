@@ -116,15 +116,22 @@ Generic styles
 
 .footer {
   position: fixed;
-  bottom: 0;
+  bottom: 6px;
   left: 0;
   right: 0;
-  background-color: #000000;
   z-index: 10;
   p {
-    font-size: 6px;
+    font-size: 1.2rem;
     line-height: 12px;
     font-weight: normal;
+  }
+  span {
+    font-size: 2.2rem;
+  }
+  a.active {
+    span, p {
+      color: #ee0a24;
+    }
   }
 
 }
@@ -291,11 +298,6 @@ body {
   -moz-transition: all ease 0.5s;
   -ms-transition: all ease 0.5s;
   margin-left: 0;
-  &.has-footer {
-    height: unset;
-    min-height: 100%;
-    padding-bottom: 60px;
-  }
 }
 
 /*Custom owl nav*/
@@ -349,6 +351,10 @@ swiper-slide {
 
 .ant-input-status-error:not(.ant-input-disabled):not(.ant-input-borderless).ant-input {
   //border-radius: 30px;
+}
+
+.ant-input-affix-wrapper-status-error .ant-input-prefix {
+  color: unset;
 }
 
 .cdk-overlay-pane {
@@ -442,6 +448,9 @@ swiper-slide {
 }
 
 @media screen and (max-width: 450px) {
+  .cdk-overlay-pane {
+    width: unset !important;
+  }
   .wrapper {
     &.show-order {
       transform: translateX(-99%) !important;

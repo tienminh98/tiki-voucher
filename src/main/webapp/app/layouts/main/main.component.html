@@ -1,7 +1,7 @@
-<div class="wrapper" [class.has-footer]="!isLoginOrRegisterPage">
+<div class="wrapper">
   <router-outlet></router-outlet>
 </div>
-<div *ngIf="!isLoginOrRegisterPage" class="footer">
+<div *ngIf="showFooter" class="footer">
   <jhi-footer ></jhi-footer>
 </div>
 

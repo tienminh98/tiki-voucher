@@ -10,6 +10,11 @@ import {NzNotificationService} from "ng-zorro-antd/notification";
 import {DetailBillsService} from "./detail-bills/detail-bills.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {AccountService} from "../../core/auth/account.service";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NzColDirective, NzRowDirective } from 'ng-zorro-antd/grid';
+import { NzFormControlComponent, NzFormDirective, NzFormItemComponent, NzFormLabelComponent } from 'ng-zorro-antd/form';
+import { NzInputDirective } from 'ng-zorro-antd/input';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'jhi-my',
@@ -17,7 +22,16 @@ import {AccountService} from "../../core/auth/account.service";
   imports: [
     NzButtonComponent,
     NzIconDirective,
-    RouterLink
+    RouterLink,
+    FormsModule,
+    NzColDirective,
+    NzFormControlComponent,
+    NzFormDirective,
+    NzFormItemComponent,
+    NzFormLabelComponent,
+    NzInputDirective,
+    NzRowDirective,
+    ReactiveFormsModule
   ],
   templateUrl: './my.component.html',
   styleUrl: './my.component.scss'
@@ -42,10 +56,11 @@ export class MyComponent {
   constructor(
               private stateStorageService: StateStorageService,
               private loginService: LoginService,
-              private router: Router,
               private notification: NzNotificationService,
               private detailBillsService: DetailBillsService,
               private accountService: AccountService,
+              private location: Location,
+              private router: Router
 
   ) {
     this.account = stateStorageService.getUser();
@@ -118,5 +133,13 @@ export class MyComponent {
         textAlign: 'left'
       },
     });
+  }
+
+  goBack() {
+    if (window.history.length > 1) {
+      this.location.back();
+    } else {
+      this.router.navigate(['/']);
+    }
   }
 }

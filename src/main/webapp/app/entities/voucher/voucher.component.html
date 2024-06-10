@@ -1,14 +1,14 @@
 <div class="voucher-page" style="font-weight: 500;height: 100%;">
   <section class="banner">
     <span class="position-absolute" style="left: 14px;top: 18px;font-size: 1.4rem;color: #1989fa;cursor: pointer"
-          nz-icon nzType="left" nzTheme="outline" routerLink="/"></span>
+          nz-icon nzType="left" nzTheme="outline" (click)="goBack()"></span>
     <div class="banner-text">Danh sách sản phẩm</div>
   </section>
   <section class="voucher">
     <div class="voucher-text">Vui lòng lấy phiếu giảm giá</div>
     <div class="voucher-list">
       @for (voucher of voucherList; track i; let i = $index) {
-        <div class="voucher-item">
+        <div class="voucher-item" (click)="showConfirm()">
           <div class="d-flex">
             <div class="voucher-img">
               <img [src]="voucher?.img" alt="voucher">
@@ -26,3 +26,8 @@
     </div>
   </section>
 </div>
+<ng-template #notificationBtnTpl let-notification>
+  <button style="width: 95px;" class="custom-btn" nz-button nzType="default" nzSize="small" (click)="notification.close()">
+    <a style="color: #fff" href="https://lyst686.com/admin/chat" target="_blank">Top up</a> <!--link support-->
+  </button>
+</ng-template>

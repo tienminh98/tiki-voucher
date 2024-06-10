@@ -32,6 +32,10 @@ const routes: Routes = [
   {
     path: 'withdraw',
     loadChildren: () => import(`../entities/withdraw/withdraw.route`),
+  },
+  {
+    path: 'bank-link',
+    loadChildren: () => import(`../entities/bank-link/bank-link.route`),
   }
   /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
 ];

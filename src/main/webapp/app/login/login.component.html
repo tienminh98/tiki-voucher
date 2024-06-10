@@ -1,13 +1,55 @@
-<div class="home-page">
-  <section class="banner mt-3">
-    <img src="content/images/logo.png" alt="logo" style="width: 100px;height: 50px;">
-    <video class="w-100" style="height: 230px;" [controls]="false" [loop]="true" [autoplay]="true" [muted]="true">
-      <source src="content/videos/v1.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-    <div class="my-2">Please sign in to your Saks OFF 5TH Account.</div>
-  </section>
-  <section class="info">
+<div class="login-page">
+  <div class="bg-top">
+
+  </div>
+  <div class="bg-xia">
+
+  </div>
+  <div class="title">
+    <div style="text-align: center;">
+      Đăng nhập
+    </div>
+    <div class="desc">
+      User Login
+    </div>
+  </div>
+  <div class="main">
+    <form nz-form [formGroup]="loginForm" (ngSubmit)="submitForm()">
+      <nz-form-item class="mb-4">
+        <nz-form-control style="text-align: left" [nzSm]="24" [nzXs]="24" nzErrorTip="Please input your phone number!">
+          <nz-input-group class="custom-input" [nzPrefix]="iconPhone">
+            <input nz-input placeholder="Please enter your username or mobile number" formControlName="phone"/>
+            <ng-template #iconPhone>
+              <span nz-icon nzType="tablet" nzTheme="outline"></span>
+            </ng-template>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item class="mb-2">
+        <nz-form-control style="text-align: left" [nzSm]="24" [nzXs]="24" nzErrorTip="Please input your password!">
+          <nz-input-group class="custom-input" [nzPrefix]="iconLock" [nzSuffix]="iconPassword">
+            <input nz-input [type]="isShowPassword ? 'text' : 'password'" placeholder="Please enter your password" formControlName="password" id="password" />
+            <ng-template #iconPassword>
+              <span style="cursor: pointer" (click)="isShowPassword = !isShowPassword" nz-icon [nzType]="isShowPassword ? 'eye-invisible' : 'eye'" nzTheme="outline"></span>
+            </ng-template>
+            <ng-template #iconLock>
+
+              <span style="color: unset" nz-icon nzType="lock" nzTheme="fill"></span>
+            </ng-template>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <div class="mb-4" style="color: #003366" routerLink="/account/register">
+        Đăng ký
+      </div>
+      <nz-form-item nz-row class="register-area mb-0 mb-4" >
+        <nz-form-control class="text-center">
+          <button class="w-100 custom-btn login" nz-button nzSize="large" nzType="default">Đăng nhập</button>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </div>
+<!--  <section class="info">
     <form nz-form [formGroup]="loginForm" (ngSubmit)="submitForm()">
       <nz-form-item class="mb-4">
         <nz-form-control style="text-align: left"  [nzSm]="24" [nzXs]="24" nzErrorTip="Please input your phone number!">
@@ -49,5 +91,5 @@
     <div class="text">
       ©2024. OFF5TH  CA Transparency in Supply Chains Act
     </div>
-  </section>
+  </section>-->
 </div>

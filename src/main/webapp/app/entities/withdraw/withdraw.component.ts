@@ -1,11 +1,16 @@
 import { Component } from '@angular/core';
 import {NzIconDirective} from "ng-zorro-antd/icon";
-import {RouterLink} from "@angular/router";
+import { Router, RouterLink } from '@angular/router';
 import {NzButtonComponent} from "ng-zorro-antd/button";
 import {NzColDirective, NzRowDirective} from "ng-zorro-antd/grid";
-import {NzFormControlComponent, NzFormDirective, NzFormItemComponent} from "ng-zorro-antd/form";
+import { NzFormControlComponent, NzFormDirective, NzFormItemComponent, NzFormLabelComponent } from 'ng-zorro-antd/form';
 import {NzInputDirective, NzInputGroupComponent} from "ng-zorro-antd/input";
-import {ReactiveFormsModule} from "@angular/forms";
+import { FormGroup, FormsModule, NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { tap } from 'rxjs/operators';
+import { Location } from '@angular/common';
+import { MatchingService } from '../matching/matching.service';
+import { AccountService } from '../../core/auth/account.service';
 
 @Component({
   selector: 'jhi-withdraw',
@@ -21,11 +26,98 @@ import {ReactiveFormsModule} from "@angular/forms";
     NzInputDirective,
     NzInputGroupComponent,
     NzRowDirective,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule,
+    NzFormLabelComponent
   ],
   templateUrl: './withdraw.component.html',
   styleUrl: './withdraw.component.scss'
 })
 export class WithdrawComponent {
+  withdrawForm!: FormGroup;
+  constructor(private accountService: AccountService,private matchingService: MatchingService,private fb: NonNullableFormBuilder, private notification: NzNotificationService, private location: Location, private router: Router
+  ) {
+    this.withdrawForm = this.fb.group({
+      amount: [null, [Validators.required]],
+    });
+  }
+
+  submitForm(): void {
+    if (this.withdrawForm.valid) {
+
+      const amount = this.withdrawForm.get('amount')?.value;
+
+      if (amount < 50000 || amount > 10000000000) {
+        this.createNotification('warning', 'Số tiền tối thiểu cho một lần rút tiền là 50000₫,tối đa 10000000000₫');
+
+      } else {
+        const request = {
+          amount
+        }
+        this.matchingService.withdraw(request).subscribe(res => {
+          if (res.status === 200) {
+            this.createNotification('success', res.body.message);
+            this.accountService.fetch().pipe(tap(_ => this.router.navigate(['/']).then())).subscribe();
+          }
+        }, err => {
+          this.createNotification('error', err.message);
+        })
+
+      }
+      /* this.matchingService.order(request).subscribe(res => {
+         if (res.status === 201) {
+           this.createNotification('success', 'Order placed successfully. The order is being processed');
+           this.accountService.fetch().pipe(tap(_ => this.router.navigate(['/matching']).then())).subscribe();
+         }
+       })*/
+    } else {
+      Object.values(this.withdrawForm.controls).forEach(control => {
+        if (control.invalid) {
+          control.markAsDirty();
+          control.updateValueAndValidity({ onlySelf: true });
+        }
+      });
+    }
+  }
+
+  onlyAllowNumbers(event: KeyboardEvent) {
+    const charCode = event.which ? event.which : event.keyCode;
+
+    // Allow control keys (e.g., Backspace, Delete, Arrow keys)
+    if (
+      charCode === 8 || // Backspace
+      charCode === 46 || // Delete
+      (charCode >= 37 && charCode <= 40) // Arrow keys
+    ) {
+      return;
+    }
+
+    // Allow only numbers
+    if (charCode < 48 || charCode > 57) {
+      event.preventDefault();
+    }
+  }
+
+  createNotification(type: string, title: string): void {
+    this.notification.create(
+      type,
+      title,
+      '',
+      {
+        nzStyle: {
+          textAlign: 'left'
+        },
+      }
+
+    );
+  }
+
+  goBack() {
+    if (window.history.length > 1) {
+      this.location.back();
+    } else {
+      this.router.navigate(['/']);
+    }
+  }
 
 }

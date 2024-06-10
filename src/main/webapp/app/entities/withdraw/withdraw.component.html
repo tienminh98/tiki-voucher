@@ -1,7 +1,7 @@
 <div class="voucher-page" style="font-weight: 500;height: 100%;">
   <section class="banner">
     <span class="position-absolute" style="left: 14px;top: 18px;font-size: 1.4rem;color: #1989fa;cursor: pointer"
-          nz-icon nzType="left" nzTheme="outline" routerLink="/"></span>
+          nz-icon nzType="left" nzTheme="outline" (click)="goBack()"></span>
     <div class="banner-text">Rút tiền về thẻ ngân hàng</div>
   </section>
   <section class="withdraw-info">
@@ -12,6 +12,29 @@
     <div class="d-flex justify-content-between">
       <div class="title">Số tiền có thể rút</div>
       <div class="content">0</div>
+    </div>
+  </section>
+  <section class="withdraw-action">
+    <div style="padding: 10px 16px; background-color: #f7f8fa" class="d-flex flex-column">
+      <div class="title">Rút tiền về thẻ ngân hàng</div>
+      <div class="content">
+        Số tiền tối thiểu cho một lần rút tiền là 50000₫,tối đa 10000000000₫, phí ngân hàng 0₫!
+      </div>
+    </div>
+    <div style="padding: 10px 16px">
+      <form nz-form [formGroup]="withdrawForm" (ngSubmit)="submitForm()">
+        <nz-form-item class="d-flex flex-nowrap">
+          <nz-form-label style="flex: 0 0 25%" nzRequired nzFor="email">Số tiền rút</nz-form-label>
+          <nz-form-control style="flex: 0 0 75%" nzErrorTip="Vui lòng nhập số tiền rút">
+            <input style="border: none; box-shadow: none" nz-input placeholder="Vui lòng nhập số tiền rút (bắt buộc)" formControlName="amount" id="amount" (keypress)="onlyAllowNumbers($event)"/>
+          </nz-form-control>
+        </nz-form-item>
+        <div class="action-support">
+          <button class="custom-btn w-100" nz-button type="submit" nzSize="large" nzType="default">
+            Xác nhận gửi
+          </button>
+        </div>
+      </form>
     </div>
   </section>
 <!--

@@ -1,19 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, TemplateRef, ViewChild } from '@angular/core';
 import {NzIconDirective} from "ng-zorro-antd/icon";
-import {RouterLink} from "@angular/router";
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { Location } from '@angular/common';
+import { VoucherService } from './voucher.service';
+import { NzNotificationComponent, NzNotificationService } from 'ng-zorro-antd/notification';
+import { NzButtonComponent } from 'ng-zorro-antd/button';
 
 @Component({
   selector: 'jhi-voucher',
   standalone: true,
   imports: [
     NzIconDirective,
-    RouterLink
+    RouterLink,
+    NzButtonComponent
   ],
   templateUrl: './voucher.component.html',
   styleUrl: './voucher.component.scss'
 })
 export class VoucherComponent {
-  voucherList: any[] = [
+  @ViewChild('notificationBtnTpl', { static: true }) btnTemplate!: TemplateRef<{ $implicit: NzNotificationComponent }>;
+  id = '';
+  hostBase = 'https\://lyst686.com/admin/storage/app/public/';
+  voucherListFake: any[] = [
     {
       img: 'content/images/voucher1.jpg',
       title: 'Đồng hồ thông minh Apple Watch Ultra 2 GPS + Cellular 49mm viền Titanium dây Ocean',
@@ -63,6 +71,46 @@ export class VoucherComponent {
       discount: 15
     },
   ]
-  constructor() {
+  voucherList = this.voucherListFake;
+
+  constructor(private location: Location,private notification: NzNotificationService,
+              private route: ActivatedRoute, private router: Router, private voucherService: VoucherService) {
+    this.route.queryParams.subscribe(params => {
+      this.id = params.id;
+      this.voucherService.getProducts(this.id).subscribe(res => {
+        if (res.status === 200) {
+          this.voucherList = res.body || this.voucherListFake;
+        }
+      })
+    })
+  }
+  goBack() {
+    if (window.history.length > 1) {
+      this.location.back();
+    } else {
+      this.router.navigate(['/']);
+    }
+  }
+
+  showConfirm(): void {
+    /*this.modal.confirm({
+      nzTitle: '<i>Your current account balance is insufficient for payment. Would you like to top up your balance?</i>',
+      nzContent: '<b>Some descriptions</b>',
+      nzOnOk: () => console.log('OK')
+    });*/
+    this.notification.create(
+      'warning',
+      'Your current account balance is insufficient for payment. Would you like to top up your balance?',
+      '',
+      {
+        nzButton: this.btnTemplate,
+        nzDuration: 5000000,
+        nzPlacement: 'top',
+        nzPauseOnHover: true,
+        nzStyle: {
+          textAlign: 'left'
+        },
+      }
+    );
   }
 }

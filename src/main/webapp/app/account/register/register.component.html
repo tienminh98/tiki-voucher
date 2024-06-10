@@ -1,3 +1,150 @@
+<div class="login-page">
+  <div class="bg-top">
+
+  </div>
+  <div class="bg-xia">
+
+  </div>
+  <div class="title">
+    <div style="text-align: center;">
+      Đăng ký
+    </div>
+    <div class="desc">
+      User Register
+    </div>
+  </div>
+  <div class="main">
+<!--
+    <form nz-form [formGroup]="loginForm" (ngSubmit)="submitForm()">
+      <nz-form-item class="mb-4">
+        <nz-form-control style="text-align: left" [nzSm]="24" [nzXs]="24" nzErrorTip="Please input your phone number!">
+          <nz-input-group class="custom-input" [nzPrefix]="iconPhone">
+            <input nz-input placeholder="Please enter your username or mobile number" formControlName="phone"/>
+            <ng-template #iconPhone>
+              <span nz-icon nzType="tablet" nzTheme="outline"></span>
+            </ng-template>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item class="mb-2">
+        <nz-form-control style="text-align: left" [nzSm]="24" [nzXs]="24" nzErrorTip="Please input your password!">
+          <nz-input-group class="custom-input" [nzPrefix]="iconLock" [nzSuffix]="iconPassword">
+            <input nz-input [type]="isShowPassword ? 'text' : 'password'" placeholder="Please enter your password" formControlName="password" id="password" />
+            <ng-template #iconPassword>
+              <span style="cursor: pointer" (click)="isShowPassword = !isShowPassword" nz-icon [nzType]="isShowPassword ? 'eye-invisible' : 'eye'" nzTheme="outline"></span>
+            </ng-template>
+            <ng-template #iconLock>
+
+              <span style="color: unset" nz-icon nzType="lock" nzTheme="fill"></span>
+            </ng-template>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <div class="mb-4" style="color: #003366" routerLink="/account/register">
+        Đăng ký
+      </div>
+      <nz-form-item nz-row class="register-area mb-0 mb-4" >
+        <nz-form-control class="text-center">
+          <button class="w-100 custom-btn login" nz-button nzSize="large" nzType="default">Đăng nhập</button>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+-->
+    <form nz-form [formGroup]="registerForm" (ngSubmit)="submitForm()">
+      <nz-form-item class="mb-4">
+        <nz-form-control style="text-align: left"  [nzSm]="24" [nzXs]="24" nzErrorTip="Please input your name">
+          <input class="custom-input" nz-input formControlName="name" placeholder="Please enter your name" id="name" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item class="mb-4">
+        <nz-form-control style="text-align: left"  [nzSm]="24" [nzXs]="24" nzErrorTip="Please input your phone number!">
+          <input class="custom-input" nz-input formControlName="phone" placeholder="Please enter mobile number" id="phone" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item class="mb-4">
+        <nz-form-control style="text-align: left" [nzSm]="24" [nzXs]="24" nzErrorTip="Please input your password!">
+          <nz-input-group class="custom-input" [nzSuffix]="iconPassword">
+            <input nz-input [type]="isShowPassword ? 'text' : 'password'" placeholder="Please enter your password" formControlName="password" id="password" />
+            <ng-template #iconPassword>
+              <span style="cursor: pointer" (click)="isShowPassword = !isShowPassword" nz-icon [nzType]="isShowPassword ? 'eye-invisible' : 'eye'" nzTheme="outline"></span>
+            </ng-template>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item class="mb-4">
+        <nz-form-control style="text-align: left" [nzSm]="24" [nzXs]="24" nzErrorTip="Please input your confirm password!">
+          <nz-input-group class="custom-input" [nzSuffix]="iconShowConfirmPassword">
+            <input nz-input [type]="isShowConfirmPassword ? 'text' : 'password'" placeholder="Please enter your confirm password" formControlName="confirmPassword" id="confirmPassword" />
+            <ng-template #iconShowConfirmPassword>
+              <span style="cursor: pointer" (click)="isShowConfirmPassword = !isShowConfirmPassword" nz-icon [nzType]="isShowConfirmPassword ? 'eye-invisible' : 'eye'" nzTheme="outline"></span>
+            </ng-template>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item class="mb-4">
+        <nz-form-control style="text-align: left" [nzSm]="24" [nzXs]="24" nzErrorTip="Please input your referral code(number)">
+          <input class="custom-input" maxlength="6" nz-input formControlName="referralCode" placeholder="Please enter your referral code" id="referralCode" />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item nz-row class="register-area mb-0 mb-4" >
+        <nz-form-control class="text-center">
+          <button class="w-100 custom-btn login" nz-button nzSize="large" nzType="default">Đăng ký</button>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+    <a style="color: #ffff" routerLink="/login">
+      <button class="w-100 custom-btn login" nz-button nzSize="large" nzType="default">
+        Đăng nhập
+      </button>
+    </a>
+  </div>
+  <!--  <section class="info">
+      <form nz-form [formGroup]="loginForm" (ngSubmit)="submitForm()">
+        <nz-form-item class="mb-4">
+          <nz-form-control style="text-align: left"  [nzSm]="24" [nzXs]="24" nzErrorTip="Please input your phone number!">
+            <input class="custom-input" nz-input formControlName="phone" placeholder="Please enter your username or mobile number" id="phone" />
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item class="mb-4">
+          <nz-form-control style="text-align: left" [nzSm]="24" [nzXs]="24" nzErrorTip="Please input your password!">
+            <nz-input-group class="custom-input" [nzSuffix]="iconPassword">
+              <input nz-input [type]="isShowPassword ? 'text' : 'password'" placeholder="Please enter your password" formControlName="password" id="password" />
+              <ng-template #iconPassword>
+                <span style="cursor: pointer" (click)="isShowPassword = !isShowPassword" nz-icon [nzType]="isShowPassword ? 'eye-invisible' : 'eye'" nzTheme="outline"></span>
+              </ng-template>
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item nz-row class="register-area mb-0 mb-4" >
+          <nz-form-control class="text-center">
+            <button class="w-100 custom-btn login text-uppercase" nz-button nzSize="large" nzType="default">Login</button>
+          </nz-form-control>
+        </nz-form-item>
+      </form>
+      <div class="text-left">Forgot password?</div>
+      <div class="my-3" style="font-size: 2.4rem">Create an Account</div>
+        <a style="color: #ffff" routerLink="/account/register">
+          <button class="w-100 custom-btn login text-uppercase" nz-button nzSize="large" nzType="default">
+            REGISTER
+          </button>
+        </a>
+    </section>
+    <section class="social-network mt-3">
+      <div class="d-flex mb-4">
+        <a class="w-20" href=""><img style="width: 25px;height: 25px;" src="content/images/l1.png" alt="instar"></a>
+        <a class="w-20" href=""><img style="width: 25px;height: 25px;" src="content/images/l2.png" alt="fb"></a>
+        <a class="w-20" href=""><img style="width: 25px;height: 25px;" src="content/images/l3.png" alt="pri"></a>
+        <a class="w-20" href=""><img style="width: 25px;height: 25px;" src="content/images/l4.png" alt="twi"></a>
+        <a class="w-20" href=""><img style="width: 25px;height: 25px;" src="content/images/l5.png" alt="ytb"></a>
+      </div>
+      <div class="text">
+        ©2024. OFF5TH  CA Transparency in Supply Chains Act
+      </div>
+    </section>-->
+</div>
+
+<!--
 <div class="home-page">
   <section class="banner mt-3 mb-5">
     <img src="content/images/saksoff.jpeg" alt="saksoff" style="width: 115px;height: 96px;">
@@ -67,3 +214,4 @@
       </a>
   </section>
 </div>
+-->

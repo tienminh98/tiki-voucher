@@ -1,4 +1,106 @@
-<div class="my-page container">
+<div class="voucher-page" style="font-weight: 500;height: 100%;">
+  <section class="banner">
+    <span class="position-absolute" style="left: 14px;top: 18px;font-size: 1.4rem;color: #1989fa;cursor: pointer"
+          nz-icon nzType="left" nzTheme="outline" (click)="goBack()"></span>
+    <div class="banner-text">Trung tâm cá nhân</div>
+  </section>
+  <section class="info-address withdraw-info">
+    <div class="ìno-image">
+      <img style="width: 80px;height: 80px;" src="content/images/csfoot.png" alt="tiki">
+    </div>
+    <div class="">Tên cửa hàng:</div>
+    <div class="">Tên tài khoản:</div>
+  </section>
+  <section class="info-money">
+    <div class="row g-3">
+      <div class="col-4">
+        <div class="money-card">
+          <div class="money-img">
+            <span nz-icon nzType="dollar-circle" nzTheme="outline"></span>
+          </div>
+          <div>0</div>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="money-card">
+          <div class="money-img">
+            <span nz-icon nzType="credit-card" nzTheme="outline"></span>
+          </div>
+          <div>Nạp tiền</div>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="money-card">
+          <div class="money-img">
+            <span nz-icon nzType="interaction" nzTheme="outline"></span>
+          </div>
+          <div>Rút tiền</div>
+        </div>
+      </div>
+    </div>
+    <div style="padding: 12px; background-color: #F7F8FA"></div>
+  </section>
+  <section class="info-withdraw">
+    <div class="d-flex justify-content-between" routerLink="/bank-link">
+      <div class="title">Liên kết thẻ ngân hàng</div>
+      <span style="font-size: 1.4rem" nz-icon nzType="right" nzTheme="outline"></span>
+    </div>
+    <div class="d-flex justify-content-between">
+      <div class="title">Lịch sử thanh toán</div>
+      <span style="font-size: 1.4rem" nz-icon nzType="right" nzTheme="outline"></span>
+    </div>
+    <div class="d-flex justify-content-between">
+      <div class="title">Lịch sử giao dịch</div>
+      <span style="font-size: 1.4rem" nz-icon nzType="right" nzTheme="outline"></span>
+    </div>
+    <div class="d-flex justify-content-between">
+      <div class="title">Dịch vụ trực tuyến</div>
+      <span style="font-size: 1.4rem" nz-icon nzType="right" nzTheme="outline"></span>
+    </div>
+    <div class="action-support px-5">
+      <button class="custom-btn w-100" nz-button type="submit" nzSize="large" nzType="default">
+        Xác nhận gửi
+      </button>
+    </div>
+  </section>
+
+  <!--
+    <section class="info">
+      <form nz-form [formGroup]="loginForm" (ngSubmit)="submitForm()">
+        <nz-form-item class="mb-4">
+          <nz-form-control style="text-align: left"  [nzSm]="24" [nzXs]="24" nzErrorTip="Please input your phone number!">
+            <input class="custom-input" nz-input formControlName="phone" placeholder="Please enter your username or mobile number" id="phone" />
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item class="mb-4">
+          <nz-form-control style="text-align: left" [nzSm]="24" [nzXs]="24" nzErrorTip="Please input your password!">
+            <nz-input-group class="custom-input" [nzSuffix]="iconPassword">
+              <input nz-input [type]="isShowPassword ? 'text' : 'password'" placeholder="Please enter your password" formControlName="password" id="password" />
+              <ng-template #iconPassword>
+                <span style="cursor: pointer" (click)="isShowPassword = !isShowPassword" nz-icon [nzType]="isShowPassword ? 'eye-invisible' : 'eye'" nzTheme="outline"></span>
+              </ng-template>
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item nz-row class="register-area mb-0 mb-4" >
+          <nz-form-control class="text-center">
+            <button class="w-100 custom-btn login text-uppercase" nz-button nzSize="large" nzType="default">Login</button>
+          </nz-form-control>
+        </nz-form-item>
+      </form>
+      <div class="text-left">Forgot password?</div>
+      <div class="my-3" style="font-size: 2.4rem">Create an Account</div>
+      <a style="color: #ffff" routerLink="/account/register">
+        <button class="w-100 custom-btn login text-uppercase" nz-button nzSize="large" nzType="default">
+          REGISTER
+        </button>
+      </a>
+    </section>
+  -->
+
+</div>
+
+<!--<div class="my-page container">
   <section class="banner my-3">
     <img src="content/images/logo.png" alt="logo" style="width: 138px;height: 50px;">
   </section>
@@ -42,7 +144,7 @@
       </div>
       <div class="d-flex align-items-center" style="font-weight: normal;color: #333">
         <button class="custom-btn" nz-button nzSize="large" nzType="default">
-          <a style="color: #fff" href="https://lyst686.com/admin/chat" target="_blank">Top up</a> <!--link support-->
+          <a style="color: #fff" href="https://lyst686.com/admin/chat" target="_blank">Top up</a> &lt;!&ndash;link support&ndash;&gt;
         </button>
         <button routerLink="./withdraw-detail" class="custom-btn ghost ml-3" nz-button nzSize="large" nzType="default">Withdraw</button>
       </div>
@@ -61,5 +163,5 @@
     </div>
   </section>
 </div>
-<input type="file" #fileInput style="display: none;" (change)="onFileSelected($event)">
+<input type="file" #fileInput style="display: none;" (change)="onFileSelected($event)">-->
 

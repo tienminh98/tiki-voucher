@@ -2,7 +2,7 @@
 
 .withdraw-info {
   border: 1px solid #ebedf0;
-  margin-top: 50px;
+  padding-top: 50px;
   .d-flex {
     padding: 10px 16px;
     &:first-child {
@@ -10,10 +10,30 @@
       border-bottom: 1px solid #ebedf0;
     }
   }
+}
+
+.withdraw-info, .withdraw-action {
   .content {
     color: #969799;
   }
   .title, .content {
     font-size: 1.4rem;
+  }
+}
+
+.action-support {
+  margin-top: 14px;
+}
+
+.custom-btn {
+  height: 42px;
+  background-color: #1989fa;
+  color: #ffffff;
+  border-radius: 30px;
+  font-size: 1.4rem;
+  &:hover {
+    border-color: #2196f3;
+    background: #1989facf;
+    color: #ffffff;
   }
 }
