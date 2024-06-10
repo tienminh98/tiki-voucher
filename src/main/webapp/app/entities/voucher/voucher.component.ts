@@ -49,12 +49,12 @@ export class VoucherComponent {
     },err => {
       console.log('err', err);
       if (err.status === 400) {
-        this.showConfirm();
+        this.showConfirm(String(err.error.error));
       }
     })
   }
 
-  showConfirm(): void {
+  showConfirm(message: string): void {
     /*this.modal.confirm({
       nzTitle: '<i>Your current account balance is insufficient for payment. Would you like to top up your balance?</i>',
       nzContent: '<b>Some descriptions</b>',
@@ -62,7 +62,7 @@ export class VoucherComponent {
     });*/
     this.notification.create(
       'warning',
-      'Your current account balance is insufficient for payment. Would you like to top up your balance?',
+      message,
       '',
       {
         nzButton: this.btnTemplate,

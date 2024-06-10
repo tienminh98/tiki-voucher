@@ -19,8 +19,8 @@ export class VoucherService {
     return this.http.get(this.hostBase + `/products/${id}`, {observe: 'response'});
   }
 
-  order(id: string): Observable<any> {
-    return this.http.post(`${this.hostBase}/order/store` , {id} ,{observe: 'response'});
+  order(product_id: string): Observable<any> {
+    return this.http.post(`${this.hostBase}/order/store` , {product_id} ,{observe: 'response'});
   }
 
 }

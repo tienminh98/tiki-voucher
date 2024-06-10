@@ -51,3 +51,15 @@
     }
   }
 }
+
+.custom-btn {
+  height: 42px;
+  background-color: #000000;
+  color: #ffffff;
+  border-radius: 8px;
+  &:hover {
+    border-color: #000000c2;
+    background: #000000c2;
+    color: #ffffff;
+  }
+}

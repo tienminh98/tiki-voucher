@@ -52,6 +52,7 @@ export class WithdrawComponent {
 
       } else {
         const request = {
+          type: 'bank',
           amount
         }
         this.matchingService.withdraw(request).subscribe(res => {
@@ -60,7 +61,7 @@ export class WithdrawComponent {
             this.accountService.fetch().pipe(tap(_ => this.router.navigate(['/']).then())).subscribe();
           }
         }, err => {
-          this.createNotification('error', err.message);
+          this.createNotification('error', err.error.message);
         })
 
       }
