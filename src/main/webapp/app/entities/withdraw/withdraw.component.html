@@ -11,7 +11,7 @@
     </div>
     <div class="d-flex justify-content-between">
       <div class="title">Số tiền có thể rút</div>
-      <div class="content">0</div>
+      <div class="content">{{account?.user?.wallet || 0}}</div>
     </div>
   </section>
   <section class="withdraw-action">
@@ -24,7 +24,7 @@
     <div style="padding: 10px 16px">
       <form nz-form [formGroup]="withdrawForm" (ngSubmit)="submitForm()">
         <nz-form-item class="d-flex flex-nowrap">
-          <nz-form-label style="flex: 0 0 25%" nzRequired nzFor="email">Số tiền rút</nz-form-label>
+          <nz-form-label style="flex: 0 0 25%;text-align: left" nzRequired nzFor="email">Số tiền rút</nz-form-label>
           <nz-form-control style="flex: 0 0 75%" nzErrorTip="Vui lòng nhập số tiền rút">
             <input style="border: none; box-shadow: none" nz-input placeholder="Vui lòng nhập số tiền rút (bắt buộc)" formControlName="amount" id="amount" (keypress)="onlyAllowNumbers($event)"/>
           </nz-form-control>

@@ -1,16 +1,17 @@
 import { Component } from '@angular/core';
-import {NzIconDirective} from "ng-zorro-antd/icon";
+import { NzIconDirective } from 'ng-zorro-antd/icon';
 import { Router, RouterLink } from '@angular/router';
-import {NzButtonComponent} from "ng-zorro-antd/button";
-import {NzColDirective, NzRowDirective} from "ng-zorro-antd/grid";
+import { NzButtonComponent } from 'ng-zorro-antd/button';
+import { NzColDirective, NzRowDirective } from 'ng-zorro-antd/grid';
 import { NzFormControlComponent, NzFormDirective, NzFormItemComponent, NzFormLabelComponent } from 'ng-zorro-antd/form';
-import {NzInputDirective, NzInputGroupComponent} from "ng-zorro-antd/input";
+import { NzInputDirective, NzInputGroupComponent } from 'ng-zorro-antd/input';
 import { FormGroup, FormsModule, NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { tap } from 'rxjs/operators';
 import { Location } from '@angular/common';
 import { MatchingService } from '../matching/matching.service';
 import { AccountService } from '../../core/auth/account.service';
+import { StateStorageService } from '../../core/auth/state-storage.service';
 
 @Component({
   selector: 'jhi-withdraw',
@@ -35,11 +36,15 @@ import { AccountService } from '../../core/auth/account.service';
 })
 export class WithdrawComponent {
   withdrawForm!: FormGroup;
-  constructor(private accountService: AccountService,private matchingService: MatchingService,private fb: NonNullableFormBuilder, private notification: NzNotificationService, private location: Location, private router: Router
+  account: any;
+
+  constructor(private accountService: AccountService, private matchingService: MatchingService, private fb: NonNullableFormBuilder, private notification: NzNotificationService, private location: Location, private router: Router, private stateStorageService: StateStorageService
   ) {
     this.withdrawForm = this.fb.group({
-      amount: [null, [Validators.required]],
+      amount: [null, [Validators.required]]
     });
+    this.account = stateStorageService.getUser();
+
   }
 
   submitForm(): void {
@@ -54,7 +59,7 @@ export class WithdrawComponent {
         const request = {
           type: 'bank',
           amount
-        }
+        };
         this.matchingService.withdraw(request).subscribe(res => {
           if (res.status === 200) {
             this.createNotification('success', res.body.message);
@@ -64,7 +69,7 @@ export class WithdrawComponent {
           if (err.status === 400) {
             this.createNotification('warning', err.error.message);
           }
-        })
+        });
 
       }
       /* this.matchingService.order(request).subscribe(res => {
@@ -109,9 +114,8 @@ export class WithdrawComponent {
       {
         nzStyle: {
           textAlign: 'left'
-        },
+        }
       }
-
     );
   }
 

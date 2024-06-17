@@ -8,14 +8,14 @@
     <div class="voucher-text">Vui lòng lấy phiếu giảm giá</div>
     <div class="voucher-list">
       @for (voucher of voucherList; track i; let i = $index) {
-        <div class="voucher-item" (click)="handleAction(voucher.id)">
+        <div class="voucher-item" (click)="handleAction(voucher)">
           <div class="d-flex">
             <div class="voucher-img">
               <img [src]="hostBase + voucher?.image" alt="voucher">
             </div>
             <div class="d-flex flex-column justify-content-between">
               <div class="voucher-title">{{voucher?.name}}</div>
-              <div class="voucher-price">{{voucher?.price}} ₫</div>
+              <div class="voucher-price">{{voucher?.price | number:'1.0-3'}} VNĐ</div>
             </div>
           </div>
           <div class="d-flex justify-content-end">
@@ -28,7 +28,43 @@
       </div>
     </div>
   </section>
+  <div class="selected-wrap" [class.active]="isShowSelectedItem" (click)="handleCloseSelectedItem()">
+    <div class="selected-item" (click)="$event.stopPropagation()">
+      <div class="d-flex justify-content-between align-items-center" style="padding:10px 25px 10px 30px">
+        <div class="item-welfare-price d-flex">
+          <div class="title">Giá phúc lợi:</div>
+          <div class="content">{{selectedItem?.welfare_price | number:'1.0-3'}} VNĐ</div>
+        </div>
+        <div class="item-cancel" style="cursor: pointer" (click)="handleCloseSelectedItem()">
+          <span nz-icon nzType="close" nzTheme="outline"></span>
+        </div>
+      </div>
+      <div style="background-color: #fafafa; padding: 10px;color: #969799;font-size: 1.4rem">Số phiếu thưởng đã nhận</div>
+      <div class="d-flex" style="padding: 10px">
+      @for (number of quantityList; track i; let i = $index) {
+        <div class="number" [class.active]="selectedQuantity === number" (click)="selectedQuantity = number">{{number}}</div>
+      }
+      </div>
+      <div style="padding: 0 10px 10px 10px">
+        <div class="d-flex mb-3">
+          <div style="color: #969799;font-size: 1.4rem; margin-right: 10px">Số tiền thanh toán</div>
+          <div style="font-size: 1.4rem">{{selectedItem?.welfare_price * selectedQuantity | number:'1.0-3'}} VNĐ</div>
+        </div>
+        <div class="d-flex">
+          <div style="color: #969799;font-size: 1.4rem; margin-right: 10px">Số tiền hoàn trả</div>
+          <div style="font-size: 1.4rem">{{selectedItem?.return_price | number:'1.0-3'}} VNĐ</div>
+        </div>
+      </div>
+      <div class="action-support">
+        <button class="custom-btn w-100" nz-button type="submit" nzSize="large" nzType="default">
+          Thanh toán ngay
+        </button>
+      </div>
+    </div>
+  </div>
 </div>
+
+
 <ng-template #notificationBtnTpl let-notification>
   <button style="width: 95px;" class="custom-btn" nz-button nzType="default" nzSize="small" (click)="notification.close()">
     <a style="color: #fff" (click)="onOpenChatBox()">Nạp tiền</a> <!--link support-->

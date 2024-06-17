@@ -1,7 +1,7 @@
 import { Component, TemplateRef, ViewChild } from '@angular/core';
 import {NzIconDirective} from "ng-zorro-antd/icon";
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { Location, NgIf } from '@angular/common';
+import { DecimalPipe, Location, NgIf } from '@angular/common';
 import { VoucherService } from './voucher.service';
 import { NzNotificationComponent, NzNotificationService } from 'ng-zorro-antd/notification';
 import { NzButtonComponent } from 'ng-zorro-antd/button';
@@ -14,7 +14,8 @@ import { EventManager } from '../../core/util/event-manager.service';
     NzIconDirective,
     RouterLink,
     NzButtonComponent,
-    NgIf
+    NgIf,
+    DecimalPipe
   ],
   templateUrl: './voucher.component.html',
   styleUrl: './voucher.component.scss'
@@ -24,6 +25,11 @@ export class VoucherComponent {
   id = '';
   hostBase = 'https\://www.tikievents.net/admin/storage/app/public/';
   voucherList: any[] = [];
+  selectedItem: any;
+  isShowSelectedItem = false;
+
+  quantityList = [1, 2, 3, 5, 10, 20];
+  selectedQuantity = 1;
 
   constructor(private eventManager: EventManager,private location: Location,private notification: NzNotificationService,
               private route: ActivatedRoute, private router: Router, private voucherService: VoucherService) {
@@ -44,8 +50,12 @@ export class VoucherComponent {
     }
   }
 
-  handleAction(id: string): void {
-    this.voucherService.order(id).subscribe(res => {
+  handleAction(item: any): void {
+    this.isShowSelectedItem = true;
+    this.selectedItem = item;
+    this.selectedItem['return_price'] = ((Number(this.selectedItem.commission) * Number(this.selectedItem.price)) / 100) || 0;
+    this.selectedItem['welfare_price'] = Number(this.selectedItem.price) - this.selectedItem['return_price'];
+    /*this.voucherService.order(id).subscribe(res => {
       console.log('res', res);
       if (res.status === 200) {
         this.notification.create(
@@ -64,7 +74,7 @@ export class VoucherComponent {
       if (err.status === 400) {
         this.showConfirm(String(err.error.error));
       }
-    })
+    })*/
   }
 
   showConfirm(message: string): void {
@@ -91,6 +101,12 @@ export class VoucherComponent {
 
   onOpenChatBox(): void {
     this.eventManager.broadcast('open-chat');
+  }
+
+  handleCloseSelectedItem(): void {
+    this.isShowSelectedItem = false;
+    this.selectedQuantity = 1;
+    this.selectedItem = null;
   }
 
 

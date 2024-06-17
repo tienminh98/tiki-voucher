@@ -311,6 +311,33 @@ only screen and (min-resolution: 2dppx) {
   margin-bottom: 300px;
 }
 
+.bg-home {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  background-color: #1989fa;
+}
+
+@media screen and (min-width: 787px) {
+  .banner {
+    .marquee {
+      top: 22px;
+      left: 190px;
+    }
+
+    @keyframes marquee {
+      from {
+        transform: translateX(390px);
+      }
+      to {
+        transform: translateX(-100%);
+      }
+    }
+  }
+}
 
 @media screen and (min-width: 750px) {
   .membership-card {
