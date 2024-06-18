@@ -19,7 +19,7 @@
             </div>
           </div>
           <div class="d-flex justify-content-end">
-            <div class="discount">Nhận được {{Number(account?.user['profit_category_'+id])}}% giảm giá</div>
+            <div class="discount">Nhận được {{account?.user['status_category_' + id] === 0 ? 0 : Number(account?.user['profit_category_'+id])}}% giảm giá</div>
           </div>
         </div>
       }
