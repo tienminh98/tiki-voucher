@@ -8,7 +8,8 @@
     <div class="ìno-image">
       <img style="width: 80px;height: 80px;" src="content/images/csfoot.png" alt="tiki">
     </div>
-    <div class="">Tên tài khoản: {{account?.user?.name}}</div>
+    <div class="mb-3">Tên tài khoản: {{account?.user?.name}}</div>
+    <div>Tên công ty: {{account?.user?.company}}</div>
   </section>
   <section class="info-money">
     <div class="row g-3">
@@ -17,7 +18,7 @@
           <div class="money-img">
             <span nz-icon nzType="dollar-circle" nzTheme="outline"></span>
           </div>
-          <div>{{account?.user?.wallet}} VNĐ</div>
+          <div>{{ Number(account?.user?.wallet) | number:'1.0-3' }} VNĐ</div>
         </div>
       </div>
       <div class="col-4">
@@ -44,11 +45,11 @@
       <div class="title">Liên kết thẻ ngân hàng</div>
       <span style="font-size: 1.4rem" nz-icon nzType="right" nzTheme="outline"></span>
     </div>
-    <div class="d-flex justify-content-between">
+    <div class="d-flex justify-content-between" routerLink="/payment-history">
       <div class="title">Lịch sử thanh toán</div>
       <span style="font-size: 1.4rem" nz-icon nzType="right" nzTheme="outline"></span>
     </div>
-    <div class="d-flex justify-content-between">
+    <div class="d-flex justify-content-between" routerLink="/withdraw-history">
       <div class="title">Lịch sử giao dịch</div>
       <span style="font-size: 1.4rem" nz-icon nzType="right" nzTheme="outline"></span>
     </div>

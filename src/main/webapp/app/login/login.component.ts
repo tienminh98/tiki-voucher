@@ -50,7 +50,7 @@ export default class LoginComponent implements OnInit, AfterViewInit {
     private notification: NzNotificationService
   ) {
     this.loginForm = this.fb.group({
-      phone: [null, [Validators.required, Validators.pattern(/^\d+$/)]],
+      phone: ['', [Validators.required]],
       password: ['', [Validators.required]],
     });
   }

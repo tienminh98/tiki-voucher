@@ -18,7 +18,7 @@ const routes: Routes = [
     loadChildren: () => import(`../entities/my/my.route`),
   },
   {
-    path: 'record',
+    path: 'payment-history',
     loadChildren: () => import(`../entities/records/records.route`),
   },
   {
@@ -32,6 +32,10 @@ const routes: Routes = [
   {
     path: 'withdraw',
     loadChildren: () => import(`../entities/withdraw/withdraw.route`),
+  },
+  {
+    path: 'withdraw-history',
+    loadChildren: () => import(`../entities/my/withdraw/withdraw.route`),
   },
   {
     path: 'bank-link',

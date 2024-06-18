@@ -63,7 +63,7 @@ export class WithdrawComponent {
         this.matchingService.withdraw(request).subscribe(res => {
           if (res.status === 200) {
             this.createNotification('success', res.body.message);
-            this.accountService.fetch().pipe(tap(_ => this.router.navigate(['/']).then())).subscribe();
+            this.accountService.fetch().pipe(tap(_ => this.router.navigate(['/withdraw-history']).then())).subscribe();
           }
         }, err => {
           if (err.status === 400) {

@@ -6,7 +6,7 @@
   </section>
   <section class="voucher">
     <div class="voucher-text">Vui lòng lấy phiếu giảm giá</div>
-    <div class="voucher-list">
+    <div class="voucher-list position-relative" style="z-index: 1">
       @for (voucher of voucherList; track i; let i = $index) {
         <div class="voucher-item" (click)="handleAction(voucher)">
           <div class="d-flex">
@@ -19,13 +19,14 @@
             </div>
           </div>
           <div class="d-flex justify-content-end">
-            <div class="discount">Nhận được {{Number(voucher?.commission)}}% giảm giá</div>
+            <div class="discount">Nhận được {{Number(account?.user['profit_category_'+id])}}% giảm giá</div>
           </div>
         </div>
       }
       <div *ngIf="!voucherList.length" class="no-data text-center">
         Không còn nữa
       </div>
+      <div *ngIf="isLoadedData && account?.user['status_category_' + id] === 0" style="position: absolute;top: 0;bottom: 0;left: 0;right: 0;background-color: #fff;opacity: .5" ></div>
     </div>
   </section>
   <div class="selected-wrap" [class.active]="isShowSelectedItem" (click)="handleCloseSelectedItem()">
@@ -56,7 +57,7 @@
         </div>
       </div>
       <div class="action-support">
-        <button class="custom-btn w-100" nz-button type="submit" nzSize="large" nzType="default">
+        <button (click)="onBuy()" class="custom-btn w-100" nz-button type="button" nzSize="large" nzType="default">
           Thanh toán ngay
         </button>
       </div>

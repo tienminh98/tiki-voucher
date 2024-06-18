@@ -63,6 +63,7 @@ export default class RegisterComponent implements AfterViewInit {
       confirmPassword: ['', [Validators.required]],
       referralCode: [null, [Validators.required, Validators.pattern(/^\d+$/)]],
       name: ['', [Validators.required]],
+      company: ['', [Validators.required]],
     });
   }
 

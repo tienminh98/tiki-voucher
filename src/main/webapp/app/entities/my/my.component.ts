@@ -14,7 +14,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NzColDirective, NzRowDirective } from 'ng-zorro-antd/grid';
 import { NzFormControlComponent, NzFormDirective, NzFormItemComponent, NzFormLabelComponent } from 'ng-zorro-antd/form';
 import { NzInputDirective } from 'ng-zorro-antd/input';
-import { Location } from '@angular/common';
+import {DecimalPipe, Location} from '@angular/common';
 import { EventManager } from '../../core/util/event-manager.service';
 
 @Component({
@@ -32,7 +32,8 @@ import { EventManager } from '../../core/util/event-manager.service';
     NzFormLabelComponent,
     NzInputDirective,
     NzRowDirective,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DecimalPipe
   ],
   templateUrl: './my.component.html',
   styleUrl: './my.component.scss'
@@ -147,4 +148,6 @@ export class MyComponent {
   onOpenChatBox(): void {
     this.eventManager.broadcast('open-chat');
   }
+
+  protected readonly Number = Number;
 }

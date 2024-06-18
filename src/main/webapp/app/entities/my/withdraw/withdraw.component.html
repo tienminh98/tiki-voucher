@@ -1,37 +1,39 @@
-<div class="my-3">
-  <img src="content/images/logo.png" alt="logo" style="width: 138px;height: 50px;">
+<div class="voucher-page" style="font-weight: 500;height: 100%;">
+  <section class="banner">
+    <span class="position-absolute" style="left: 14px;top: 18px;font-size: 1.4rem;color: #1989fa;cursor: pointer"
+          nz-icon nzType="left" nzTheme="outline" (click)="goBack()"></span>
+    <div class="banner-text">Lịch sử giao dịch</div>
+  </section>
+  <section style="padding-top: 50px" class="withdraw-action">
+    <nz-table [nzLoading]="isLoading"  #basicTable [nzData]="listOfData" class="custom-table">
+      <thead>
+      <tr>
+        <th>Khoản rút</th>
+        <th>Loại giao dịch</th>
+        <th>Trạng thái</th>
+        <th>Thời gian</th>
+      </tr>
+      </thead>
+      <tbody>
+        @for (data of basicTable.data; track i; let i = $index) {
+          <tr>
+            <td>{{ data?.amount | number: '1.0-3' }} VNĐ</td>
+            <td>{{data?.type}}</td>
+            <td>
+              <nz-tag class="custom-tag" [nzColor]="data?.status === 1 ? 'success' : data?.status === 0 ? 'processing' : 'error'">
+                <span nz-icon [nzType]="data?.status === 1 ? 'check-circle' : data?.status === 0 ? 'sync' : 'circle'"></span>
+                <span>{{data?.status === 1 ? 'Hoàn thành' : data?.status === 0 ? 'Chờ xác nhân' : 'lỗi'}}</span>
+              </nz-tag>
+            </td>
+            <td>{{ data?.updated_at | date: 'dd/MM/yy HH:mm'}}</td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan=4>Không có lịch sử giao dịch</td>
+          </tr>
+        }
+      </tbody>
+    </nz-table>
+  </section>
 </div>
-<nz-table [nzPageSize]="12" [nzLoading]="isLoading"  #basicTable [nzData]="listOfData" class="custom-table">
-  <thead>
-  <tr>
-    <th>Amount</th>
-    <th>Type</th>
-    <th>Status</th>
-    <th>Time</th>
-  </tr>
-  </thead>
-  <tbody>
-    @for (data of basicTable.data; track i; let i = $index) {
-      <tr>
-        <td>${{ data?.amount }}</td>
-        <td>
-          <nz-tag [nzColor]="data?.type === 0 ? 'geekblue' : 'volcano'" [nzBordered]="false">
-            {{ data?.type === "0" ? 'Bank' : 'Coin' }}
-          </nz-tag>
-        </td>
-        <td>
-          <nz-tag [nzColor]="data?.status === 0 ? 'gray' : data?.status === 1 ? 'green' : 'red'" [nzBordered]="false">
-            {{ data?.status === 0 ? 'Chờ xác nhận' : data?.status === 1 ? 'Xác nhận' : 'Từ chối' }}
-          </nz-tag>
-        </td>
-        <td>{{ data?.created_at | date: 'HH:mm:ss dd/MM/yyyy'}}</td>
-      </tr>
-    } @empty {
-      <tr>
-        <td colspan=4>No deposits found</td>
-      </tr>
-    }
-
-  </tbody>
-</nz-table>
 
