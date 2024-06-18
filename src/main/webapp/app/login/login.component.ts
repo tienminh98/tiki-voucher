@@ -92,7 +92,7 @@ export default class LoginComponent implements OnInit, AfterViewInit {
             this.router.navigate(['']);
           }
 
-          this.notification.create('success', 'Login successful', '', {
+          this.notification.create('success', 'Đăng nhập thành công', '', {
             nzStyle: {
               textAlign: 'left'
             },
