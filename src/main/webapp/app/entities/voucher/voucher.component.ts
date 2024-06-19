@@ -61,8 +61,6 @@ export class VoucherComponent {
   handleAction(item: any): void {
     this.isShowSelectedItem = true;
     this.selectedItem = item;
-    this.selectedItem['return_price'] = ((Number(this.account?.user['profit_category_'+ this.id]) * Number(this.selectedItem.price)) / 100) || 0;
-    this.selectedItem['welfare_price'] = Number(this.selectedItem.price) - this.selectedItem['return_price'];
   }
 
   onBuy(): void {

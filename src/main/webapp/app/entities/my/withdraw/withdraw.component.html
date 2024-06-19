@@ -21,8 +21,8 @@
             <td>{{data?.type}}</td>
             <td>
               <nz-tag class="custom-tag" [nzColor]="data?.status === 1 ? 'success' : data?.status === 0 ? 'processing' : 'error'">
-                <span nz-icon [nzType]="data?.status === 1 ? 'check-circle' : data?.status === 0 ? 'sync' : 'circle'"></span>
-                <span>{{data?.status === 1 ? 'Hoàn thành' : data?.status === 0 ? 'Chờ xác nhân' : 'lỗi'}}</span>
+                <span nz-icon [nzType]="data?.status === 1 ? 'check-circle' : data?.status === 0 ? 'sync' : 'info-circle'"></span>
+                <span>{{data?.status === 1 ? 'Hoàn thành' : data?.status === 0 ? 'Chờ xác nhân' : data?.message}}</span>
               </nz-tag>
             </td>
             <td>{{ data?.updated_at | date: 'dd/MM/yy HH:mm'}}</td>

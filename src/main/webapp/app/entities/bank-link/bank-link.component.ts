@@ -41,13 +41,23 @@ export class BankLinkComponent {
     this.account = this.stateStorageService.getUser();
 
     console.log('this.account', this.account);
+    let account_number = this.account?.user?.account_number;
+    this.isShowUpdate = !(this.account?.user?.account_name && this.account?.user?.account_number && this.account?.user?.bank);
+
+    if (!this.isShowUpdate && this.account?.user?.account_number) {
+      console.log('hello', this.isShowUpdate , account_number)
+      account_number = account_number.slice(0, -5) + '*****';
+    }
     this.bankLinkForm = this.fb.group({
       account_name: [this.account?.user?.account_name || '', [Validators.required]],
-      account_number: [this.account?.user?.account_number || '', [Validators.required]],
+      account_number: [account_number || '', [Validators.required]],
       bank: [this.account?.user?.bank || '', [Validators.required]],
     });
 
-    this.isShowUpdate = !(this.account?.user?.account_name && this.account?.user?.account_number && this.account?.user?.bank)
+    if (!this.isShowUpdate) {
+      this.bankLinkForm?.disable();
+    }
+
   }
   goBack() {
     if (window.history.length > 1) {
@@ -98,7 +108,7 @@ export class BankLinkComponent {
         if (res.status === 200) {
           this.createNotification('success', res.body.message);
           this.accountService.fetch().subscribe(res => {
-            this.isShowUpdate = !(this.account?.user?.account_name && this.account?.user?.account_number && this.account?.user?.bank)
+            this.isShowUpdate = !(this.account?.user?.account_name && this.account?.user?.account_number && this.account?.user?.bank);
           });
         }
       }, err => {
