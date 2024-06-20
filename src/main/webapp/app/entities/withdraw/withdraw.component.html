@@ -11,7 +11,7 @@
     </div>
     <div class="d-flex justify-content-between">
       <div class="title">Số tiền có thể rút</div>
-      <div class="content">{{account?.user?.wallet || 0}}</div>
+      <div class="content">{{this.withdraw | number:'1.0-3'}} VNĐ</div>
     </div>
   </section>
   <section class="withdraw-action">

@@ -57,8 +57,8 @@
         </div>
       </div>
       <div class="action-support">
-        <button (click)="onBuy()" class="custom-btn w-100" nz-button type="button" nzSize="large" nzType="default">
-          Thanh toán ngay
+        <button [disabled]="isBuying" (click)="onBuy()" class="custom-btn w-100" nz-button type="button" nzSize="large" nzType="default">
+          Thanh toán ngay <span *ngIf="isBuying" nz-icon nzType="loading" nzTheme="outline"></span>
         </button>
       </div>
     </div>

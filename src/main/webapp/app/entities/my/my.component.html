@@ -59,110 +59,15 @@
       <span style="font-size: 1.4rem" nz-icon nzType="right" nzTheme="outline"></span>
     </div>
     <div class="action-support px-5">
-      <button class="custom-btn w-100" nz-button type="submit" nzSize="large" nzType="default" (click)="loginService.logout()">
+      <button class="custom-btn w-100" nz-button type="submit" nzSize="large" nzType="default" (click)="logout()">
         Đăng xuất
       </button>
     </div>
   </section>
-
-  <!--
-    <section class="info">
-      <form nz-form [formGroup]="loginForm" (ngSubmit)="submitForm()">
-        <nz-form-item class="mb-4">
-          <nz-form-control style="text-align: left"  [nzSm]="24" [nzXs]="24" nzErrorTip="Please input your phone number!">
-            <input class="custom-input" nz-input formControlName="phone" placeholder="Please enter your username or mobile number" id="phone" />
-          </nz-form-control>
-        </nz-form-item>
-        <nz-form-item class="mb-4">
-          <nz-form-control style="text-align: left" [nzSm]="24" [nzXs]="24" nzErrorTip="Please input your password!">
-            <nz-input-group class="custom-input" [nzSuffix]="iconPassword">
-              <input nz-input [type]="isShowPassword ? 'text' : 'password'" placeholder="Please enter your password" formControlName="password" id="password" />
-              <ng-template #iconPassword>
-                <span style="cursor: pointer" (click)="isShowPassword = !isShowPassword" nz-icon [nzType]="isShowPassword ? 'eye-invisible' : 'eye'" nzTheme="outline"></span>
-              </ng-template>
-            </nz-input-group>
-          </nz-form-control>
-        </nz-form-item>
-        <nz-form-item nz-row class="register-area mb-0 mb-4" >
-          <nz-form-control class="text-center">
-            <button class="w-100 custom-btn login text-uppercase" nz-button nzSize="large" nzType="default">Login</button>
-          </nz-form-control>
-        </nz-form-item>
-      </form>
-      <div class="text-left">Forgot password?</div>
-      <div class="my-3" style="font-size: 2.4rem">Create an Account</div>
-      <a style="color: #ffff" routerLink="/account/register">
-        <button class="w-100 custom-btn login text-uppercase" nz-button nzSize="large" nzType="default">
-          REGISTER
-        </button>
-      </a>
-    </section>
-  -->
-
 </div>
-
-<!--<div class="my-page container">
-  <section class="banner my-3">
-    <img src="content/images/logo.png" alt="logo" style="width: 138px;height: 50px;">
-  </section>
-  <section class="info-user">
-    <div class="card-info d-flex">
-      <div class="user-img position-relative">
-        <span (click)="selectFile()" class="edit-img position-absolute" nz-icon nzType="camera" nzTheme="outline"></span>
-        <img [src]="hostBase + avatar" alt="avatar" style="width: 65px;height: 65px;border-radius: inherit;
-    object-fit: cover;">
-      </div>
-      <div class="w-100 d-flex flex-column justify-content-between align-items-center"
-           style="font-weight: normal;color: #333">
-        <p>Account name : {{account?.user?.name}}</p>
-        <p>Phone number : {{account?.user?.phone}}</p>
-      </div>
-    </div>
-  </section>
-  <section class="info-transaction">
-    <div class="card-transaction text-start">
-      <div class="info-type text-uppercase" style="font-style: italic"><strong>VIP {{account?.user?.level}}</strong></div>
-      <div class="transaction">
-        <div class="d-flex">
-          <div class="info-label">
-            <div>Today's Orders</div>
-            <div>Today's commission</div>
-          </div>
-          <div class="info-value">
-            <div>{{account?.ordersToday}}</div>
-            <div>${{account?.total_commission}}</div>
-          </div>
-        </div>
-      </div>
-      <div class="img"></div>
-    </div>
-  </section>
-  <section class="finance">
-    <div class="card-info d-flex justify-content-between">
-      <div class="surplus d-flex flex-column justify-content-center align-items-start">
-        <div class="">Account Balance</div>
-        <div class="">${{account?.user?.wallet}}</div>
-      </div>
-      <div class="d-flex align-items-center" style="font-weight: normal;color: #333">
-        <button class="custom-btn" nz-button nzSize="large" nzType="default">
-          <a style="color: #fff" href="https://lyst686.com/admin/chat" target="_blank">Top up</a> &lt;!&ndash;link support&ndash;&gt;
-        </button>
-        <button routerLink="./withdraw-detail" class="custom-btn ghost ml-3" nz-button nzSize="large" nzType="default">Withdraw</button>
-      </div>
-    </div>
-  </section>
-  <section class="feature mt-5">
-    <div class="row no-gutters">
-      @for (feature of featureList; track i;let i = $index) {
-        <div class="feature-item col-4">
-          <div (click)="handleAction(feature)" class="d-flex flex-column align-items-center">
-            <img style="width: 45px;height: 45px;" [src]="feature?.img" alt="i">
-            <div class="feature-title">{{ feature?.title }}</div>
-          </div>
-        </div>
-      }
-    </div>
-  </section>
+<div *ngIf="isLogout" class="loading">
+  <div class="d-flex h-100 justify-content-center align-items-center">
+    <span style="font-size: 52px" nz-icon nzType="loading" nzTheme="outline"></span>
+  </div>
 </div>
-<input type="file" #fileInput style="display: none;" (change)="onFileSelected($event)">-->
 

@@ -2,7 +2,7 @@ import {Component, ElementRef, ViewChild} from '@angular/core';
 import {NzButtonComponent} from "ng-zorro-antd/button";
 import { StateStorageService } from '../../core/auth/state-storage.service';
 import { AuthServerProvider } from '../../core/auth/auth-jwt.service';
-import { tap } from 'rxjs/operators';
+import {finalize, tap} from 'rxjs/operators';
 import {Router, RouterLink} from '@angular/router';
 import { LoginService } from '../../login/login.service';
 import {NzIconDirective} from "ng-zorro-antd/icon";
@@ -14,7 +14,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NzColDirective, NzRowDirective } from 'ng-zorro-antd/grid';
 import { NzFormControlComponent, NzFormDirective, NzFormItemComponent, NzFormLabelComponent } from 'ng-zorro-antd/form';
 import { NzInputDirective } from 'ng-zorro-antd/input';
-import {DecimalPipe, Location} from '@angular/common';
+import {DecimalPipe, Location, NgIf} from '@angular/common';
 import { EventManager } from '../../core/util/event-manager.service';
 
 @Component({
@@ -33,7 +33,8 @@ import { EventManager } from '../../core/util/event-manager.service';
     NzInputDirective,
     NzRowDirective,
     ReactiveFormsModule,
-    DecimalPipe
+    DecimalPipe,
+    NgIf
   ],
   templateUrl: './my.component.html',
   styleUrl: './my.component.scss'
@@ -55,6 +56,8 @@ export class MyComponent {
   ]
 
   avatar = '';
+
+  isLogout = false;
   constructor(
               private stateStorageService: StateStorageService,
               public loginService: LoginService,
@@ -150,4 +153,17 @@ export class MyComponent {
   }
 
   protected readonly Number = Number;
+
+  logout(): void {
+    this.isLogout = true;
+    this.loginService.logout().pipe(finalize(() => this.isLogout = false)).subscribe( () => {
+        this.router.navigateByUrl('/login').then();
+    }, error => {
+      this.notification.create('error', error.error.message, '', {
+        nzStyle: {
+          textAlign: 'left'
+        },
+      });
+    });
+  }
 }

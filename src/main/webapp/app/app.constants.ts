@@ -7,7 +7,7 @@ declare const __VERSION__: string;
 
 export const VERSION = __VERSION__;
 export const DEBUG_INFO_ENABLED = __DEBUG_INFO_ENABLED__;
-export const HOT_BASE = 'http://www.tikievents.net/admin/api';
+export const HOT_BASE = 'https://www.tikievents.net/admin/api';
 
 export const COUNTRY_CODE = [
   {

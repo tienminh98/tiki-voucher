@@ -8,7 +8,7 @@ import { NzInputDirective, NzInputGroupComponent } from 'ng-zorro-antd/input';
 import { FormGroup, FormsModule, NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { tap } from 'rxjs/operators';
-import { Location } from '@angular/common';
+import {DecimalPipe, Location} from '@angular/common';
 import { MatchingService } from '../matching/matching.service';
 import { AccountService } from '../../core/auth/account.service';
 import { StateStorageService } from '../../core/auth/state-storage.service';
@@ -29,7 +29,8 @@ import { StateStorageService } from '../../core/auth/state-storage.service';
     NzRowDirective,
     ReactiveFormsModule,
     FormsModule,
-    NzFormLabelComponent
+    NzFormLabelComponent,
+    DecimalPipe
   ],
   templateUrl: './withdraw.component.html',
   styleUrl: './withdraw.component.scss'
@@ -38,6 +39,8 @@ export class WithdrawComponent {
   withdrawForm!: FormGroup;
   account: any;
 
+  withdraw = 0;
+
   constructor(private accountService: AccountService, private matchingService: MatchingService, private fb: NonNullableFormBuilder, private notification: NzNotificationService, private location: Location, private router: Router, private stateStorageService: StateStorageService
   ) {
     this.withdrawForm = this.fb.group({
@@ -45,6 +48,13 @@ export class WithdrawComponent {
     });
     this.account = stateStorageService.getUser();
 
+    const status_category = ['status_category_1', 'status_category_2', 'status_category_3', 'status_category_4'].every(status => this.account.user[status] === 0);
+    const status_order = this.account.user.orders.some((order: { status: number; }) => order.status === 1);
+    console.log(!(status_category && !status_order))
+
+    if (!status_category && status_order) {
+      this.withdraw = Number(this.account.user.wallet);
+    }
   }
 
   submitForm(): void {

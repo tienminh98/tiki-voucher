@@ -28,10 +28,7 @@ export class LoginService {
       } });
   }*/
 
-  logout(): void {
-    this.authServerProvider.logout().pipe(delay(2000)).subscribe({ complete: () => {
-        this.router.navigateByUrl('/login').then();
-      }
-    });
+  logout(): Observable<any> {
+    return this.authServerProvider.logout();
   }
 }

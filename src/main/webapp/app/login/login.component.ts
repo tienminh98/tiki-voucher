@@ -57,7 +57,7 @@ export default class LoginComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     // if already authenticated then navigate to home page
-    this.accountService.identity().subscribe(() => {
+    this.accountService.identity(true).subscribe(() => {
       if (this.accountService.isAuthenticated()) {
         this.router.navigate(['']);
       }

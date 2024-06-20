@@ -8,6 +8,7 @@ import { NzButtonComponent } from 'ng-zorro-antd/button';
 import { EventManager } from '../../core/util/event-manager.service';
 import {AccountService} from "../../core/auth/account.service";
 import {StateStorageService} from "../../core/auth/state-storage.service";
+import {finalize} from "rxjs/operators";
 
 @Component({
   selector: 'jhi-voucher',
@@ -30,11 +31,14 @@ export class VoucherComponent {
   selectedItem: any;
   isShowSelectedItem = false;
   isLoadedData = false;
+  isBuying = false;
 
   quantityList = [1, 2, 3, 5, 10, 20];
   selectedQuantity = 1;
 
   account: any;
+
+
 
   constructor(private stateStorageService: StateStorageService, private eventManager: EventManager,private location: Location,private notification: NzNotificationService,
               private route: ActivatedRoute, private router: Router, private voucherService: VoucherService) {
@@ -64,12 +68,14 @@ export class VoucherComponent {
   }
 
   onBuy(): void {
+    this.isBuying = true;
     const res = {
       product_id: this.selectedItem.id,
       total_product: this.selectedQuantity
     }
-    this.voucherService.order(res).subscribe(res => {
-      if (res.status === 200) {
+    this.voucherService.order(res).pipe(finalize(() => (this.isBuying = false))).subscribe(res => {
+      console.log('res', res)
+      if (res.status === 201) {
         this.notification.create(
           'success',
           res.body.message,
