@@ -67,27 +67,29 @@ export default class MainComponent implements OnInit, OnDestroy {
     )
   }
   loadCrispChat() {
-    if (!this.isScriptLoaded) {
-      (window as any).$crisp = [];
-      (window as any).CRISP_WEBSITE_ID = "ec0b213e-13f9-49d9-bb98-1a667cd8dacd";
-      const d = document;
-      const s = d.createElement("script");
-      s.src = "https://client.crisp.chat/l.js";
-      s.async = Boolean(1);
-      this.renderer.appendChild(d.getElementsByTagName("head")[0], s);
+    setTimeout(() => {
+      if (!this.isScriptLoaded) {
+        (window as any).$crisp = [];
+        (window as any).CRISP_WEBSITE_ID = "648c8662-b0ab-48fe-94d7-79dc9f3747b2";
+        const d = document;
+        const s = d.createElement("script");
+        s.src = "https://client.crisp.chat/l.js";
+        s.async = Boolean(1);
+        this.renderer.appendChild(d.getElementsByTagName("head")[0], s);
 
-      s.onload = () => {
-        this.modifyCrispChatIcon();
-        this.isScriptLoaded = true;
-      };
-    }
+        s.onload = () => {
+          this.modifyCrispChatIcon();
+          this.isScriptLoaded = true;
+        };
+      }
+    })
   }
 
   modifyCrispChatIcon() {
     const interval = setInterval(() => {
       const crispChatElement = document.querySelector('.crisp-client');
       if (crispChatElement) {
-        const chatIcons = crispChatElement.querySelectorAll('[data-full-view="true"] .cc-1yy0g .cc-1m2mf');
+        const chatIcons = crispChatElement.querySelectorAll('.cc-1yy0g .cc-1m2mf');
         chatIcons.forEach((element) => {
           const htmlElement = element as HTMLElement;
           htmlElement.style.setProperty('bottom', '65px', 'important');
@@ -95,7 +97,7 @@ export default class MainComponent implements OnInit, OnDestroy {
         });
         clearInterval(interval);
       }
-    }, 1000);
+    }, 2000);
   }
 
   openChatWindow() {
