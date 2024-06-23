@@ -48,11 +48,11 @@ export class WithdrawComponent {
     });
     this.account = stateStorageService.getUser();
 
-    const status_category = ['status_category_1', 'status_category_2', 'status_category_3', 'status_category_4'].every(status => this.account.user[status] === 0);
-    const status_order = this.account.user.orders.some((order: { status: number; }) => order.status === 1);
-    console.log(!(status_category && !status_order))
+    // const status_category = ['status_category_1', 'status_category_2', 'status_category_3', 'status_category_4'].every(status => this.account.user[status] === 0);
+    const status_order = this.account.user.orders.some((order: { status: number; }) => order.status !== 0);
+    // console.log(!(status_category && !status_order))
 
-    if (!status_category && status_order) {
+    if (status_order) {
       this.withdraw = Number(this.account.user.wallet);
     }
   }
